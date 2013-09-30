@@ -1,0 +1,3 @@
+hr_user:
+    resource: "@HRUserBundle/Resources/config/routing.xml"
+    prefix:   /
