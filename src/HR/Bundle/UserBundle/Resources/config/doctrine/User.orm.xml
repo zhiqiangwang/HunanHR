@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="HR\Bundle\UserBundle\Model\User">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO" />
+        </id>
+        <field name="username" type="string" column="username" length="20" unique="true" />
+        <field name="password" type="string" column="password" length="255" />
+        <field name="email" type="string" column="email" length="255" unique="true" />
+        <field name="screenName" type="string" column="screenName" length="20" />
+        <field name="realName" type="string" column="realName" length="20" nullable="true" />
+        <field name="gender" type="string" column="gender" length="1" nullable="true" />
+        <field name="avatarUrl" type="string" column="avatarUrl" length="255" nullable="true" />
+        <field name="roles" type="array" column="roles" />
+        <field name="expired" type="boolean" column="expired" />
+        <field name="expiresAt" type="datetime" column="expires_at" />
+        <field name="credentialsExpired" type="boolean" column="credentials_expired" />
+        <field name="credentialsExpireAt" type="datetime" column="credentials_expire_at" />
+        <field name="enabled" type="boolean" column="enabled" />
+        <field name="locked" type="boolean" column="locked" />
+    </entity>
+</doctrine-mapping>
