@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="user.entity.class">HR\Bundle\UserBundle\Entity\User</parameter>
         <parameter key="user.manager.class">HR\Bundle\UserBundle\EntityManager\UserManager</parameter>
+        <parameter key="user.provider.class">HR\Bundle\UserBundle\Security\UserProvider</parameter>
     </parameters>
 
     <services>
@@ -14,6 +15,10 @@
             <argument type="service" id="security.encoder_factory" />
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument>%user.entity.class%</argument>
+        </service>
+
+        <service id="user.provider" class="%user.provider.class%">
+            <argument type="service" id="user.manager" />
         </service>
     </services>
 </container>

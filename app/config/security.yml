@@ -1,17 +1,17 @@
 security:
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+        HR\Bundle\UserBundle\Entity\User:
+            algorithm: sha1
+            iterations: 1
+            encode_as_base64: false
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        in_memory:
-            memory:
-                users:
-                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+        main:
+            id: user.provider
 
     firewalls:
         dev:
