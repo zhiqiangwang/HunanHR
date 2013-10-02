@@ -1,3 +1,6 @@
 user:
     resource: "@HRUserBundle/Resources/config/routing.xml"
     prefix:   /
+
+home:
+    pattern: /

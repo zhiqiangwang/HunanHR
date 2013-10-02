@@ -11,13 +11,15 @@ framework:
         strict_requirements: ~
     form:            ~
     csrf_protection: ~
-    validation:      { enable_annotations: true }
+    validation:      { enable_annotations: false }
     templating:
         engines: ['twig']
         #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trusted_proxies: ~
-    session:         ~
+    session:
+        name: SESSION
+        cookie_httponly: true
     fragments:       ~
     http_method_override: true
 
@@ -25,6 +27,8 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    form:
+        resources: [HRUserBundle:Form:fields.html.twig]
 
 # Assetic Configuration
 assetic:

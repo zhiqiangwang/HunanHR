@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
+        http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="HR\Bundle\UserBundle\Entity\User">
+        <constraint name="Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity">
+            <option name="fields">email</option>
+            <option name="message">该电子邮件地址已存在</option>
+            <option name="groups">
+                <value>registration</value>
+            </option>
+        </constraint>
+        <constraint name="Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity">
+            <option name="fields">username</option>
+            <option name="message">该用户名不可用</option>
+            <option name="groups">
+                <value>registration</value>
+            </option>
+        </constraint>
+
+        <property name="email">
+            <constraint name="NotBlank">
+                <option name="message">电子邮件地址不能为空</option>
+                <option name="groups">
+                    <value>registration</value>
+                </option>
+            </constraint>
+            <constraint name="Email">
+                <option name="message">"{{ value }}" 不是一个有效的电子邮件地址</option>
+                <option name="groups">
+                    <value>registration</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="username">
+            <constraint name="NotBlank">
+                <option name="message">用户名不能为空</option>
+                <option name="groups">
+                    <value>registration</value>
+                </option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">3</option>
+                <option name="minMessage">用户名长度至少需要{{ limit }}个字符</option>
+                <option name="max">20</option>
+                <option name="maxMessage">用户名长度不能超过{{ limit }}个字符</option>
+                <option name="groups">
+                    <value>registration</value>
+                </option>
+            </constraint>
+            <constraint name="Regex">
+                <option name="pattern">/^[^-_]+[a-z0-9-_]+[^-_]$/</option>
+                <option name="message">用户名只能包含字母、数字、_或减号，不能以_或减号开头或结尾。</option>
+                <option name="groups">
+                    <value>registration</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="screenName">
+            <constraint name="NotBlank">
+                <option name="message">昵称不能为空</option>
+                <option name="groups">
+                    <value>registration</value>
+                </option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="minMessage">昵称长度至少需要{{ limit }}个字符</option>
+                <option name="max">20</option>
+                <option name="maxMessage">昵称长度不能超过{{ limit }}个字符</option>
+                <option name="groups">
+                    <value>registration</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="plainPassword">
+            <constraint name="NotBlank">
+                <option name="message">密码不能为空</option>
+                <option name="groups">
+                    <value>registration</value>
+                </option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">5</option>
+                <option name="minMessage">密码长度至少需要 {{ limit }} 位</option>
+                <option name="groups">
+                    <value>registration</value>
+                </option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

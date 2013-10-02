@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <div class="module">
+        <div class="flex-module sign">
+            <div class="module-header">
+                <ol class="breadcrumb">
+                    <li><a href="{{ path('home') }}">湖南英才网</a></li>
+                    <li class="active">注册</li>
+                </ol>
+            </div>
+
+            {% block user_content %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
