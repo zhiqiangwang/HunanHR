@@ -94,6 +94,59 @@ interface UserInterface extends AdvancedUserInterface
     public function getGender();
 
     /**
+     * @return string
+     */
+    public function getGenderName();
+
+    /**
+     * @param string $birthday
+     *
+     * @return $this
+     */
+    public function setBirthday($birthday);
+
+    /**
+     * @return string
+     */
+    public function getBirthday();
+
+    /**
+     * @param string $phoneNumber
+     *
+     * @return $this
+     */
+    public function setPhoneNumber($phoneNumber);
+
+    /**
+     * @return string
+     */
+    public function getPhoneNumber();
+
+    /**
+     * @param string $homepage
+     *
+     * @return $this
+     */
+    public function setHomepage($homepage);
+
+    /**
+     * @return string
+     */
+    public function getHomepage();
+
+    /**
+     * @param string $bio
+     *
+     * @return $this
+     */
+    public function setBio($bio);
+
+    /**
+     * @return string
+     */
+    public function getBio();
+
+    /**
      * @param string $avatarUrl
      *
      * @return $this
@@ -104,6 +157,25 @@ interface UserInterface extends AdvancedUserInterface
      * @return string
      */
     public function getAvatarUrl();
+
+    /**
+     * @param Position $position
+     *
+     * @return $this
+     */
+    public function addPosition(Position $position);
+
+    /**
+     * @param Position $position
+     *
+     * @return $this
+     */
+    public function removePosition(Position $position);
+
+    /**
+     * @return array of Position
+     */
+    public function getPositions();
 
     /**
      * @param array $roles
@@ -174,4 +246,16 @@ interface UserInterface extends AdvancedUserInterface
      * @return $this
      */
     public function setLocked($boolean);
+
+    /**
+     * @return \Datetime
+     */
+    public function getCreatedAt();
+
+    /**
+     * @param UserInterface $user
+     *
+     * @return bool
+     */
+    public function equals(UserInterface $user);
 }

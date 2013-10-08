@@ -1,0 +1,12 @@
+<ol class="breadcrumb">
+    {% for crumb in breadcrumbs %}
+        {% if loop.last %}
+            {% set style=' class="active"' %}
+        {% endif %}
+        {% if crumb.url and not loop.last %}
+            <li{{ style|default('')|raw }}><a href="{{ crumb.url }}">{{ crumb.text }}</a></li>
+        {% else %}
+            <li{{ style|default('')|raw }}>{{ crumb.text }}</li>
+        {% endif %}
+    {% endfor %}
+</ol>

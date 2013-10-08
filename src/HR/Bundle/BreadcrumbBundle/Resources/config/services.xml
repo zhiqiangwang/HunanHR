@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="breadcrumb.class">HR\Bundle\BreadcrumbBundle\Breadcrumb\Breadcrumb</parameter>
+    </parameters>
+
+    <services>
+        <service id="breadcrumb" class="%breadcrumb.class%" />
+
+        <service id="breadcrumb.twig" class="HR\Bundle\BreadcrumbBundle\Twig\Extension\BreadcrumbExtension">
+            <argument type="service" id="service_container" />
+            <tag name="twig.extension" />
+        </service>
+    </services>
+</container>

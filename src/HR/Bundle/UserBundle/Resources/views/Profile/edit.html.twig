@@ -1,0 +1,30 @@
+{% extends 'HRUserBundle::layout.html.twig' %}
+
+{% block user_content %}
+    {{ form_start(form, {'action': path('profile_edit'), 'attr': {'class': 'form-horizontal' }}) }}
+
+    <div class="form-group">
+        <div class="col-lg-2 control-label">
+            <label>用户名</label>
+        </div>
+        <div class="col-lg-10 form-control-static">
+            <span class="text-muted">**{{ form.vars.value.username|slice(2) }}</span>&nbsp;&nbsp;&nbsp;<a href="#">修改密码</a>
+        </div>
+    </div>
+
+    {{ form_widget(form) }}
+
+    <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+            <button type="submit" class="btn btn-primary">保存</button>
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'HRUserBundle::settingMenu.html.twig' with {'active' : 'profile'} %}
+
+    {{ parent() }}
+{% endblock %}

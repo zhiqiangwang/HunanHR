@@ -13,6 +13,8 @@ class RegistrationController extends Controller
      */
     public function registerAction(Request $request)
     {
+        $this->get('breadcrumb')->add('注册');
+
         /** @var \Symfony\Component\Form\FormInterface $form */
         $form = $this->get('user.form.registration');
 

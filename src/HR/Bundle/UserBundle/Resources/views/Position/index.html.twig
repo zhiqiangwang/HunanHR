@@ -1,0 +1,66 @@
+{% extends 'HRUserBundle::layout.html.twig' %}
+
+{% block user_content %}
+
+    {% if positions|length > 0 %}
+        <table class="table table-bordered">
+            <tr>
+                <th class="text-center">公司名称</th>
+                <th class="text-center">职位名称</th>
+                <th width="120" class="text-center">工作时间</th>
+                <th width="120" class="text-center">-</th>
+            </tr>
+            {% for position in positions %}
+                <tr>
+                    <td class="text-center">{{ position.companyName }}</td>
+                    <td class="text-center">{{ position.title }}</td>
+                    <td class="text-center">{{ position.startDate }} ~ {{ position.endDate }}</td>
+                    <td class="text-center">
+                        <a href="{{ path('position_edit', {'positionId': position.id}) }}">编辑</a>
+                        <a href="{{ path('position_delete', {'positionId': position.id}) }}" onclick="return confirm('确认删除该职业经历？')">删除</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p class="text-muted">您没有设置职业经历</p>
+    {% endif %}
+{% endblock %}
+
+{% block ext_content %}
+    {% if positions|length <= 10 %}
+        <div class="module">
+            <div class="flex-module">
+                <div class="module-header">
+                    <h2>添加职业经历</h2>
+                </div>
+
+                {{ form_start(form, {'action': path('position_list'), 'attr': {'class': 'form-horizontal' }}) }}
+
+                {{ form_row(form.companyName) }}
+                {{ form_row(form.title) }}
+
+                <div class="form-group">
+                    <div class="col-sm-2 control-label">
+                        <label>工作时间</label>
+                    </div>
+                    <div class="col-sm-10 embed">
+                        {{ form_widget(form.startDate) }} 至 {{ form_widget(form.endDate) }}
+                        <div class="has-error">
+                            {{ form_errors(form.startDate) }}
+                            {{ form_errors(form.endDate) }}
+                        </div>
+                    </div>
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'HRUserBundle::settingMenu.html.twig' with {'active' : 'position'} %}
+
+    {{ parent() }}
+{% endblock %}

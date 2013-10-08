@@ -13,15 +13,15 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('screenName', 'text', array('label' => '昵称'))
-            ->add('email', 'email', array('label' => '电子邮件地址'))
             ->add('username', 'text', array('label' => '用户名'))
+            ->add('email', 'email', array('label' => '电子邮件地址'))
             ->add('plainPassword', 'repeated', array(
                 'type'            => 'password',
                 'first_options'   => array('label' => '密码'),
                 'second_options'  => array('label' => '重新输入密码'),
                 'invalid_message' => '两次输入密码不匹配'
             ))
+            ->add('screenName', 'text', array('label' => '昵称'))
             ->add('save', 'submit', array('label' => '注册'));
     }
 

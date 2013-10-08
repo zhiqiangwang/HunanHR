@@ -1,0 +1,79 @@
+{% extends 'HRUserBundle::layout.html.twig' %}
+
+{% block user_content %}
+
+    <h2>基本信息</h2>
+    <hr/>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>真实姓名</th>
+            <td>{{ user.realName }}<a
+                        href="{{ path('profile_edit') }}"> {% if user.realName %}修改{% else %}设置{% endif %}</a></td>
+        </tr>
+        <tr>
+            <th>性别</th>
+            <td>{{ user.genderName }}<a
+                        href="{{ path('profile_edit') }}"> {% if user.gender %}修改{% else %}设置{% endif %}</a></td>
+        </tr>
+        <tr>
+            <th>生日</th>
+            <td>{{ user.birthday|date('Y-m-d') }}<a
+                        href="{{ path('profile_edit') }}"> {% if user.birthday %}修改{% else %}设置{% endif %}</a></td>
+        </tr>
+        <tr>
+            <th>联系手机</th>
+            <td>{{ user.phoneNumber }}<a
+                        href="{{ path('profile_edit') }}"> {% if user.phoneNumber %}修改{% else %}设置{% endif %}</a></td>
+        </tr>
+        <tr>
+            <th>联系Email</th>
+            <td>{{ user.email }}</td>
+        </tr>
+    </table>
+
+    <h2>工作经历</h2>
+    <hr/>
+    {% if user.positions|length > 0 %}
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>公司名称</th>
+            <th>职位名称</th>
+            <th>任职时间</th>
+        </tr>
+        {% for position in user.positions %}
+        <tr>
+            <td>{{ position.title }}</td>
+            <td>{{ position.companyName }}</td>
+            <td>{{ position.startDate }}年 至 {{ position.endDate }}年</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p class="text-muted">还没有设置工作经历，<a href="{{ path('user_position_new') }}">点此添加</a></p>
+    {% endif %}
+
+    <h2>教育经历</h2>
+    <hr/>
+    <p class="text-muted">还没有设置教育经历，<a href="">点此添加</a></p>
+
+{% endblock %}
+
+{% block sidebar %}
+    <div class="module">
+        <div class="list-group-module">
+            <div class="list-group">
+                <a href="{{ path('profile_edit') }}" class="list-group-item">
+                    <span class="glyphicon glyphicon-chevron-left"></span> 资料设置
+                </a>
+                <a href="{{ path('resume_edit') }}" class="list-group-item active">
+                    <span class="glyphicon glyphicon-chevron-left"></span> 简历设置
+                </a>
+                <a href="{{ path('user_position') }}" class="list-group-item">
+                    <span class="glyphicon glyphicon-chevron-left"></span> 工作经历
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {{ parent() }}
+{% endblock %}

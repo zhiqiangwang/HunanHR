@@ -7,4 +7,38 @@
     <route id="register" pattern="/register">
         <default key="_controller">HRUserBundle:Registration:register</default>
     </route>
+
+    <route id="login" pattern="/login">
+        <default key="_controller">HRUserBundle:Security:login</default>
+    </route>
+
+    <route id="login_check" pattern="/login_check">
+        <default key="_controller">HRUserBundle:Security:loginCheck</default>
+    </route>
+
+    <route id="logout" pattern="/logout">
+        <default key="_controller">HRUserBundle:Security:logout</default>
+    </route>
+
+    <route id="profile_edit" pattern="/setting/profile">
+        <default key="_controller">HRUserBundle:Profile:edit</default>
+    </route>
+
+    <route id="resume_edit" pattern="/setting/resume">
+        <default key="_controller">HRUserBundle:Resume:edit</default>
+    </route>
+
+    <route id="position_list" pattern="/setting/position">
+        <default key="_controller">HRUserBundle:Position:index</default>
+    </route>
+
+    <route id="position_edit" pattern="/setting/position/edit/{positionId}">
+        <default key="_controller">HRUserBundle:Position:edit</default>
+        <requirement key="positionId">\d+</requirement>
+    </route>
+
+    <route id="position_delete" pattern="/setting/position/delete/{positionId}">
+        <default key="_controller">HRUserBundle:Position:delete</default>
+        <requirement key="positionId">\d+</requirement>
+    </route>
 </routes>

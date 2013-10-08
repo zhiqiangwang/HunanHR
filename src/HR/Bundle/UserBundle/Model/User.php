@@ -1,5 +1,6 @@
 <?php
 namespace HR\Bundle\UserBundle\Model;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * User Model
@@ -56,7 +57,32 @@ abstract class User implements UserInterface
     /**
      * @var string
      */
+    protected $birthday;
+
+    /**
+     * @var string
+     */
+    protected $phoneNumber;
+
+    /**
+     * @var string
+     */
+    protected $homepage;
+
+    /**
+     * @var string
+     */
+    protected $bio;
+
+    /**
+     * @var string
+     */
     protected $avatarUrl;
+
+    /**
+     * @var array
+     */
+    protected $positions;
 
     /**
      * @var array
@@ -93,6 +119,11 @@ abstract class User implements UserInterface
      */
     protected $credentialsExpiresAt;
 
+    /**
+     * @var \Datetime
+     */
+    protected $createdAt;
+
     public function __construct()
     {
         $this->locked             = false;
@@ -101,6 +132,8 @@ abstract class User implements UserInterface
         $this->enabled            = true;
         $this->roles              = array();
         $this->salt               = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+        $this->createdAt          = new \Datetime();
+        $this->positions          = new ArrayCollection();
     }
 
     /**
@@ -256,6 +289,93 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
+    public function getGenderName()
+    {
+        switch ($this->gender) {
+            case 'm':
+                return '男';
+            case 'f':
+                return '女';
+            default:
+                return '未设置';
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setBirthday($birthday)
+    {
+        $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBirthday()
+    {
+        return $this->birthday;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPhoneNumber($phoneNumber)
+    {
+        $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPhoneNumber()
+    {
+        return $this->phoneNumber;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setHomepage($homepage)
+    {
+        $this->homepage = $homepage;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getHomepage()
+    {
+        return $this->homepage;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setBio($bio)
+    {
+        $this->bio = $bio;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBio()
+    {
+        return $this->bio;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function setAvatarUrl($avatarUrl)
     {
         $this->avatarUrl = $avatarUrl;
@@ -269,6 +389,34 @@ abstract class User implements UserInterface
     public function getAvatarUrl()
     {
         return $this->avatarUrl;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addPosition(Position $position)
+    {
+        $this->positions->add($position);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removePosition(Position $position)
+    {
+        $this->positions->removeElement($position);
+
+        return $this;
+    }
+
+    /**
+     * @return array of Position
+     */
+    public function getPositions()
+    {
+        return $this->positions;
     }
 
     /**
@@ -442,5 +590,21 @@ abstract class User implements UserInterface
         }
 
         return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function equals(UserInterface $user)
+    {
+        return $this->id == $user->getId();
     }
 }

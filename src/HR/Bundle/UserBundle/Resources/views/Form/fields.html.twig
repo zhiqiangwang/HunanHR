@@ -1,19 +1,11 @@
 {% extends 'form_div_layout.html.twig' %}
 
-{% block form_label %}
-    {% set label_attr = label_attr|default({'class': 'col-sm-2 control-label'}) %}
-    {{ parent() }}
-{% endblock form_label %}
-
-{% block widget_attributes %}
-    {% set attr = attr|default({'class': 'form-control', 'size': 35}) %}
-    {{ parent() }}
-{% endblock widget_attributes %}
-
 {% block form_row %}
     {% spaceless %}
         <div class="form-group{% if errors|length > 0 %} has-error{% endif %}">
-            {{ form_label(form) }}
+            <div class="col-sm-2 control-label">
+                {{ form_label(form) }}
+            </div>
             <div class="col-sm-10">
                 {{ form_widget(form) }}
                 {{ form_errors(form) }}

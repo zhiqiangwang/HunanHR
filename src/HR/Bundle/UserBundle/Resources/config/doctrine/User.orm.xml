@@ -6,13 +6,17 @@
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO" />
         </id>
+        <field name="email" type="string" column="email" length="255" unique="true" />
         <field name="username" type="string" column="username" length="20" unique="true" />
         <field name="password" type="string" column="password" length="255" />
         <field name="salt" type="string" column="salt" length="255" />
-        <field name="email" type="string" column="email" length="255" unique="true" />
         <field name="screenName" type="string" column="screen_name" length="20" />
         <field name="realName" type="string" column="real_name" length="20" nullable="true" />
         <field name="gender" type="string" column="gender" length="1" nullable="true" />
+        <field name="birthday" type="date" column="birthday" nullable="true" />
+        <field name="phoneNumber" type="string" column="phone_number" length="11" nullable="true" />
+        <field name="homepage" type="string" column="homepage" length="255" nullable="true" />
+        <field name="bio" type="string" column="bio" length="4000" nullable="true" />
         <field name="avatarUrl" type="string" column="avatar_url" length="255" nullable="true" />
         <field name="roles" type="array" column="roles" nullable="true" />
         <field name="enabled" type="boolean" column="enabled" />
@@ -21,5 +25,12 @@
         <field name="expiresAt" type="datetime" column="expires_at" nullable="true" />
         <field name="credentialsExpired" type="boolean" column="credentials_expired" />
         <field name="credentialsExpiresAt" type="datetime" column="credentials_expires_at" nullable="true" />
+        <field name="createdAt" type="datetime" column="created_at" />
+
+        <one-to-many target-entity="Position" mapped-by="user" field="positions">
+            <cascade>
+                <cascade-remove />
+            </cascade>
+        </one-to-many>
     </entity>
 </doctrine-mapping>
