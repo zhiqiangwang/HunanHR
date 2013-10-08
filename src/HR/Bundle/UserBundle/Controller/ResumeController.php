@@ -13,7 +13,7 @@ class ResumeController extends Controller
     /**
      * @Template()
      */
-    public function editAction()
+    public function previewAction()
     {
         if (null == $user = $this->getUser()) {
             throw new AccessDeniedException();

@@ -1,0 +1,77 @@
+{% extends 'HRUserBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="module">
+        <div class="flex-module">
+
+            <div class="module-header">
+                <h2>基本资料</h2>
+            </div>
+
+            <table class="table table-bordered">
+                <tr>
+                    <th>真实姓名</th>
+                    <td>{{ user.realName }}<a
+                                href="{{ path('profile_edit') }}"> {% if user.realName %}修改{% else %}设置{% endif %}</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th>性别</th>
+                    <td>{{ user.genderName }}<a
+                                href="{{ path('profile_edit') }}"> {% if user.gender %}修改{% else %}设置{% endif %}</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th>生日</th>
+                    <td>{{ user.birthday|date('Y-m-d') }}<a
+                                href="{{ path('profile_edit') }}"> {% if user.birthday %}修改{% else %}设置{% endif %}</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th>联系手机</th>
+                    <td>{{ user.phoneNumber }}<a
+                                href="{{ path('profile_edit') }}"> {% if user.phoneNumber %}修改{% else %}设置{% endif %}</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th>联系Email</th>
+                    <td>{{ user.email }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="module">
+        <div class="flex-module">
+
+            <div class="module-header">
+                <h2>职业经历</h2>
+            </div>
+
+            {% if user.positions|length > 0 %}
+                <table class="table table-bordered">
+                    <tr>
+                        <th class="text-center">公司名称</th>
+                        <th class="text-center">职位名称</th>
+                        <th width="120" class="text-center">工作时间</th>
+                    </tr>
+                    {% for position in user.positions %}
+                        <tr>
+                            <td class="text-center">{{ position.companyName }}</td>
+                            <td class="text-center">{{ position.title }}</td>
+                            <td class="text-center">{{ position.startDate }} ~ {{ position.endDate }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p class="text-muted">还没有设置职业经历，<a href="{{ path('position_list') }}">点此添加</a></p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'HRUserBundle::settingMenu.html.twig' with {'active' : 'resume'} %}
+
+    {{ parent() }}
+{% endblock %}

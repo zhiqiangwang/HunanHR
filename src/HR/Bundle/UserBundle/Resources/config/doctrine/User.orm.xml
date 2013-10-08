@@ -31,6 +31,9 @@
             <cascade>
                 <cascade-remove />
             </cascade>
+            <order-by>
+                <order-by-field name="endDate" direction="DESC" />
+            </order-by>
         </one-to-many>
     </entity>
 </doctrine-mapping>
