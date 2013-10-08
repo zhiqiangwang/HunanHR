@@ -96,11 +96,6 @@ interface UserInterface extends AdvancedUserInterface
     public function getGender();
 
     /**
-     * @return string
-     */
-    public function getGenderName();
-
-    /**
      * @param string $birthday
      *
      * @return $this

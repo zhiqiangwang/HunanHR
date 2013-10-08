@@ -13,8 +13,8 @@ class PositionFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 'text', array('label' => '职位'))
-            ->add('companyName', 'text', array('label' => '公司名称'))
+            ->add('title', 'text', array('label' => '职位或头衔'))
+            ->add('companyName', 'text', array('label' => '公司或机构'))
             ->add('startDate', 'choice', array(
                 'label'       => '开始时间',
                 'choices'     => static::buildYearChoices(),
@@ -24,6 +24,14 @@ class PositionFormType extends AbstractType
                 'label'       => '结束时间',
                 'choices'     => static::buildYearChoices(),
                 'empty_value' => '-'
+            ))
+            ->add('summary', 'textarea', array(
+                'label'    => '职位描述(可选)',
+                'required' => false,
+                'attr'     => array(
+                    'rows' => 8,
+                    'cols' => 60
+                )
             ))
             ->add('save', 'submit', array('label' => '保存'));
     }

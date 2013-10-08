@@ -58,7 +58,7 @@ class PositionController extends Controller
             throw new AccessDeniedException();
         }
 
-        $this->get('breadcrumb')->add('职业经历', $this->generateUrl('position_list'))->add('编辑');
+        $this->get('breadcrumb')->add('职业经历', $this->generateUrl('position_list'))->add('编辑职业经历');
 
         /** @var \HR\Bundle\PositionBundle\EntityManager\PositionManager $positionManager */
         $positionManager = $this->get('position.manager');

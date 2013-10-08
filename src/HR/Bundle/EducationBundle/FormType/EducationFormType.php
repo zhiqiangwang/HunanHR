@@ -1,6 +1,7 @@
 <?php
 namespace HR\Bundle\EducationBundle\FormType;
 
+use HR\Bundle\EducationBundle\Entity\Education;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -13,17 +14,11 @@ class EducationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('schoolName', 'text', array('label' => '学校'))
+            ->add('schoolName', 'text', array('label' => '学校名称'))
             ->add('degree', 'choice', array(
                 'label'       => '学历',
-                'choices'     => array(
-                    1 => '大专',
-                    2 => '本科',
-                    3 => '硕士',
-                    4 => '博士',
-                    5 => '其他'
-                ),
-                'data' => 2,
+                'choices'     => Education::getDegrees(),
+                'empty_value' => '选择学历',
                 'attr'        => array(
                     'css' => 'embed-element'
                 )
@@ -37,6 +32,14 @@ class EducationFormType extends AbstractType
                 'label'       => '结束时间',
                 'choices'     => static::buildYearChoices(),
                 'empty_value' => '-'
+            ))
+            ->add('summary', 'textarea', array(
+                'label'    => '描述(可选)',
+                'required' => false,
+                'attr'     => array(
+                    'rows' => 8,
+                    'cols' => 60
+                )
             ))
             ->add('save', 'submit', array('label' => '保存'));
     }

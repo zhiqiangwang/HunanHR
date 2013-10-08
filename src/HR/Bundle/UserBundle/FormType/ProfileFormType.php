@@ -4,6 +4,7 @@ namespace HR\Bundle\UserBundle\FormType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use HR\Bundle\UserBundle\Entity\User;
 
 /**
  * @author Wenming Tang <tang@babyfamily.com>
@@ -17,15 +18,12 @@ class ProfileFormType extends AbstractType
             ->add('screenName', 'text', array('label' => '昵称'))
             ->add('realName', 'text', array('label' => '真实姓名', 'required' => false))
             ->add('gender', 'choice', array(
-                'label'    => '性别',
-                'choices'  => array(
-                    'm' => '男',
-                    'f' => '女'
-                ),
-                'expanded' => true,
-                'required' => false,
-                'empty_value' =>  false,
-                'attr'     => array(
+                'label'       => '性别',
+                'choices'     => User::getGenders(),
+                'expanded'    => true,
+                'required'    => false,
+                'empty_value' => false,
+                'attr'        => array(
                     'class' => 'embed'
                 )
             ))

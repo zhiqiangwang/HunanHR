@@ -298,21 +298,6 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getGenderName()
-    {
-        switch ($this->gender) {
-            case 'm':
-                return '男';
-            case 'f':
-                return '女';
-            default:
-                return '未设置';
-        }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function setBirthday($birthday)
     {
         $this->birthday = $birthday;

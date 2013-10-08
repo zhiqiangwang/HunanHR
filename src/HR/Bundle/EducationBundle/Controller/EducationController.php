@@ -59,7 +59,7 @@ class EducationController extends Controller
             throw new AccessDeniedException();
         }
 
-        $this->get('breadcrumb')->add('教育经历', $this->generateUrl('education_list'))->add('编辑');
+        $this->get('breadcrumb')->add('教育经历', $this->generateUrl('education_list'))->add('编辑教育经历');
 
         /** @var \HR\Bundle\EducationBundle\EntityManager\EducationManager $educationManager */
         $educationManager = $this->get('education.manager');

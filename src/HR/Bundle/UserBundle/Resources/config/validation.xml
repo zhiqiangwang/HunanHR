@@ -114,8 +114,8 @@
         <property name="gender">
             <constraint name="Choice">
                 <option name="choices">
-                    <value>m</value>
-                    <value>f</value>
+                    <value>male</value>
+                    <value>female</value>
                 </option>
                 <option name="message">请选择有效的选项</option>
                 <option name="groups">

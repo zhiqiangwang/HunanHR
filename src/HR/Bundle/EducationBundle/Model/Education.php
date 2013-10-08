@@ -33,6 +33,11 @@ abstract class Education implements EducationInterface
     protected $endDate;
 
     /**
+     * @var string
+     */
+    protected $summary;
+
+    /**
      * @var \DateTime
      */
     protected $createdAt;
@@ -95,22 +100,6 @@ abstract class Education implements EducationInterface
     /**
      * {@inheritdoc}
      */
-    public function getDegreeName()
-    {
-        $degrees = array(
-            1 => '大专',
-            2 => '本科',
-            3 => '硕士',
-            4 => '博士',
-            5 => '其他'
-        );
-
-        return $degrees[$this->degree];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function setStartDate($startDate)
     {
         $this->startDate = $startDate;
@@ -143,6 +132,25 @@ abstract class Education implements EducationInterface
     {
         return $this->endDate;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setSummary($summary)
+    {
+        $this->summary = $summary;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSummary()
+    {
+        return $this->summary;
+    }
+
 
     /**
      * {@inheritdoc}

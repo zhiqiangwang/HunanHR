@@ -2,6 +2,7 @@
 namespace HR\Bundle\PositionBundle\Model;
 
 use HR\Bundle\UserBundle\Model\UserInterface;
+
 /**
  * @author Wenming Tang <tang@babyfamily.com>
  */
@@ -16,6 +17,8 @@ class Position implements PositionInterface
     protected $startDate;
 
     protected $endDate;
+
+    protected $summary;
 
     protected $user;
 
@@ -104,6 +107,24 @@ class Position implements PositionInterface
     public function getEndDate()
     {
         return $this->endDate;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setSummary($summary)
+    {
+        $this->summary = $summary;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSummary()
+    {
+        return $this->summary;
     }
 
     /**

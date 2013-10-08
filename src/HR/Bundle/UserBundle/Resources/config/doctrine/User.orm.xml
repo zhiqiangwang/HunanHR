@@ -12,7 +12,7 @@
         <field name="salt" type="string" column="salt" length="255" />
         <field name="screenName" type="string" column="screen_name" length="20" />
         <field name="realName" type="string" column="real_name" length="20" nullable="true" />
-        <field name="gender" type="string" column="gender" length="1" nullable="true" />
+        <field name="gender" type="string" column="gender" length="6" nullable="true" />
         <field name="birthday" type="date" column="birthday" nullable="true" />
         <field name="phoneNumber" type="string" column="phone_number" length="11" nullable="true" />
         <field name="homepage" type="string" column="homepage" length="255" nullable="true" />

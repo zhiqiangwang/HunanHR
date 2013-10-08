@@ -10,5 +10,18 @@ use HR\Bundle\UserBundle\Model\User as BaseUser;
  */
 class User extends BaseUser
 {
+    public function getGenderName()
+    {
+        $genders = static::getGenders();
 
+        return $genders[$this->gender];
+    }
+
+    public static function getGenders()
+    {
+        return array(
+            'male'   => '男',
+            'female' => '女'
+        );
+    }
 }

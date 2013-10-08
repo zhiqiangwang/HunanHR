@@ -20,7 +20,7 @@ class ProfileController extends Controller
             throw new AccessDeniedException();
         }
 
-        $this->get('breadcrumb')->add('基本资料');
+        $this->get('breadcrumb')->add('设置');
 
         /** @var \HR\Bundle\UserBundle\EntityManager\UserManager $userManager */
         $userManager = $this->get('user.manager');

@@ -56,6 +56,18 @@ interface PositionInterface
     public function getEndDate();
 
     /**
+     * @param string $summary
+     *
+     * @return $this
+     */
+    public function setSummary($summary);
+
+    /**
+     * @return string
+     */
+    public function getSummary();
+
+    /**
      * @param UserInterface $user
      *
      * @return $this
