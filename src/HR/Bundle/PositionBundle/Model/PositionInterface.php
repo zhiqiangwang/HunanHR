@@ -1,6 +1,7 @@
 <?php
-namespace HR\Bundle\UserBundle\Model;
+namespace HR\Bundle\PositionBundle\Model;
 
+use HR\Bundle\UserBundle\Model\UserInterface;
 /**
  * @author Wenming Tang <tang@babyfamily.com>
  */

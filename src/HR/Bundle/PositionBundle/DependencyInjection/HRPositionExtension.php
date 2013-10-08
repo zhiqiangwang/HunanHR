@@ -1,6 +1,6 @@
 <?php
 
-namespace HR\Bundle\UserBundle\DependencyInjection;
+namespace HR\Bundle\PositionBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class HRUserExtension extends Extension
+class HRPositionExtension extends Extension
 {
     /**
      * {@inheritDoc}
@@ -24,7 +24,6 @@ class HRUserExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
-        $loader->load('registration.xml');
-        $loader->load('profile.xml');
+        $loader->load('forms.xml');
     }
 }

@@ -1,5 +1,5 @@
 <?php
-namespace HR\Bundle\UserBundle\FormType;
+namespace HR\Bundle\PositionBundle\FormType;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -31,7 +31,7 @@ class PositionFormType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class'        => 'HR\Bundle\UserBundle\Entity\Position',
+            'data_class'        => 'HR\Bundle\PositionBundle\Entity\Position',
             'validation_groups' => array('position')
         ));
     }

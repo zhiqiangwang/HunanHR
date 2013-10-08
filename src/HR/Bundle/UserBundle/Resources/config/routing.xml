@@ -27,18 +27,4 @@
     <route id="resume_edit" pattern="/setting/resume">
         <default key="_controller">HRUserBundle:Resume:edit</default>
     </route>
-
-    <route id="position_list" pattern="/setting/position">
-        <default key="_controller">HRUserBundle:Position:index</default>
-    </route>
-
-    <route id="position_edit" pattern="/setting/position/edit/{positionId}">
-        <default key="_controller">HRUserBundle:Position:edit</default>
-        <requirement key="positionId">\d+</requirement>
-    </route>
-
-    <route id="position_delete" pattern="/setting/position/delete/{positionId}">
-        <default key="_controller">HRUserBundle:Position:delete</default>
-        <requirement key="positionId">\d+</requirement>
-    </route>
 </routes>

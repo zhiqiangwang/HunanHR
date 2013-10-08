@@ -27,7 +27,7 @@
         <field name="credentialsExpiresAt" type="datetime" column="credentials_expires_at" nullable="true" />
         <field name="createdAt" type="datetime" column="created_at" />
 
-        <one-to-many target-entity="Position" mapped-by="user" field="positions">
+        <one-to-many target-entity="HR\Bundle\PositionBundle\Entity\Position" mapped-by="user" field="positions">
             <cascade>
                 <cascade-remove />
             </cascade>

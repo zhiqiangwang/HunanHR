@@ -1,10 +1,11 @@
 <?php
-namespace HR\Bundle\UserBundle\EntityManager;
+namespace HR\Bundle\PositionBundle\EntityManager;
 
 use Doctrine\ORM\EntityManager;
-use HR\Bundle\UserBundle\Model\PositionInterface;
+use HR\Bundle\PositionBundle\Model\PositionInterface;
 use HR\Bundle\UserBundle\Model\UserInterface;
-use HR\Bundle\UserBundle\ModelManager\PositionManager as BasePositionManager;
+use HR\Bundle\PositionBundle\ModelManager\PositionManager as BasePositionManager;
+
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 /**

@@ -1,5 +1,5 @@
 <?php
-namespace HR\Bundle\UserBundle\Controller;
+namespace HR\Bundle\PositionBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;

@@ -2,7 +2,7 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-    <entity name="HR\Bundle\UserBundle\Entity\Position" table="position">
+    <entity name="HR\Bundle\PositionBundle\Entity\Position" table="position">
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO" />
         </id>
@@ -12,6 +12,6 @@
         <field name="endDate" type="smallint" column="end_date" nullable="true" />
         <field name="createdAt" type="datetime" column="created_at" />
 
-        <many-to-one target-entity="User" field="user" inversed-by="positions" />
+        <many-to-one target-entity="HR\Bundle\UserBundle\Entity\User" field="user" inversed-by="positions" />
     </entity>
 </doctrine-mapping>

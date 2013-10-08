@@ -34,7 +34,7 @@ class ProfileController extends Controller
         if ($form->isValid()) {
             $userManager->updateUser($user);
 
-            $this->get('session')->getFlashBag()->add('success', '基本信息已更新');
+            $this->get('session')->getFlashBag()->add('success', '基本资料已更新');
 
             return $this->redirect($this->generateUrl('profile_edit'));
         }

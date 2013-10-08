@@ -1,3 +1,7 @@
+position:
+    resource: "@HRPositionBundle/Resources/config/routing.xml"
+    prefix:   /
+
 user:
     resource: "@HRUserBundle/Resources/config/routing.xml"
     prefix:   /

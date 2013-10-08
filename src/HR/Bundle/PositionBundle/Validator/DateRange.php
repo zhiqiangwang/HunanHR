@@ -1,5 +1,5 @@
 <?php
-namespace HR\Bundle\UserBundle\Validator;
+namespace HR\Bundle\PositionBundle\Validator;
 
 use Symfony\Component\Validator\Constraint;
 

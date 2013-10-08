@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="position.entity.class">HR\Bundle\PositionBundle\Entity\Position</parameter>
+        <parameter key="position.manager.class">HR\Bundle\PositionBundle\EntityManager\PositionManager</parameter>
+    </parameters>
+
+    <services>
+        <service id="position.manager" class="%position.manager.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument>%position.entity.class%</argument>
+        </service>
+    </services>
+</container>

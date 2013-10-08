@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="position_list" pattern="/setting/position">
+        <default key="_controller">HRPositionBundle:Position:index</default>
+    </route>
+
+    <route id="position_edit" pattern="/setting/position/edit/{positionId}">
+        <default key="_controller">HRPositionBundle:Position:edit</default>
+        <requirement key="positionId">\d+</requirement>
+    </route>
+
+    <route id="position_delete" pattern="/setting/position/delete/{positionId}">
+        <default key="_controller">HRPositionBundle:Position:delete</default>
+        <requirement key="positionId">\d+</requirement>
+    </route>
+</routes>
