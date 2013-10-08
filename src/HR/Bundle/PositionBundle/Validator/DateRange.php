@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraint;
  */
 class DateRange extends Constraint
 {
-    public $message = '请设置正确的起始时间';
+    public $message = '请设置正确的起止时间';
 
     /**
      * {@inheritDoc}

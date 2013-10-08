@@ -22,7 +22,7 @@ class PositionController extends Controller
 
         $this->get('breadcrumb')->add('职业经历');
 
-        /** @var \HR\Bundle\UserBundle\EntityManager\PositionManager $positionManager */
+        /** @var \HR\Bundle\PositionBundle\EntityManager\PositionManager $positionManager */
         $positionManager = $this->get('position.manager');
         $positions       = $positionManager->findPositionByUser($user);
 
@@ -60,7 +60,7 @@ class PositionController extends Controller
 
         $this->get('breadcrumb')->add('职业经历', $this->generateUrl('position_list'))->add('编辑');
 
-        /** @var \HR\Bundle\UserBundle\EntityManager\PositionManager $positionManager */
+        /** @var \HR\Bundle\PositionBundle\EntityManager\PositionManager $positionManager */
         $positionManager = $this->get('position.manager');
         $position        = $positionManager->findPositionById($positionId);
 
@@ -77,7 +77,7 @@ class PositionController extends Controller
         if ($form->isValid()) {
             $positionManager->updatePosition($position);
 
-            $this->get('session')->getFlashBag()->add('success', '工作经历已更新');
+            $this->get('session')->getFlashBag()->add('success', '职业经历已更新');
 
             return $this->redirect($this->generateUrl('position_list'));
         }
@@ -94,7 +94,7 @@ class PositionController extends Controller
             throw new AccessDeniedException();
         }
 
-        /** @var \HR\Bundle\UserBundle\EntityManager\PositionManager $positionManager */
+        /** @var \HR\Bundle\PositionBundle\EntityManager\PositionManager $positionManager */
         $positionManager = $this->get('position.manager');
         $position        = $positionManager->findPositionById($positionId);
 
@@ -104,7 +104,7 @@ class PositionController extends Controller
 
         $positionManager->deletePosition($position);
 
-        $this->get('session')->getFlashBag()->add('success', '工作经历已删除');
+        $this->get('session')->getFlashBag()->add('success', '职业经历已删除');
 
         return $this->redirect($this->generateUrl('position_list'));
     }

@@ -1,3 +1,7 @@
+education:
+    resource: "@HREducationBundle/Resources/config/routing.xml"
+    prefix:   /
+
 position:
     resource: "@HRPositionBundle/Resources/config/routing.xml"
     prefix:   /

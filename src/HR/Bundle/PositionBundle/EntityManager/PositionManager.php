@@ -44,7 +44,7 @@ class PositionManager extends BasePositionManager
             ->select('p, u')
             ->join('p.user', 'u')
             ->where('u.id = :user')
-            ->addOrderBy('p.createdAt', 'DESC')
+            ->addOrderBy('p.endDate', 'DESC')
             ->setParameter('user', $user->getId())
             ->getQuery();
 
