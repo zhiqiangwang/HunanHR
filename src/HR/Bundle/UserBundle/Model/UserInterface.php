@@ -1,7 +1,9 @@
 <?php
 namespace HR\Bundle\UserBundle\Model;
 
+use HR\Bundle\EducationBundle\Model\EducationInterface;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use HR\Bundle\PositionBundle\Model\PositionInterface;
 
 /**
  * User Interface
@@ -159,23 +161,42 @@ interface UserInterface extends AdvancedUserInterface
     public function getAvatarUrl();
 
     /**
-     * @param Position $position
+     * @param PositionInterface $position
      *
      * @return $this
      */
-    public function addPosition(Position $position);
+    public function addPosition(PositionInterface $position);
 
     /**
-     * @param Position $position
+     * @param PositionInterface $position
      *
      * @return $this
      */
-    public function removePosition(Position $position);
+    public function removePosition(PositionInterface $position);
 
     /**
      * @return array of Position
      */
     public function getPositions();
+
+    /**
+     * @param EducationInterface $education
+     *
+     * @return $this
+     */
+    public function addEducation(EducationInterface $education);
+
+    /**
+     * @param EducationInterface $education
+     *
+     * @return $this
+     */
+    public function removeEducation(EducationInterface $education);
+
+    /**
+     * @return array of education
+     */
+    public function getEducations();
 
     /**
      * @param array $roles

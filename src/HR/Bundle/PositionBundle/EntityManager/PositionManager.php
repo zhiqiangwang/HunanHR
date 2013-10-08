@@ -38,7 +38,7 @@ class PositionManager extends BasePositionManager
     /**
      * {@inheritdoc}
      */
-    public function findPositionByUser(UserInterface $user)
+    public function findPositionsByUser(UserInterface $user)
     {
         $q = $this->repository->createQueryBuilder('p')
             ->select('p, u')

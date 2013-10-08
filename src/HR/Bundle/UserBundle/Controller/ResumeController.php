@@ -19,6 +19,8 @@ class ResumeController extends Controller
             throw new AccessDeniedException();
         }
 
+        $this->get('breadcrumb')->add('简历预览');
+
         return array(
             'user' => $user
         );

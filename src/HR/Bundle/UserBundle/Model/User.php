@@ -1,6 +1,9 @@
 <?php
 namespace HR\Bundle\UserBundle\Model;
+
 use Doctrine\Common\Collections\ArrayCollection;
+use HR\Bundle\EducationBundle\Model\EducationInterface;
+use HR\Bundle\PositionBundle\Model\PositionInterface;
 
 /**
  * User Model
@@ -80,9 +83,14 @@ abstract class User implements UserInterface
     protected $avatarUrl;
 
     /**
-     * @var array
+     * @var ArrayCollection
      */
     protected $positions;
+
+    /**
+     * @var ArrayCollection
+     */
+    protected $educations;
 
     /**
      * @var array
@@ -134,6 +142,7 @@ abstract class User implements UserInterface
         $this->salt               = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
         $this->createdAt          = new \Datetime();
         $this->positions          = new ArrayCollection();
+        $this->educations         = new ArrayCollection();
     }
 
     /**
@@ -394,7 +403,7 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function addPosition(Position $position)
+    public function addPosition(PositionInterface $position)
     {
         $this->positions->add($position);
 
@@ -404,7 +413,7 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function removePosition(Position $position)
+    public function removePosition(PositionInterface $position)
     {
         $this->positions->removeElement($position);
 
@@ -412,11 +421,39 @@ abstract class User implements UserInterface
     }
 
     /**
-     * @return array of Position
+     * {@inheritdoc}
      */
     public function getPositions()
     {
         return $this->positions;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addEducation(EducationInterface $education)
+    {
+        $this->educations->add($education);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeEducation(EducationInterface $education)
+    {
+        $this->educations->removeElement($education);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getEducations()
+    {
+        return $this->educations;
     }
 
     /**

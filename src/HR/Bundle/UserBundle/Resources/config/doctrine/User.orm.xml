@@ -35,5 +35,14 @@
                 <order-by-field name="endDate" direction="DESC" />
             </order-by>
         </one-to-many>
+
+        <one-to-many target-entity="HR\Bundle\EducationBundle\Entity\Education" mapped-by="user" field="educations">
+            <cascade>
+                <cascade-remove />
+            </cascade>
+            <order-by>
+                <order-by-field name="endDate" direction="DESC" />
+            </order-by>
+        </one-to-many>
     </entity>
 </doctrine-mapping>

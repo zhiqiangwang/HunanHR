@@ -28,7 +28,7 @@ interface PositionManagerInterface
      *
      * @return PositionInterface
      */
-    public function findPositionByUser(UserInterface $user);
+    public function findPositionsByUser(UserInterface $user);
 
     /**
      * @param int $positionId

@@ -24,7 +24,7 @@
         <default key="_controller">HRUserBundle:Profile:edit</default>
     </route>
 
-    <route id="resume_preview" pattern="/setting/resume">
+    <route id="resume_preview" pattern="/preview_resume">
         <default key="_controller">HRUserBundle:Resume:preview</default>
     </route>
 </routes>

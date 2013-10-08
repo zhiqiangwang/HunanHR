@@ -11,27 +11,19 @@
             <table class="table table-bordered">
                 <tr>
                     <th>真实姓名</th>
-                    <td>{{ user.realName }}<a
-                                href="{{ path('profile_edit') }}"> {% if user.realName %}修改{% else %}设置{% endif %}</a>
-                    </td>
+                    <td>{{ user.realName }}</td>
                 </tr>
                 <tr>
                     <th>性别</th>
-                    <td>{{ user.genderName }}<a
-                                href="{{ path('profile_edit') }}"> {% if user.gender %}修改{% else %}设置{% endif %}</a>
-                    </td>
+                    <td>{{ user.genderName }}</td>
                 </tr>
                 <tr>
                     <th>生日</th>
-                    <td>{{ user.birthday|date('Y-m-d') }}<a
-                                href="{{ path('profile_edit') }}"> {% if user.birthday %}修改{% else %}设置{% endif %}</a>
-                    </td>
+                    <td>{{ user.birthday|date('Y-m-d') }}</td>
                 </tr>
                 <tr>
                     <th>联系手机</th>
-                    <td>{{ user.phoneNumber }}<a
-                                href="{{ path('profile_edit') }}"> {% if user.phoneNumber %}修改{% else %}设置{% endif %}</a>
-                    </td>
+                    <td>{{ user.phoneNumber }}</td>
                 </tr>
                 <tr>
                     <th>联系Email</th>
@@ -68,10 +60,36 @@
             {% endif %}
         </div>
     </div>
+
+    <div class="module">
+        <div class="flex-module">
+
+            <div class="module-header">
+                <h2>教育经历</h2>
+            </div>
+
+            {% if user.educations|length > 0 %}
+                <table class="table table-bordered">
+                    <tr>
+                        <th class="text-center">学校</th>
+                        <th class="text-center">取得学历</th>
+                        <th width="120" class="text-center">起止时间</th>
+                    </tr>
+                    {% for education in user.educations %}
+                        <tr>
+                            <td class="text-center">{{ education.schoolName }}</td>
+                            <td class="text-center">{{ education.degreeName }}</td>
+                            <td class="text-center">{{ education.startDate }} ~ {{ education.endDate }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p class="text-muted">还没有设置职业经历，<a href="{{ path('position_list') }}">点此添加</a></p>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}
 
 {% block sidebar %}
-    {% include 'HRUserBundle::settingMenu.html.twig' with {'active' : 'resume'} %}
-
     {{ parent() }}
 {% endblock %}

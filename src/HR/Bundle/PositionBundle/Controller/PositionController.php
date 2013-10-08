@@ -24,7 +24,7 @@ class PositionController extends Controller
 
         /** @var \HR\Bundle\PositionBundle\EntityManager\PositionManager $positionManager */
         $positionManager = $this->get('position.manager');
-        $positions       = $positionManager->findPositionByUser($user);
+        $positions       = $positionManager->findPositionsByUser($user);
 
         // new position
         $position = $positionManager->createPosition($user);
