@@ -20,11 +20,11 @@
         <default key="_controller">HRUserBundle:Security:logout</default>
     </route>
 
-    <route id="profile_edit" pattern="/setting/profile">
+    <route id="profile_edit" pattern="/settings/profile">
         <default key="_controller">HRUserBundle:Profile:edit</default>
     </route>
 
-    <route id="resume_preview" pattern="/preview_resume">
-        <default key="_controller">HRUserBundle:Resume:preview</default>
+    <route id="change_password" pattern="/settings/password">
+        <default key="_controller">HRUserBundle:ChangePassword:edit</default>
     </route>
 </routes>

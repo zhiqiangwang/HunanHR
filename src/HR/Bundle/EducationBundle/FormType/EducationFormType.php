@@ -20,7 +20,7 @@ class EducationFormType extends AbstractType
                 'choices'     => Education::getDegrees(),
                 'empty_value' => '选择学历',
                 'attr'        => array(
-                    'css' => 'embed-element'
+                    'class' => 'embed-element'
                 )
             ))
             ->add('startDate', 'choice', array(
@@ -38,7 +38,8 @@ class EducationFormType extends AbstractType
                 'required' => false,
                 'attr'     => array(
                     'rows' => 8,
-                    'cols' => 60
+                    'cols' => 60,
+                    'placeholder' => '参加过的活动或获得过的荣誉等'
                 )
             ))
             ->add('save', 'submit', array('label' => '保存'));
@@ -47,8 +48,7 @@ class EducationFormType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class'        => 'HR\Bundle\EducationBundle\Entity\Education',
-            'validation_groups' => array('education')
+            'data_class'        => 'HR\Bundle\EducationBundle\Entity\Education'
         ));
     }
 

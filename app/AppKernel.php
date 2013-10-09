@@ -20,6 +20,8 @@ class AppKernel extends Kernel
             new HR\Bundle\BreadcrumbBundle\HRBreadcrumbBundle(),
             new HR\Bundle\PositionBundle\HRPositionBundle(),
             new HR\Bundle\EducationBundle\HREducationBundle(),
+            new HR\Bundle\SkillBundle\HRSkillBundle(),
+            new HR\Bundle\ResumeBundle\HRResumeBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

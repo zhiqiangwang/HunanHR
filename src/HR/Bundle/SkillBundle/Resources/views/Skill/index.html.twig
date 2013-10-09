@@ -1,0 +1,44 @@
+{% extends 'HRUserBundle::layout.html.twig' %}
+
+{% block user_content %}
+
+    {% if skills|length > 0 %}
+        <table class="table table-bordered">
+            <tr>
+                <th width="150" class="text-center">名称</th>
+                <th class="text-center">描述</th>
+                <th width="120" class="text-center">-</th>
+            </tr>
+            {% for skill in skills %}
+                <tr>
+                    <td class="text-center">{{ skill.name }}</td>
+                    <td class="text-center">{% if skill.summary %}{{ skill.summary|slice(0,28) }}...{% else %}未填写{% endif %}</td>
+                    <td class="text-center">
+                        <a href="{{ path('skill_edit', {'skillId': skill.id}) }}">编辑</a>
+                        <a href="{{ path('skill_delete', {'skillId': skill.id}) }}" onclick="return confirm('确认删除该技能信息？')">删除</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p class="text-muted">您没有设置技能信息</p>
+    {% endif %}
+{% endblock %}
+
+{% block ext_content %}
+    {% if skills|length <= 10 %}
+        <div class="module">
+            <div class="flex-module">
+                <div class="module-header">
+                    <h2>添加新技能</h2>
+                </div>
+
+                {{ form(form, {'action': path('skill_list'), 'attr': {'class': 'form-horizontal' }}) }}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block sidebar_crad_bottom %}
+    {% include 'HRUserBundle::settingMenu.html.twig' with {'active' : 'skill'} %}
+{% endblock %}

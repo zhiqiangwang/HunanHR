@@ -14,9 +14,12 @@
         <field name="realName" type="string" column="real_name" length="20" nullable="true" />
         <field name="gender" type="string" column="gender" length="6" nullable="true" />
         <field name="birthday" type="date" column="birthday" nullable="true" />
+        <field name="jobTitle" type="text" column="job_title" length="100" nullable="true" />
+        <field name="companyName" type="text" column="company_name" length="200" nullable="true" />
+        <field name="degree" type="smallint" column="degree" nullable="true" />
         <field name="phoneNumber" type="string" column="phone_number" length="11" nullable="true" />
         <field name="homepage" type="string" column="homepage" length="255" nullable="true" />
-        <field name="bio" type="string" column="bio" length="4000" nullable="true" />
+        <field name="bio" type="text" column="bio" nullable="true" />
         <field name="avatarUrl" type="string" column="avatar_url" length="255" nullable="true" />
         <field name="roles" type="array" column="roles" nullable="true" />
         <field name="enabled" type="boolean" column="enabled" />
@@ -42,6 +45,15 @@
             </cascade>
             <order-by>
                 <order-by-field name="endDate" direction="DESC" />
+            </order-by>
+        </one-to-many>
+
+        <one-to-many target-entity="HR\Bundle\SkillBundle\Entity\Skill" mapped-by="user" field="skills">
+            <cascade>
+                <cascade-remove />
+            </cascade>
+            <order-by>
+                <order-by-field name="createdAt" direction="DESC" />
             </order-by>
         </one-to-many>
     </entity>

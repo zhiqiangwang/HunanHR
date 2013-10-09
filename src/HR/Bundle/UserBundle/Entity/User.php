@@ -1,6 +1,7 @@
 <?php
 namespace HR\Bundle\UserBundle\Entity;
 
+use HR\Bundle\EducationBundle\Entity\Education;
 use HR\Bundle\UserBundle\Model\User as BaseUser;
 
 /**
@@ -15,6 +16,13 @@ class User extends BaseUser
         $genders = static::getGenders();
 
         return $genders[$this->gender];
+    }
+
+    public function getDegreeName()
+    {
+        $degrees = Education::getDegrees();
+
+        return $degrees[$this->degree];
     }
 
     public static function getGenders()

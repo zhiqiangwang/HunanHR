@@ -1,3 +1,11 @@
+resume:
+    resource: "@HRResumeBundle/Resources/config/routing.xml"
+    prefix:   /
+
+skill:
+    resource: "@HRSkillBundle/Resources/config/routing.xml"
+    prefix:   /
+
 education:
     resource: "@HREducationBundle/Resources/config/routing.xml"
     prefix:   /

@@ -47,6 +47,11 @@ interface EducationInterface
     public function getDegree();
 
     /**
+     * @return string
+     */
+    public function getDegreeName();
+
+    /**
      * Set startDate
      *
      * @param integer $startDate

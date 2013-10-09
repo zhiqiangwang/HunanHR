@@ -29,7 +29,7 @@ class RegistrationFormType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class'        => 'HR\Bundle\UserBundle\Entity\User',
-            'validation_groups' => array('registration')
+            'validation_groups' => array('Registration')
         ));
     }
 

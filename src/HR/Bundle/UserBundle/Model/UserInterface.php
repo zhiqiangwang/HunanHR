@@ -2,6 +2,7 @@
 namespace HR\Bundle\UserBundle\Model;
 
 use HR\Bundle\EducationBundle\Model\EducationInterface;
+use HR\Bundle\SkillBundle\Entity\Skill;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use HR\Bundle\PositionBundle\Model\PositionInterface;
 
@@ -96,6 +97,11 @@ interface UserInterface extends AdvancedUserInterface
     public function getGender();
 
     /**
+     * @return string
+     */
+    public function getGenderName();
+
+    /**
      * @param string $birthday
      *
      * @return $this
@@ -106,6 +112,47 @@ interface UserInterface extends AdvancedUserInterface
      * @return string
      */
     public function getBirthday();
+
+    /**
+     * @param int $degree
+     *
+     * @return $this
+     */
+    public function setDegree($degree);
+
+    /**
+     * @return int
+     */
+    public function getDegree();
+
+    /**
+     * @return int
+     */
+    public function getDegreeName();
+
+    /**
+     * @param string $jobTitle
+     *
+     * @return $this
+     */
+    public function setJobTitle($jobTitle);
+
+    /**
+     * @return string
+     */
+    public function getJobTitle();
+
+    /**
+     * @param string $companyName
+     *
+     * @return $this
+     */
+    public function setCompanyName($companyName);
+
+    /**
+     * @return string
+     */
+    public function getCompanyName();
 
     /**
      * @param string $phoneNumber
@@ -192,6 +239,25 @@ interface UserInterface extends AdvancedUserInterface
      * @return array of education
      */
     public function getEducations();
+
+    /**
+     * @param Skill $skill
+     *
+     * @return $this
+     */
+    public function addSkill(Skill $skill);
+
+    /**
+     * @param Skill $skill
+     *
+     * @return $this
+     */
+    public function removeSkill(Skill $skill);
+
+    /**
+     * @return array
+     */
+    public function getSkills();
 
     /**
      * @param array $roles

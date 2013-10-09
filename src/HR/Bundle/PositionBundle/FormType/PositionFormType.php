@@ -30,7 +30,8 @@ class PositionFormType extends AbstractType
                 'required' => false,
                 'attr'     => array(
                     'rows' => 8,
-                    'cols' => 60
+                    'cols' => 60,
+                    'placeholder' => '可描述在此职位中担任的详细职责'
                 )
             ))
             ->add('save', 'submit', array('label' => '保存'));
@@ -39,8 +40,7 @@ class PositionFormType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class'        => 'HR\Bundle\PositionBundle\Entity\Position',
-            'validation_groups' => array('position')
+            'data_class'        => 'HR\Bundle\PositionBundle\Entity\Position'
         ));
     }
 

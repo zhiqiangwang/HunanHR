@@ -4,6 +4,7 @@ namespace HR\Bundle\UserBundle\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 use HR\Bundle\EducationBundle\Model\EducationInterface;
 use HR\Bundle\PositionBundle\Model\PositionInterface;
+use HR\Bundle\SkillBundle\Entity\Skill;
 
 /**
  * User Model
@@ -63,6 +64,21 @@ abstract class User implements UserInterface
     protected $birthday;
 
     /**
+     * @var int
+     */
+    protected $degree;
+
+    /**
+     * @var string
+     */
+    protected $jobTitle;
+
+    /**
+     * @var string
+     */
+    protected $companyName;
+
+    /**
      * @var string
      */
     protected $phoneNumber;
@@ -91,6 +107,11 @@ abstract class User implements UserInterface
      * @var ArrayCollection
      */
     protected $educations;
+
+    /**
+     * @var ArrayCollection
+     */
+    protected $skills;
 
     /**
      * @var array
@@ -143,6 +164,7 @@ abstract class User implements UserInterface
         $this->createdAt          = new \Datetime();
         $this->positions          = new ArrayCollection();
         $this->educations         = new ArrayCollection();
+        $this->skills             = new ArrayCollection();
     }
 
     /**
@@ -316,6 +338,60 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
+    public function setDegree($degree)
+    {
+        $this->degree = $degree;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDegree()
+    {
+        return $this->degree;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setJobTitle($jobTitle)
+    {
+        $this->jobTitle = $jobTitle;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getJobTitle()
+    {
+        return $this->jobTitle;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setCompanyName($companyName)
+    {
+        $this->companyName = $companyName;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCompanyName()
+    {
+        return $this->companyName;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function setPhoneNumber($phoneNumber)
     {
         $this->phoneNumber = $phoneNumber;
@@ -440,6 +516,35 @@ abstract class User implements UserInterface
     {
         return $this->educations;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addSkill(Skill $skill)
+    {
+        $this->skills->add($skill);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeSkill(Skill $skill)
+    {
+        $this->skills->removeElement($skill);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSkills()
+    {
+        return $this->skills;
+    }
+
 
     /**
      * {@inheritdoc}

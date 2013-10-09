@@ -10,16 +10,16 @@
             <option name="fields">email</option>
             <option name="message">该电子邮件地址已存在</option>
             <option name="groups">
-                <value>registration</value>
-                <value>profile</value>
+                <value>Registration</value>
+                <value>Profile</value>
             </option>
         </constraint>
         <constraint name="Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity">
             <option name="fields">username</option>
             <option name="message">该用户名不可用</option>
             <option name="groups">
-                <value>registration</value>
-                <value>profile</value>
+                <value>Registration</value>
+                <value>Profile</value>
             </option>
         </constraint>
 
@@ -27,15 +27,15 @@
             <constraint name="NotBlank">
                 <option name="message">电子邮件地址不能为空</option>
                 <option name="groups">
-                    <value>registration</value>
-                    <value>profile</value>
+                    <value>Registration</value>
+                    <value>Profile</value>
                 </option>
             </constraint>
             <constraint name="Email">
                 <option name="message">"{{ value }}" 不是一个有效的电子邮件地址</option>
                 <option name="groups">
-                    <value>registration</value>
-                    <value>profile</value>
+                    <value>Registration</value>
+                    <value>Profile</value>
                 </option>
             </constraint>
         </property>
@@ -43,8 +43,8 @@
             <constraint name="NotBlank">
                 <option name="message">用户名不能为空</option>
                 <option name="groups">
-                    <value>registration</value>
-                    <value>profile</value>
+                    <value>Registration</value>
+                    <value>Profile</value>
                 </option>
             </constraint>
             <constraint name="Length">
@@ -53,16 +53,16 @@
                 <option name="max">20</option>
                 <option name="maxMessage">用户名长度不能超过{{ limit }}个字符</option>
                 <option name="groups">
-                    <value>registration</value>
-                    <value>profile</value>
+                    <value>Registration</value>
+                    <value>Profile</value>
                 </option>
             </constraint>
             <constraint name="Regex">
                 <option name="pattern">/^[^-_]+[a-z0-9-_]+[^-_]$/</option>
                 <option name="message">用户名只能包含字母、数字、_或减号，不能以_或减号开头或结尾。</option>
                 <option name="groups">
-                    <value>registration</value>
-                    <value>profile</value>
+                    <value>Registration</value>
+                    <value>Profile</value>
                 </option>
             </constraint>
         </property>
@@ -70,14 +70,16 @@
             <constraint name="NotBlank">
                 <option name="message">密码不能为空</option>
                 <option name="groups">
-                    <value>registration</value>
+                    <value>Registration</value>
+                    <value>ChangePassword</value>
                 </option>
             </constraint>
             <constraint name="Length">
                 <option name="min">5</option>
                 <option name="minMessage">密码长度至少需要 {{ limit }} 位</option>
                 <option name="groups">
-                    <value>registration</value>
+                    <value>Registration</value>
+                    <value>ChangePassword</value>
                 </option>
             </constraint>
         </property>
@@ -85,8 +87,8 @@
             <constraint name="NotBlank">
                 <option name="message">昵称不能为空</option>
                 <option name="groups">
-                    <value>registration</value>
-                    <value>profile</value>
+                    <value>Registration</value>
+                    <value>Profile</value>
                 </option>
             </constraint>
             <constraint name="Length">
@@ -95,8 +97,8 @@
                 <option name="max">20</option>
                 <option name="maxMessage">昵称长度不能超过{{ limit }}个字符</option>
                 <option name="groups">
-                    <value>registration</value>
-                    <value>profile</value>
+                    <value>Registration</value>
+                    <value>Profile</value>
                 </option>
             </constraint>
         </property>
@@ -107,7 +109,7 @@
                 <option name="max">20</option>
                 <option name="maxMessage">姓名长度不能超过{{ limit }}个字符</option>
                 <option name="groups">
-                    <value>profile</value>
+                    <value>Profile</value>
                 </option>
             </constraint>
         </property>
@@ -119,7 +121,7 @@
                 </option>
                 <option name="message">请选择有效的选项</option>
                 <option name="groups">
-                    <value>profile</value>
+                    <value>Profile</value>
                 </option>
             </constraint>
         </property>
@@ -127,7 +129,36 @@
             <constraint name="Date">
                 <option name="message">请填写有效的生日</option>
                 <option name="groups">
-                    <value>profile</value>
+                    <value>Profile</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="degree">
+            <constraint name="Range">
+                <option name="min">1</option>
+                <option name="max">5</option>
+                <option name="minMessage">请选择正确的学历</option>
+                <option name="maxMessage">请选择正确的学历</option>
+                <option name="groups">
+                    <value>Profile</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="jobTitle">
+            <constraint name="Length">
+                <option name="max">100</option>
+                <option name="maxMessage">职位或头衔长度不能超过{{ limit }}个字符</option>
+                <option name="groups">
+                    <value>Profile</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="companyName">
+            <constraint name="Length">
+                <option name="max">200</option>
+                <option name="maxMessage">公司或机构名称长度不能超过{{ limit }}个字符</option>
+                <option name="groups">
+                    <value>Profile</value>
                 </option>
             </constraint>
         </property>
@@ -136,7 +167,7 @@
                 <option name="pattern">/^1\d{10}$/</option>
                 <option name="message">手机号码格式不正确</option>
                 <option name="groups">
-                    <value>profile</value>
+                    <value>Profile</value>
                 </option>
             </constraint>
         </property>
@@ -144,16 +175,16 @@
             <constraint name="Url">
                 <option name="message">个人主页地址格式不正确</option>
                 <option name="groups">
-                    <value>profile</value>
+                    <value>Profile</value>
                 </option>
             </constraint>
         </property>
         <property name="bio">
             <constraint name="Length">
-                <option name="max">4000</option>
+                <option name="max">500</option>
                 <option name="maxMessage">个人介绍长度不能超过{{ limit }}个字符</option>
                 <option name="groups">
-                    <value>profile</value>
+                    <value>Profile</value>
                 </option>
             </constraint>
         </property>

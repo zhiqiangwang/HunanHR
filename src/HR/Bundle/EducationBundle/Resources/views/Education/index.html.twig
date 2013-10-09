@@ -44,6 +44,11 @@
                     <div class="col-sm-10 control-inline">
                         {{ form_widget(form.schoolName) }}
                         {{ form_widget(form.degree) }}
+
+                        <div class="has-error">
+                            {{ form_errors(form.schoolName) }}
+                            {{ form_errors(form.degree) }}
+                        </div>
                     </div>
                 </div>
 
@@ -66,8 +71,6 @@
     {% endif %}
 {% endblock %}
 
-{% block sidebar %}
+{% block sidebar_crad_bottom %}
     {% include 'HRUserBundle::settingMenu.html.twig' with {'active' : 'education'} %}
-
-    {{ parent() }}
 {% endblock %}

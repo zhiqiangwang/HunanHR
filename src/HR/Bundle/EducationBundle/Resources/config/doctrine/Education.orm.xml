@@ -15,7 +15,7 @@
         <field name="degree" type="smallint" column="degree" />
         <field name="startDate" type="smallint" column="start_date" nullable="true" />
         <field name="endDate" type="smallint" column="end_date" nullable="true" />
-        <field name="summary" type="string" column="summary" length="2000" nullable="true" />
+        <field name="summary" type="text" column="summary" nullable="true" />
         <field name="createdAt" type="datetime" column="created_at" />
 
         <many-to-one target-entity="HR\Bundle\UserBundle\Entity\User" field="user" inversed-by="educations" />

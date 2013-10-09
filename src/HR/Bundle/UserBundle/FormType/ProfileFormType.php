@@ -1,6 +1,7 @@
 <?php
 namespace HR\Bundle\UserBundle\FormType;
 
+use HR\Bundle\EducationBundle\Entity\Education;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -37,6 +38,23 @@ class ProfileFormType extends AbstractType
                     'placeholder' => '格式: 2013-06-02'
                 )
             ))
+            ->add('degree', 'choice', array(
+                'label'    => '最高学历',
+                'required' => false,
+                'choices'     => Education::getDegrees(),
+                'empty_value' => '-',
+                'attr'        => array(
+                    'class' => 'embed-element'
+                )
+            ))
+            ->add('jobTitle', 'text', array(
+                'label'    => '当前职位或头衔',
+                'required' => false
+            ))
+            ->add('companyName', 'text', array(
+                'label'    => '公司或机构名称',
+                'required' => false
+            ))
             ->add('phoneNumber', 'text', array(
                 'label'    => '手机号码',
                 'required' => false
@@ -54,22 +72,13 @@ class ProfileFormType extends AbstractType
                     'class' => 'form-control'
                 )
             ));
-//            ->add('skill', 'textarea', array(
-//                'label'    => '职业技能',
-//                'required' => false,
-//                'attr'     => array(
-//                    'rows'  => 15,
-//                    'cols'  => 55,
-//                    'class' => 'form-control'
-//                )
-//            ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'data_class'        => 'HR\Bundle\UserBundle\Entity\User',
-            'validation_groups' => array('profile')
+            'validation_groups' => array('Profile')
         ));
     }
 

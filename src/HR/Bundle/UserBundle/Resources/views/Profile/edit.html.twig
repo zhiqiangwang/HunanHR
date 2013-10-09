@@ -8,9 +8,8 @@
             <label>用户名</label>
         </div>
         <div class="col-lg-10 form-control-static">
-            <span class="text-muted">**{{ form.vars.value.username|slice(2) }}</span>
-            &nbsp;&nbsp;&nbsp;<a href="#">修改密码</a>
-            &nbsp;&nbsp;&nbsp;<a href="{{ path('resume_preview') }}" target="_blank">简历预览</a>
+            <span class="text-muted">{{ form.vars.value.username }}</span>
+            &nbsp;&nbsp;&nbsp;<a href="{{ path('change_password') }}">修改密码</a>
         </div>
     </div>
 
@@ -25,8 +24,6 @@
     {{ form_end(form) }}
 {% endblock %}
 
-{% block sidebar %}
+{% block sidebar_crad_bottom %}
     {% include 'HRUserBundle::settingMenu.html.twig' with {'active' : 'profile'} %}
-
-    {{ parent() }}
 {% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'HRUserBundle::layout.html.twig' %}
+
+{% block user_content %}
+    {{ form(form, {'action': path('change_password'), 'attr': {'class': 'form-horizontal' }}) }}
+{% endblock %}
+
+{% block sidebar_crad_bottom %}
+    {% include 'HRUserBundle::settingMenu.html.twig' with {'active' : 'profile'} %}
+{% endblock %}

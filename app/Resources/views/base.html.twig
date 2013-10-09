@@ -39,8 +39,8 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ app.user.screenName }}<b
                                         class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="">完善简历</a></li>
                                 <li><a href="{{ path('profile_edit') }}">资料设置</a></li>
+                                <li><a href="{{ path('change_password') }}">修改密码</a></li>
                                 <li class="divider"></li>
                                 <li><a href="{{ path('logout') }}">退出</a></li>
                             </ul>
@@ -56,28 +56,57 @@
 </div>
 
 {% block body %}
-<div id="container-wrapper">
-    <div class="container">
-        <div class="wrapper">
-            <div id="content">
-                {% block content %}
-                {% endblock %}
-            </div>
-            <div id="sidebar">
-                {% block sidebar %}
-                    <div class="module">
-                        <div class="flex-module about">
-                            <div class="module-header">
-                                <h2>关于我们</h2>
+    <div id="container-wrapper">
+        <div class="container">
+            <div class="wrapper">
+                <div id="content">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+                <div id="sidebar">
+                    {% block sidebar %}
+                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                            <div class="module">
+                                <div class="flex-module profile-summary">
+                                    <div class="module-header">
+                                        <div class="card">
+                                            <img src="/resources/profile-avater.png" class="avatar"/>
+
+                                            <strong class="fullname"><a href="">{{ app.user.screenName }}</a></strong>
+
+                                            <p class="metadata">{{ app.user.bio }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="action clearfix">
+                                        <a href="">0条新提醒</a>
+                                        <a href="{{ path('profile_edit') }}" class="btn btn-default pull-right">资料设置</a>
+                                    </div>
+                                </div>
                             </div>
-                            <p class="slogan">湖南英才网是一个靠谱的招聘社区，专注湖南地区的网络招聘。</p>
+                        {% endif %}
+
+                        {% block sidebar_crad_bottom %}
+                        {% endblock %}
+
+                        <div class="module">
+                            <div class="flex-module advert">
+                                <img src="http://g-ecx.images-amazon.com/images/G/28/Baby/moli/zcn/wj.png"/>
+                            </div>
                         </div>
-                    </div>
-                {% endblock %}
+
+                        <div class="module">
+                            <div class="flex-module about">
+                                <div class="module-header">
+                                    <h2>关于我们</h2>
+                                </div>
+                                <p class="slogan">湖南英才网是一个靠谱的招聘社区，专注湖南地区的网络招聘。</p>
+                            </div>
+                        </div>
+                    {% endblock %}
+                </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock body %}
 
 <div id="footer" class="container">

@@ -22,8 +22,6 @@
     {{ form_end(form) }}
 {% endblock %}
 
-{% block sidebar %}
+{% block sidebar_crad_bottom %}
     {% include 'HRUserBundle::settingMenu.html.twig' with {'active' : 'position'} %}
-
-    {{ parent() }}
 {% endblock %}
