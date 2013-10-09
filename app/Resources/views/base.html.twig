@@ -6,13 +6,13 @@
     <title>{% if pageTitle is not null %}{{ pageTitle }} - {% endif %}湖南英才网</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     {% block stylesheets %}
-        <link href="{{ asset('css/hh.css') }}" type="text/css" rel="stylesheet" media="screen"/>
+        <link href="{{ asset('css/hh.css') }}" rel="stylesheet" media="screen"/>
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 
     <!--[if lt IE 9]>
-    <script src="{{ asset('js/html5shiv.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/respond.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/html5shiv.js') }}"></script>
+    <script src="{{ asset('js/respond.js') }}"></script>
     <![endif]-->
 </head>
 <body>
@@ -122,9 +122,18 @@
     </p>
 </div>
 
+<div class="alert-messages">
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert-success">
+            <a class="close" data-dismiss="alert" href="#">&times;</a>
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+</div>
+
 {% block javascripts %}
-    <script src="{{ asset('js/jquery.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/hh.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/hh.js') }}"></script>
 {% endblock %}
 </body>
 </html>

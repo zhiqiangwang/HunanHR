@@ -24,6 +24,8 @@ class HRUserExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+        $loader->load('listeners.xml');
+        $loader->load('security.xml');
         $loader->load('registration.xml');
         $loader->load('profile.xml');
         $loader->load('change_password.xml');

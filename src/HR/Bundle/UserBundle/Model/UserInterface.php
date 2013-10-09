@@ -335,6 +335,30 @@ interface UserInterface extends AdvancedUserInterface
     public function getCreatedAt();
 
     /**
+     * @param \Datetime $lastLogin
+     *
+     * @return $this
+     */
+    public function setLastLogin($lastLogin);
+
+    /**
+     * @return string
+     */
+    public function getLastLogin();
+
+    /**
+     * @param string $lastLoginIp
+     *
+     * @return $this
+     */
+    public function setLastLoginIp($lastLoginIp);
+
+    /**
+     * @return string
+     */
+    public function getLastLoginIp();
+
+    /**
      * @param UserInterface $user
      *
      * @return bool

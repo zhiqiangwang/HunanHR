@@ -153,6 +153,16 @@ abstract class User implements UserInterface
      */
     protected $createdAt;
 
+    /**
+     * @var \Datetime
+     */
+    protected $lastLogin;
+
+    /**
+     * @var string
+     */
+    protected $lastLoginIp;
+
     public function __construct()
     {
         $this->locked             = false;
@@ -725,6 +735,42 @@ abstract class User implements UserInterface
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLastLogin($lastLogin)
+    {
+        $this->lastLogin = $lastLogin;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLastLogin()
+    {
+        return $this->lastLogin;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLastLoginIp($lastLoginIp)
+    {
+        $this->lastLoginIp = $lastLoginIp;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLastLoginIp()
+    {
+        return $this->lastLoginIp;
     }
 
     /**

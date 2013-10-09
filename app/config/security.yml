@@ -11,14 +11,10 @@ security:
 
     providers:
         main:
-            id: user.provider
+            id: user.user_provider
 
     firewalls:
-        dev:
-            pattern:  ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-
-        secured_area:
+        main:
             pattern:    ^/
             form_login:
                 check_path: login_check
@@ -28,6 +24,7 @@ security:
                 lifetime: 31536000
                 path: /
                 domain: ~
+                always_remember_me: true
             logout:
                 path:   logout
                 target: /
