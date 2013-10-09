@@ -89,7 +89,7 @@ class Photo
             $this->path
         );
 
-        $this->avatarBigUrl    = $this->makeThumb(128, 128);
+        $this->avatarBigUrl   = $this->makeThumb(128, 128);
         $this->avatarSmallUrl = $this->makeThumb(48, 48, true);
 
         @unlink($this->getAbsolutePath());
@@ -113,7 +113,7 @@ class Photo
 
     protected function getUploadDir()
     {
-        return 'uploads/face/' . substr(md5($this->getUser()->getId()), 0, 2);
+        return 'uploads/face/' . substr(md5($this->getUser()->getId()), 30);
     }
 
     protected function makeThumb($width, $height, $force = false)
@@ -130,6 +130,6 @@ class Photo
             ->$method($width, $height)
             ->save($this->getUploadRootDir() . '/' . $filename, $extension, 100);
 
-        return $this->getUploadDir() . '/' . $filename;
+        return $this->getUploadDir() . '/' . $filename . '?t=' . time();
     }
 }

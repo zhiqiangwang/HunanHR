@@ -44,7 +44,7 @@ class PhotoController extends Controller
 
                 $userManager->updateUser($user);
 
-                return $this->redirect($this->generateUrl('upload_face'));
+                return $this->redirect($this->generateUrl('profile_edit'));
             }
         }
 
