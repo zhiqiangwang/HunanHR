@@ -191,16 +191,28 @@ interface UserInterface extends AdvancedUserInterface
     public function getBio();
 
     /**
-     * @param string $avatarUrl
+     * @param string $avatarSmallUrl
      *
      * @return $this
      */
-    public function setAvatarUrl($avatarUrl);
+    public function setAvatarSmallUrl($avatarSmallUrl);
 
     /**
      * @return string
      */
-    public function getAvatarUrl();
+    public function getAvatarSmallUrl();
+
+    /**
+     * @param string $avatarBigUrl
+     *
+     * @return $this
+     */
+    public function setAvatarBigUrl($avatarBigUrl);
+
+    /**
+     * @return string
+     */
+    public function getAvatarBigUrl();
 
     /**
      * @param PositionInterface $position

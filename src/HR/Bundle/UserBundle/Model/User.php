@@ -96,7 +96,12 @@ abstract class User implements UserInterface
     /**
      * @var string
      */
-    protected $avatarUrl;
+    protected $avatarSmallUrl;
+
+    /**
+     * @var string
+     */
+    protected $avatarBigUrl;
 
     /**
      * @var ArrayCollection
@@ -456,9 +461,9 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function setAvatarUrl($avatarUrl)
+    public function setAvatarSmallUrl($avatarSmallUrl)
     {
-        $this->avatarUrl = $avatarUrl;
+        $this->avatarSmallUrl = $avatarSmallUrl;
 
         return $this;
     }
@@ -466,9 +471,27 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getAvatarUrl()
+    public function getAvatarSmallUrl()
     {
-        return $this->avatarUrl;
+        return $this->avatarSmallUrl ?: 'img/default-avatar48.png';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setAvatarBigUrl($avatarBigUrl)
+    {
+        $this->avatarBigUrl = $avatarBigUrl;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAvatarBigUrl()
+    {
+        return $this->avatarBigUrl ?: 'img/default-avatar128.png';
     }
 
     /**

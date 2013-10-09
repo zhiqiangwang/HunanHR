@@ -1,0 +1,38 @@
+{% extends 'HRUserBundle::layout.html.twig' %}
+
+{% block user_content %}
+    {{ form_start(form, {'action': path('upload_face'), 'attr': {'class': 'form-horizontal' }}) }}
+
+    <div class="form-group">
+        <div class="col-lg-3 control-label">
+            <label>当前头像</label>
+        </div>
+        <div class="col-lg-9">
+            <img src="{{ asset(app.user.avatarBigUrl) }}" class="avatar"/>
+        </div>
+    </div>
+
+    <div class="form-group upload-wrapper">
+        <div class="col-lg-3 control-label">
+            {{ form_label(form.file) }}
+        </div>
+        <div class="col-lg-9">
+            <div class="file-choice">
+                {{ form_widget(form.file) }}
+            </div>
+            <p class="text-muted">支持jpg、jpeg、gif、png格式的图片，不超过2M</p>
+
+            <div class="has-error">
+                {{ form_errors(form.file) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-lg-offset-3 col-lg-9">
+            <button type="submit" class="btn btn-primary">上传</button>
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+{% endblock %}

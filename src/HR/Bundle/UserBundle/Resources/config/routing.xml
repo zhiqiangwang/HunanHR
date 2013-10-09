@@ -27,4 +27,8 @@
     <route id="change_password" pattern="/settings/password">
         <default key="_controller">HRUserBundle:ChangePassword:edit</default>
     </route>
+
+    <route id="upload_face" pattern="/settings/face">
+        <default key="_controller">HRUserBundle:Photo:upload</default>
+    </route>
 </routes>

@@ -189,4 +189,23 @@
             </constraint>
         </property>
     </class>
+
+    <class name="HR\Bundle\UserBundle\FormModel\Photo">
+        <property name="file">
+            <constraint name="NotBlank">
+                <option name="message">请选择一个文件</option>
+            </constraint>
+            <constraint name="File">
+                <option name="maxSize">2000000</option>
+                <option name="mimeTypes">
+                    <value>image/png</value>
+                    <value>image/jpg</value>
+                    <value>image/jpeg</value>
+                    <value>image/gif</value>
+                </option>
+                <option name="maxSizeMessage">文件不能超过 2MB</option>
+                <option name="mimeTypesMessage">请选择一个图像文件</option>
+            </constraint>
+        </property>
+    </class>
 </constraint-mapping>

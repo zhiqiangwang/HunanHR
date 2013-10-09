@@ -5,6 +5,18 @@
 
     <div class="form-group">
         <div class="col-lg-2 control-label">
+            <label>头像</label>
+        </div>
+        <div class="col-lg-10">
+            <div class="upload-face">
+                <img src="{{ asset(app.user.avatarBigUrl) }}" class="avatar"/>
+                <a class="upload-action" href="{{ path('upload_face') }}">重新上传</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-lg-2 control-label">
             <label>用户名</label>
         </div>
         <div class="col-lg-10 form-control-static">

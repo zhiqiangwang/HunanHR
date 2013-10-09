@@ -20,7 +20,8 @@
         <field name="phoneNumber" type="string" column="phone_number" length="11" nullable="true" />
         <field name="homepage" type="string" column="homepage" length="255" nullable="true" />
         <field name="bio" type="text" column="bio" nullable="true" />
-        <field name="avatarUrl" type="string" column="avatar_url" length="255" nullable="true" />
+        <field name="avatarBigUrl" type="string" column="avatar_big_url" length="255" nullable="true" />
+        <field name="avatarSmallUrl" type="string" column="avatar_small_url" length="255" nullable="true" />
         <field name="roles" type="array" column="roles" nullable="true" />
         <field name="enabled" type="boolean" column="enabled" />
         <field name="locked" type="boolean" column="locked" />

@@ -28,6 +28,7 @@ class HRUserExtension extends Extension
         $loader->load('security.xml');
         $loader->load('registration.xml');
         $loader->load('profile.xml');
+        $loader->load('photo.xml');
         $loader->load('change_password.xml');
     }
 }
