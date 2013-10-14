@@ -65,7 +65,7 @@ class SkillController extends Controller
         $skill        = $skillManager->findSkillById($skillId);
 
         if (null == $skill || !$user->equals($skill->getUser())) {
-            return $this->createNotFoundException();
+            throw $this->createNotFoundException();
         }
 
         /** @var \Symfony\Component\Form\FormInterface $form */
@@ -99,7 +99,7 @@ class SkillController extends Controller
         $skill        = $skillManager->findSkillById($skillId);
 
         if (null == $skill || !$user->equals($skill->getUser())) {
-            return $this->createNotFoundException();
+            throw $this->createNotFoundException();
         }
 
         $skillManager->deleteSkill($skill);

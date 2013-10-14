@@ -1,3 +1,15 @@
+page:
+    resource: "@HRPageBundle/Resources/config/routing.xml"
+    prefix:   /
+
+location:
+    resource: "@HRLocationBundle/Resources/config/routing.xml"
+    prefix:   /
+
+job:
+    resource: "@HRJobBundle/Resources/config/routing.xml"
+    prefix:   /
+
 resume:
     resource: "@HRResumeBundle/Resources/config/routing.xml"
     prefix:   /
@@ -17,6 +29,3 @@ position:
 user:
     resource: "@HRUserBundle/Resources/config/routing.xml"
     prefix:   /
-
-home:
-    pattern: /

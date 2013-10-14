@@ -24,6 +24,16 @@
         <default key="_controller">HRUserBundle:Profile:edit</default>
     </route>
 
+    <route id="profile_show" pattern="/user/{userId}">
+        <default key="_controller">HRUserBundle:Profile:show</default>
+        <requirement key="userId">\d+</requirement>
+    </route>
+
+    <route id="profile_jobs" pattern="/user/{userId}/jobs">
+        <default key="_controller">HRUserBundle:Profile:jobs</default>
+        <requirement key="userId">\d+</requirement>
+    </route>
+
     <route id="change_password" pattern="/settings/password">
         <default key="_controller">HRUserBundle:ChangePassword:edit</default>
     </route>

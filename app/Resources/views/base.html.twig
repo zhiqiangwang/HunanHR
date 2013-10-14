@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:wb="http://open.weibo.com/wb">
 <head>
     <meta charset="utf-8"/>
     {% set pageTitle = page_title() %}
     <title>{% if pageTitle is not null %}{{ pageTitle }} - {% endif %}湖南英才网</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    {% block meta %}{% endblock %}
     {% block stylesheets %}
         <link href="{{ asset('css/hh.css') }}" rel="stylesheet" media="screen"/>
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
-
     <!--[if lt IE 9]>
     <script src="{{ asset('js/html5shiv.js') }}"></script>
     <script src="{{ asset('js/respond.js') }}"></script>
@@ -31,6 +31,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="{{ path('home') }}">首页</a></li>
+                    <li><a href="{{ path('job_new') }}">发布职位</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav pull-right">
@@ -41,6 +42,10 @@
                             <ul class="dropdown-menu">
                                 <li><a href="{{ path('profile_edit') }}">资料设置</a></li>
                                 <li><a href="{{ path('change_password') }}">修改密码</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ path('position_list') }}">职业经历</a></li>
+                                <li><a href="{{ path('education_list') }}">教育经历</a></li>
+                                <li><a href="{{ path('skill_list') }}">技能信息</a></li>
                                 <li class="divider"></li>
                                 <li><a href="{{ path('logout') }}">退出</a></li>
                             </ul>
@@ -72,12 +77,13 @@
                                         <div class="card">
                                             <div class="avatar-wrapper">
                                                 <div class="upload-face">
-                                                    <img src="{{ asset(app.user.avatarBigUrl) }}" class="avatar"/>
+                                                    <a href="{{ path('profile_show', {'userId': app.user.id}) }}"><img src="{{ asset(app.user.avatarBigUrl) }}" class="avatar"/></a>
                                                     <a class="upload-action" href="{{ path('upload_face') }}">修改头像</a>
                                                 </div>
                                             </div>
 
-                                            <strong class="fullname"><a href="">{{ app.user.screenName }}</a></strong>
+                                            <strong class="fullname"><a
+                                                        href="{{ path('profile_show', {'userId': app.user.id}) }}">{{ app.user.screenName }}</a></strong>
 
                                             <p class="metadata">{{ app.user.bio }}</p>
                                         </div>
@@ -85,6 +91,21 @@
                                     <div class="action clearfix">
                                         <a href="">0条新提醒</a>
                                         <a href="{{ path('profile_edit') }}" class="btn btn-default pull-right">资料设置</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="module">
+                                <div class="flex-module about">
+                                    <div class="module-header">
+                                        <h2>欢迎访问湖南英才网</h2>
+                                    </div>
+                                    <p class="slogan">湖南英才网是一个靠谱的招聘社区，专注湖南地区的网络招聘。</p>
+
+                                    <div class="text-center">
+                                        <div class="btn-group">
+                                            <a href="{{ path('register') }}" class="btn btn-default">立即注册</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -99,14 +120,6 @@
                             </div>
                         </div>
 
-                        <div class="module">
-                            <div class="flex-module about">
-                                <div class="module-header">
-                                    <h2>关于我们</h2>
-                                </div>
-                                <p class="slogan">湖南英才网是一个靠谱的招聘社区，专注湖南地区的网络招聘。</p>
-                            </div>
-                        </div>
                     {% endblock %}
                 </div>
             </div>

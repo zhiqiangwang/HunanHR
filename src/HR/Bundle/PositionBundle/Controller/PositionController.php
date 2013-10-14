@@ -65,7 +65,7 @@ class PositionController extends Controller
         $position        = $positionManager->findPositionById($positionId);
 
         if (null == $position || !$user->equals($position->getUser())) {
-            return $this->createNotFoundException();
+            throw $this->createNotFoundException();
         }
 
         /** @var \Symfony\Component\Form\FormInterface $form */
@@ -99,7 +99,7 @@ class PositionController extends Controller
         $position        = $positionManager->findPositionById($positionId);
 
         if (null == $position || !$user->equals($position->getUser())) {
-            return $this->createNotFoundException();
+            throw $this->createNotFoundException();
         }
 
         $positionManager->deletePosition($position);

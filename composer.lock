@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "36c5d1b92333dea8f50ac8369db5b1f4",
+    "hash": "c95666a9b9910f9b7350402488ef6377",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -605,28 +605,34 @@
             "time": "2013-05-11 07:51:12"
         },
         {
-            "name": "gregwar/image",
+            "name": "imagine/imagine",
             "version": "dev-master",
-            "target-dir": "Gregwar/Image",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Gregwar/Image.git",
-                "reference": "5a54cddf118738a30acfbcfa206ce82d77cd21bf"
+                "url": "https://github.com/avalanche123/Imagine.git",
+                "reference": "f64ec666baaa800edcbf237db41121a569230709"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Gregwar/Image/zipball/5a54cddf118738a30acfbcfa206ce82d77cd21bf",
-                "reference": "5a54cddf118738a30acfbcfa206ce82d77cd21bf",
+                "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/f64ec666baaa800edcbf237db41121a569230709",
+                "reference": "f64ec666baaa800edcbf237db41121a569230709",
                 "shasum": ""
             },
             "require": {
-                "ext-gd": "*",
-                "php": ">=5.3.0"
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "sami/sami": "dev-master"
+            },
+            "suggest": {
+                "ext-gd": "to use the GD implementation",
+                "ext-gmagick": "to use the Gmagick implementation",
+                "ext-imagick": "to use the Imagick implementation"
             },
             "type": "library",
             "autoload": {
                 "psr-0": {
-                    "Gregwar\\Image": ""
+                    "Imagine": "lib/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -635,18 +641,20 @@
             ],
             "authors": [
                 {
-                    "name": "Grégoire Passault",
-                    "email": "g.passault@gmail.com",
-                    "homepage": "http://www.gregwar.com/"
+                    "name": "Bulat Shakirzyanov",
+                    "email": "mallluhuct@gmail.com",
+                    "homepage": "http://avalanche123.com"
                 }
             ],
-            "description": "Image handling",
-            "homepage": "https://github.com/Gregwar/Image",
+            "description": "Image processing for PHP 5.3",
+            "homepage": "http://imagine.readthedocs.org/",
             "keywords": [
-                "gd",
-                "image"
+                "drawing",
+                "graphics",
+                "image manipulation",
+                "image processing"
             ],
-            "time": "2013-10-07 16:41:39"
+            "time": "2013-07-10 17:25:36"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1545,7 +1553,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "gregwar/image": 20
+        "imagine/imagine": 20
     },
     "platform": {
         "php": ">=5.3.3"

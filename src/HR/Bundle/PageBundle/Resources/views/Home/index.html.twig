@@ -1,0 +1,42 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+
+<div class="module">
+    <div class="flex-module">
+        <ul class="item-list">
+            {% for job in pager.getResults %}
+            <li class="item">
+                <div class="item-header">
+                    <img src="{{ asset(job.user.avatarSmallUrl) }}" class="avatar"/>
+
+                    <div class="meta"><a href="{{ path('profile_show', {'userId': job.user.id}) }}" target="_blank">{{ job.user.screenName }}</a> 在 {{ job.createdAt|date('Y-m-d') }} 发布的职位</div>
+
+                    <div class="title">
+                        <a href="{{ path('job_show', {'jobId': job.id}) }}" target="_blank">{{ job.title|substring(15) }}</a>
+                        <span class="divider">•</span>
+                        <span class="company">{{ job.companyName|substring(15) }}</span>
+                        <span class="divider">•</span>
+                        <span class="region">{{ job.city }}</span>
+                    </div>
+
+                </div>
+
+                <div class="item-body">
+                    <a href="{{ path('job_show', {'jobId': job.id}) }}" target="_blank">
+                        {{ job.description|substring(200)|markup }}
+                    </a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+
+        {% if pager.isPaginable %}
+            {{ paginate(pager, 'home') }}
+        {% endif %}
+
+    </div>
+</div>
+<!-- /module -->
+
+{% endblock %}

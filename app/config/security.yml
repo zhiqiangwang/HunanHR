@@ -13,6 +13,8 @@ security:
         main:
             id: user.user_provider
 
+    acl: ~
+
     firewalls:
         main:
             pattern:    ^/

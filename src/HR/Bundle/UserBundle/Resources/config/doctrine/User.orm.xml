@@ -59,5 +59,14 @@
                 <order-by-field name="createdAt" direction="DESC" />
             </order-by>
         </one-to-many>
+
+        <one-to-many target-entity="HR\Bundle\JobBundle\Entity\Job" mapped-by="user" field="jobs">
+            <cascade>
+                <cascade-remove />
+            </cascade>
+            <order-by>
+                <order-by-field name="createdAt" direction="DESC" />
+            </order-by>
+        </one-to-many>
     </entity>
 </doctrine-mapping>

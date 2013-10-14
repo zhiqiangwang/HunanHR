@@ -11,7 +11,7 @@
     <services>
         <service id="breadcrumb" class="%breadcrumb.class%" />
 
-        <service id="breadcrumb.twig" class="HR\Bundle\BreadcrumbBundle\Twig\Extension\BreadcrumbExtension">
+        <service id="twig.extension.breadcrumb" class="HR\Bundle\BreadcrumbBundle\Twig\Extension\BreadcrumbExtension">
             <argument type="service" id="service_container" />
             <tag name="twig.extension" />
         </service>

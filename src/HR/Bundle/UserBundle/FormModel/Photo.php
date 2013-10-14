@@ -2,8 +2,10 @@
 namespace HR\Bundle\UserBundle\FormModel;
 
 use HR\Bundle\UserBundle\Model\UserInterface;
+use Imagine\Image\Box;
+use Imagine\Image\ImageInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Gregwar\Image\Image;
+use Imagine\Gd\Imagine;
 
 /**
  * @author Wenming Tang <tang@babyfamily.com>
@@ -78,7 +80,7 @@ class Photo
 
     public function handleFile()
     {
-        if (null === $this->getFile()) {
+        if (null === $this->getFile() || null == $this->getUser()) {
             return false;
         }
 
@@ -89,8 +91,8 @@ class Photo
             $this->path
         );
 
-        $this->avatarBigUrl   = $this->makeThumb(128, 128);
-        $this->avatarSmallUrl = $this->makeThumb(48, 48, true);
+        $this->avatarBigUrl   = $this->makeThumbnail(128, 128);
+        $this->avatarSmallUrl = $this->makeThumbnail(48, 48);
 
         @unlink($this->getAbsolutePath());
 
@@ -116,20 +118,20 @@ class Photo
         return 'uploads/face/' . substr(md5($this->getUser()->getId()), 30);
     }
 
-    protected function makeThumb($width, $height, $force = false)
+    protected function makeThumbnail($width, $height)
     {
         if (null === $this->getFile() || null === $this->path) {
             return null;
         }
 
-        $extension = $this->getFile()->guessClientExtension();
-        $filename  = sprintf('%d%d.%s', $this->getUser()->getId(), $width, $extension);
-        $method    = $force ? 'forceResize' : 'cropResize';
+        $thumbnailFilename = sprintf('%d%d.png', $this->getUser()->getId(), $width);
+        $imagine           = new Imagine();
 
-        Image::open($this->getUploadRootDir() . '/' . $this->path)
-            ->$method($width, $height)
-            ->save($this->getUploadRootDir() . '/' . $filename, $extension, 100);
+        $imagine
+            ->open($this->getAbsolutePath())
+            ->thumbnail(new Box($width, $height), ImageInterface::THUMBNAIL_OUTBOUND)
+            ->save($this->getUploadRootDir() . '/' . $thumbnailFilename);
 
-        return $this->getUploadDir() . '/' . $filename . '?t=' . time();
+        return $this->getUploadDir() . '/' . $thumbnailFilename . '?t=' . time();
     }
 }

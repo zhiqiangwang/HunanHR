@@ -2,4 +2,7 @@
 
 {% block user_content %}
     {{ form(form, {'action': path('register')}) }}
+
+    <hr />
+    <p class="text-muted col-md-offset-2"><a href="{{ path('login') }}">已经有一个帐号？立即登录</a></p>
 {% endblock %}

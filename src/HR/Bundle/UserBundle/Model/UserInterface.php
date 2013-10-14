@@ -2,6 +2,7 @@
 namespace HR\Bundle\UserBundle\Model;
 
 use HR\Bundle\EducationBundle\Model\EducationInterface;
+use HR\Bundle\JobBundle\Model\JobInterface;
 use HR\Bundle\SkillBundle\Entity\Skill;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use HR\Bundle\PositionBundle\Model\PositionInterface;
@@ -270,6 +271,25 @@ interface UserInterface extends AdvancedUserInterface
      * @return array
      */
     public function getSkills();
+
+    /**
+     * @param JobInterface $job
+     *
+     * @return $this
+     */
+    public function addJob(JobInterface $job);
+
+    /**
+     * @param JobInterface $job
+     *
+     * @return void
+     */
+    public function removeJob(JobInterface $job);
+
+    /**
+     * @return array
+     */
+    public function getJobs();
 
     /**
      * @param array $roles

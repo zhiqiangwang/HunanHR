@@ -3,6 +3,7 @@ namespace HR\Bundle\UserBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use HR\Bundle\EducationBundle\Model\EducationInterface;
+use HR\Bundle\JobBundle\Model\JobInterface;
 use HR\Bundle\PositionBundle\Model\PositionInterface;
 use HR\Bundle\SkillBundle\Entity\Skill;
 
@@ -119,6 +120,11 @@ abstract class User implements UserInterface
     protected $skills;
 
     /**
+     * @var ArrayCollection
+     */
+    protected $jobs;
+
+    /**
      * @var array
      */
     protected $roles;
@@ -180,6 +186,7 @@ abstract class User implements UserInterface
         $this->positions          = new ArrayCollection();
         $this->educations         = new ArrayCollection();
         $this->skills             = new ArrayCollection();
+        $this->jobs               = new ArrayCollection();
     }
 
     /**
@@ -473,7 +480,7 @@ abstract class User implements UserInterface
      */
     public function getAvatarSmallUrl()
     {
-        return $this->avatarSmallUrl ?: 'img/default-avatar48.png';
+        return $this->avatarSmallUrl ? : 'img/default-avatar48.png';
     }
 
     /**
@@ -491,7 +498,7 @@ abstract class User implements UserInterface
      */
     public function getAvatarBigUrl()
     {
-        return $this->avatarBigUrl ?: 'img/default-avatar128.png';
+        return $this->avatarBigUrl ? : 'img/default-avatar128.png';
     }
 
     /**
@@ -578,6 +585,33 @@ abstract class User implements UserInterface
         return $this->skills;
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function addJob(JobInterface $job)
+    {
+        $this->jobs->add($job);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeJob(JobInterface $job)
+    {
+        $this->jobs->removeElement($job);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getJobs()
+    {
+        return $this->jobs;
+    }
 
     /**
      * {@inheritdoc}

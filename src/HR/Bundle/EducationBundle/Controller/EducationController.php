@@ -66,7 +66,7 @@ class EducationController extends Controller
         $education        = $educationManager->findEducationById($educationId);
 
         if (null == $education || !$user->equals($education->getUser())) {
-            return $this->createNotFoundException();
+            throw $this->createNotFoundException();
         }
 
         /** @var \Symfony\Component\Form\FormInterface $form */
@@ -100,7 +100,7 @@ class EducationController extends Controller
         $education        = $educationManager->findEducationById($educationId);
 
         if (null == $education || !$user->equals($education->getUser())) {
-            return $this->createNotFoundException();
+            throw $this->createNotFoundException();
         }
 
         $educationManager->deleteEducation($education);
