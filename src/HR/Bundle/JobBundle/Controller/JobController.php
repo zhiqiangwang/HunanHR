@@ -1,10 +1,12 @@
 <?php
 namespace HR\Bundle\JobBundle\Controller;
 
+use HR\Bundle\JobBundle\Event\JobEvent;
+use HR\Bundle\JobBundle\JobEvents;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
  * @author Wenming Tang <tang@babyfamily.com>
@@ -33,6 +35,8 @@ class JobController extends Controller
 
         if ($form->isValid()) {
             $this->getJobManager()->updateJob($job);
+
+            $this->getDispatcher()->dispatch(JobEvents::JOB_SAVE_COMPLETED, new JobEvent($job));
 
             return $this->redirect($this->generateUrl('job_show', array('jobId' => $job->getId())));
         }
@@ -91,6 +95,8 @@ class JobController extends Controller
         if ($form->isValid()) {
             $this->getJobManager()->updateJob($job);
 
+            $this->getDispatcher()->dispatch(JobEvents::JOB_EDIT_COMPLETED, new JobEvent($job));
+
             return $this->redirect($this->generateUrl('job_show', array('jobId' => $job->getId())));
         }
 
@@ -121,6 +127,8 @@ class JobController extends Controller
 
         $this->getJobManager()->deleteJob($job);
 
+        $this->getDispatcher()->dispatch(JobEvents::JOB_DELETE_COMPLETED, new JobEvent($job));
+
         $this->get('session')->getFlashBag()->add('success', '职位已删除');
 
         return $this->redirect($this->generateUrl('home'));
@@ -140,5 +148,13 @@ class JobController extends Controller
     private function getForm()
     {
         return $this->get('job.form');
+    }
+
+    /**
+     * @return \Symfony\Component\EventDispatcher\EventDispatcherInterface
+     */
+    private function getDispatcher()
+    {
+        return $this->container->get('event_dispatcher');
     }
 }

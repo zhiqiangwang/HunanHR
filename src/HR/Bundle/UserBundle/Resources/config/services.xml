@@ -15,5 +15,9 @@
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument>%user.user_entity.class%</argument>
         </service>
+
+        <service id="user.util.token_generator" class="HR\Bundle\UserBundle\Util\TokenGenerator">
+            <argument type="service" id="logger" on-invalid="ignore" />
+        </service>
     </services>
 </container>

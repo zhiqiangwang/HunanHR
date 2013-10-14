@@ -16,7 +16,7 @@ class SkillFormType extends AbstractType
         $builder
             ->add('name', 'text', array('label' => '技能'))
             ->add('summary', 'textarea', array(
-                'label'    => '描述(可选)',
+                'label'    => '描述',
                 'required' => false,
                 'attr'     => array(
                     'rows' => 8,

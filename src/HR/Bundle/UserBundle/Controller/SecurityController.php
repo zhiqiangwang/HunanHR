@@ -14,6 +14,10 @@ class SecurityController extends Controller
      */
     public function loginAction(Request $request)
     {
+        if (null != $this->getUser()) {
+            return $this->redirect($this->generateUrl('profile_edit'));
+        }
+
         $this->get('breadcrumb')->add('登录');
 
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {

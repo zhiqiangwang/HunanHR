@@ -34,7 +34,7 @@ class EducationFormType extends AbstractType
                 'empty_value' => '-'
             ))
             ->add('summary', 'textarea', array(
-                'label'    => '描述(可选)',
+                'label'    => '描述',
                 'required' => false,
                 'attr'     => array(
                     'rows' => 8,

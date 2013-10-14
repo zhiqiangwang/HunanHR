@@ -12,8 +12,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
     <!--[if lt IE 9]>
     <script src="{{ asset('js/html5shiv.js') }}"></script>
-    <script src="{{ asset('js/respond.js') }}"></script>
-    <![endif]-->
+    <script src="{{ asset('js/respond.js') }}"></script><![endif]-->
 </head>
 <body>
 
@@ -22,9 +21,7 @@
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="{{ path('home') }}">湖南英才网</a>
             </div>
@@ -64,6 +61,10 @@
     <div id="container-wrapper">
         <div class="container">
             <div class="wrapper">
+
+                {% block content_top %}
+                {% endblock %}
+
                 <div id="content">
                     {% block content %}
                     {% endblock %}
@@ -85,7 +86,7 @@
                                             <strong class="fullname"><a
                                                         href="{{ path('profile_show', {'userId': app.user.id}) }}">{{ app.user.screenName }}</a></strong>
 
-                                            <p class="metadata">{{ app.user.bio }}</p>
+                                            <p class="metadata">{{ app.user.bio|substring(20) }}</p>
                                         </div>
                                     </div>
                                     <div class="action clearfix">
@@ -116,7 +117,7 @@
 
                         <div class="module">
                             <div class="flex-module advert">
-                                <img src="http://g-ecx.images-amazon.com/images/G/28/Baby/moli/zcn/wj.png"/>
+                                <a href="http://www.amazon.cn/s?rh=n%3A853798051&tag=babyfamily-23&camp=440&creative=3308&linkCode=ur1&adid=01R5ZP5EQ54B10YCYQZZ&ref-refURL=http%3A%2F%2Fwww.babyfamily.com%2F" target="_blank"><img src="http://g-ecx.images-amazon.com/images/G/28/Baby/moli/zcn/wj.png"/></a>
                             </div>
                         </div>
 
@@ -131,27 +132,57 @@
     <p>
         <span class="copyright">2013 &copy; 湖南英才网</span>
         <span class="footer-link">
-            <a href="">关于我们</a>
+            <a href="{{ path('page_about') }}">关于我们</a>
             <span class="divider">·</span>
-            <a href="">取得联系</a>
+            <a href="{{ path('page_contact') }}">取得联系</a>
             <span class="divider">·</span>
-            <a href="">新浪微博</a>
+            <a href="http://weibo.com/hunanhrcom" target="_blank">新浪微博</a>
         </span>
     </p>
-</div>
-
-<div class="alert-messages">
-    {% for flashMessage in app.session.flashbag.get('success') %}
-        <div class="alert alert-success">
-            <a class="close" data-dismiss="alert" href="#">&times;</a>
-            {{ flashMessage }}
-        </div>
-    {% endfor %}
 </div>
 
 {% block javascripts %}
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/hh.js') }}"></script>
 {% endblock %}
+
+{% if app.session.flashbag.has('success') %}
+    <div class="alert-messages">
+        {% for flashMessage in app.session.flashbag.get('success') %}
+            <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span> {{ flashMessage }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var ele = $('.alert-messages');
+            if (ele.length > 0) {
+                setTimeout(function () {
+                    ele.remove();
+                }, 2000);
+            }
+        })
+    </script>
+{% endif %}
+
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-44830928-1', 'hunanhr.com');
+    ga('send', 'pageview');
+
+</script>
 </body>
 </html>

@@ -216,6 +216,63 @@ interface UserInterface extends AdvancedUserInterface
     public function getAvatarBigUrl();
 
     /**
+     * @param int $by
+     *
+     * @return $this
+     */
+    public function incrementNumJobs($by);
+
+    /**
+     * @param int $by
+     *
+     * @return $this
+     */
+    public function subtractNumJobs($by);
+
+    /**
+     * @return int
+     */
+    public function getNumJobs();
+
+    /**
+     * @param bool $boolean
+     *
+     * @return $this
+     */
+    public function setEmailConfirmed($boolean);
+
+    /**
+     * @return bool
+     */
+    public function isEmailConfirmed();
+
+    /**
+     * @param int $confirmationToken
+     *
+     * @return $this
+     */
+    public function setConfirmationToken($confirmationToken);
+
+    /**
+     * @return string
+     */
+    public function getConfirmationToken();
+
+    /**
+     * @param \DateTime $date
+     *
+     * @return $this
+     */
+    public function setPasswordRequestedAt(\DateTime $date = null);
+
+    /**
+     * @param int $ttl
+     *
+     * @return bool
+     */
+    public function isPasswordRequestNonExpired($ttl);
+
+    /**
      * @param PositionInterface $position
      *
      * @return $this

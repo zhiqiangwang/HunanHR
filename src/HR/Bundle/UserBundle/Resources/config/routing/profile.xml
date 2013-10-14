@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="profile_edit" pattern="/settings/profile">
+        <default key="_controller">HRUserBundle:Profile:edit</default>
+    </route>
+
+    <route id="profile_show" pattern="/user/{userId}">
+        <default key="_controller">HRUserBundle:Profile:show</default>
+        <requirement key="userId">\d+</requirement>
+    </route>
+
+    <route id="profile_jobs" pattern="/user/{userId}/jobs">
+        <default key="_controller">HRUserBundle:Profile:jobs</default>
+        <requirement key="userId">\d+</requirement>
+    </route>
+
+    <route id="resend_confirm_email" pattern="/resend-confirm-email">
+        <default key="_controller">HRUserBundle:Profile:resendConfirmEmail</default>
+        <requirement key="userId">\d+</requirement>
+    </route>
+
+    <route id="upload_face" pattern="/settings/face">
+        <default key="_controller">HRUserBundle:Photo:upload</default>
+    </route>
+</routes>

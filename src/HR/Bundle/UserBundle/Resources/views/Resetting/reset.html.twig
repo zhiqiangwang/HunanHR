@@ -1,0 +1,7 @@
+{% extends 'HRUserBundle::layout.html.twig' %}
+
+{% block user_content %}
+
+    {{ form(form, {'action': path('user_resetting_reset', {'token': token})}) }}
+
+{% endblock %}

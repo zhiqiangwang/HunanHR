@@ -1,5 +1,13 @@
 {% extends 'form_div_layout.html.twig' %}
 
+{% block form_label %}
+    {% if required %}
+        <span class="required" title="该项为必填项">*</span>
+    {% endif %}
+
+    {{ parent() }}
+{% endblock %}
+
 {% block form_row %}
     {% spaceless %}
         <div class="form-group{% if errors|length > 0 %} has-error{% endif %}">

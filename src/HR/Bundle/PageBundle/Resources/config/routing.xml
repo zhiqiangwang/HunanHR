@@ -7,4 +7,12 @@
     <route id="home" pattern="/">
         <default key="_controller">HRPageBundle:Home:index</default>
     </route>
+
+    <route id="page_about" pattern="/about">
+        <default key="_controller">HRPageBundle:Page:about</default>
+    </route>
+
+    <route id="page_contact" pattern="/contact">
+        <default key="_controller">HRPageBundle:Page:contact</default>
+    </route>
 </routes>

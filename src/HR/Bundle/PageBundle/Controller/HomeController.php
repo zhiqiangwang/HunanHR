@@ -2,8 +2,8 @@
 namespace HR\Bundle\PageBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
  * @author Wenming Tang <tang@babyfamily.com>

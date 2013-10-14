@@ -27,5 +27,6 @@ class HRJobExtension extends Extension
         $loader->load('forms.xml');
         $loader->load('twig.xml');
         $loader->load('acl.xml');
+        $loader->load('events.xml');
     }
 }

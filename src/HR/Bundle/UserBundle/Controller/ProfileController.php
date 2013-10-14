@@ -2,6 +2,7 @@
 namespace HR\Bundle\UserBundle\Controller;
 
 use HR\Bundle\UserBundle\Event\FilterUserResponseEvent;
+use HR\Bundle\UserBundle\Event\UserEvent;
 use HR\Bundle\UserBundle\UserEvents;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,6 +24,8 @@ class ProfileController extends Controller
             throw new AccessDeniedException();
         }
 
+        $oldUser = clone $user;
+
         $this->get('breadcrumb')->add('设置');
 
         /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
@@ -35,6 +38,11 @@ class ProfileController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+
+            if ($oldUser->getEmail() !== $user->getEmail()) {
+                $dispatcher->dispatch(UserEvents::EMAIL_CHANGE_COMPLETED, new UserEvent($user, $request));
+            }
+
             $this->getUserManager()->updateUser($user);
 
             $this->get('session')->getFlashBag()->add('success', '基本资料已更新');
@@ -102,6 +110,28 @@ class ProfileController extends Controller
             'user'  => $user,
             'pager' => $pager,
         );
+    }
+
+    public function resendConfirmEmailAction(Request $request)
+    {
+        if (null == $user = $this->getUser()) {
+            throw new AccessDeniedException();
+        }
+
+        if ($user->isEmailConfirmed()) {
+            return $this->redirect($this->generateUrl('home'));
+        }
+
+        /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
+        $dispatcher = $this->container->get('event_dispatcher');
+
+        $this->get('session')->getFlashBag()->add('success', '确认邮件已发送');
+
+        $response = $this->redirect($this->generateUrl('home'));
+
+        $dispatcher->dispatch(UserEvents::REGISTRATION_SUCCESS, new FilterUserResponseEvent($user, $request, $response));
+
+        return $response;
     }
 
     /**

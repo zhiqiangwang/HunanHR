@@ -105,6 +105,26 @@ abstract class User implements UserInterface
     protected $avatarBigUrl;
 
     /**
+     * @var int
+     */
+    protected $numJobs;
+
+    /**
+     * @var boolean
+     */
+    protected $emailConfirmed;
+
+    /**
+     * @var string
+     */
+    protected $confirmationToken;
+
+    /**
+     * @var \Datetime
+     */
+    protected $passwordRequestedAt;
+
+    /**
      * @var ArrayCollection
      */
     protected $positions;
@@ -180,8 +200,10 @@ abstract class User implements UserInterface
         $this->expired            = false;
         $this->credentialsExpired = false;
         $this->enabled            = true;
+        $this->emailConfirmed     = false;
         $this->roles              = array();
         $this->salt               = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+        $this->numJobs            = 0;
         $this->createdAt          = new \Datetime();
         $this->positions          = new ArrayCollection();
         $this->educations         = new ArrayCollection();
@@ -499,6 +521,90 @@ abstract class User implements UserInterface
     public function getAvatarBigUrl()
     {
         return $this->avatarBigUrl ? : 'img/default-avatar128.png';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function incrementNumJobs($by)
+    {
+        $this->numJobs += intval($by);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function subtractNumJobs($by)
+    {
+        if ($this->numJobs > 0) {
+            $this->numJobs -= intval($by);
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getNumJobs()
+    {
+        return $this->numJobs;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setEmailConfirmed($boolean)
+    {
+        $this->emailConfirmed = $boolean;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isEmailConfirmed()
+    {
+        return $this->emailConfirmed;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setConfirmationToken($confirmationToken)
+    {
+        $this->confirmationToken = $confirmationToken;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getConfirmationToken()
+    {
+        return $this->confirmationToken;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPasswordRequestedAt(\DateTime $date = null)
+    {
+        $this->passwordRequestedAt = $date;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isPasswordRequestNonExpired($ttl)
+    {
+        return $this->passwordRequestedAt instanceof \DateTime && $this->passwordRequestedAt->getTimestamp() + $ttl > time();
     }
 
     /**

@@ -26,7 +26,7 @@ class PositionFormType extends AbstractType
                 'empty_value' => '-'
             ))
             ->add('summary', 'textarea', array(
-                'label'    => '职位描述(可选)',
+                'label'    => '职位描述',
                 'required' => false,
                 'attr'     => array(
                     'rows' => 8,

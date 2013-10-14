@@ -6,9 +6,15 @@ namespace HR\Bundle\UserBundle;
  */
 final class UserEvents
 {
-    const PROFILE_EDIT_COMPLETED = 'user.profile.edit.completed';
+    const PROFILE_EDIT_COMPLETED = 'user.profile_edit.completed';
+
+    const EMAIL_CHANGE_COMPLETED = 'user.email_change.completed';
+
+    const REGISTRATION_SUCCESS = 'user.registration.success';
 
     const REGISTRATION_COMPLETED = 'user.registration.completed';
+
+    const REGISTRATION_CONFIRMED = 'user.registration.confirmed';
 
     const CHANGE_PASSWORD_COMPLETED = 'user.change_password.edit.completed';
 

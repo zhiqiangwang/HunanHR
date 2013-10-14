@@ -10,6 +10,10 @@
 
             <h1>{{ user.screenName }}</h1>
 
+            {% if user.bio %}
+            <p class="metadata">{{ user.bio|substring(100) }}</p>
+            {% endif %}
+            <p class="metadata">发布 {{ user.numJobs }} 个职位</p>
             <p class="metadata">注册于 {{ user.createdAt|date('Y-m-d') }}</p>
         </div>
     </div>

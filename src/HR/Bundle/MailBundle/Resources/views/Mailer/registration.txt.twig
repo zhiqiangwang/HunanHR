@@ -1,12 +1,10 @@
 {% block subject %}电子邮件地址验证{% endblock %}
 
 {% block body %}
-    {% autoescape false %}
-    你好 {{ user.name }} !
+你好 {{ user.screenName }} !
 
-    您可以访问如下链接以验证您的电子邮件地址： {{ confirmationUrl }}
+您可以访问如下链接以验证您的电子邮件地址： {{ confirmationUrl }}
 
-    -------------------------
-    湖南英才网 - HunanHR.com
-    {% endautoescape %}
+-------------------------
+湖南英才网 - HunanHR.com
 {% endblock %}

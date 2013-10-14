@@ -13,3 +13,5 @@ parameters:
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    user_resetting_token_ttl: 86400

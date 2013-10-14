@@ -15,7 +15,7 @@
                         <a href="{{ path('job_delete', {'jobId': job.id}) }}" class="btn btn-default" onclick="return confirm('确认要删除该职位吗?')">删除</a>
                     {% endif %}
 
-                    <div class="btn">
+                    <div class="btn btn-like">
                         <wb:like appkey="1345Qz" type="simple"></wb:like>
                     </div>
                 </div>
@@ -53,6 +53,10 @@
 
                     <table class="table table-bordered">
                         <tr>
+                            <th>工作性质</th>
+                            <td>{{ job.typeName }}</td>
+                        </tr>
+                        <tr>
                             <th>工作地点</th>
                             <td>{{ job.city }}</td>
                         </tr>
@@ -62,10 +66,6 @@
                             <td>{{ job.location }}</td>
                         </tr>
                         {% endif %}
-                        <tr>
-                            <th>工作性质</th>
-                            <td>{{ job.typeName }}</td>
-                        </tr>
                     </table>
                 </div>
             </div>

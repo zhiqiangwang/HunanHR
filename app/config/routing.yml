@@ -10,10 +10,6 @@ job:
     resource: "@HRJobBundle/Resources/config/routing.xml"
     prefix:   /
 
-resume:
-    resource: "@HRResumeBundle/Resources/config/routing.xml"
-    prefix:   /
-
 skill:
     resource: "@HRSkillBundle/Resources/config/routing.xml"
     prefix:   /

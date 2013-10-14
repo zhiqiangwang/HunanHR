@@ -40,14 +40,13 @@ class JobFormType extends AbstractType
                 )
             ))
             ->add('location', null, array(
-                'label'    => '详细地址',
-                'required' => false
+                'label'    => '详细地址'
             ))
             ->add('companyName', null, array(
-                'label' => '招聘公司或机构'
+                'label' => '公司或机构'
             ))
             ->add('companyDescription', null, array(
-                'label'    => '公司或机构介绍(可选)',
+                'label'    => '公司或机构介绍',
                 'required' => false,
                 'attr'     => array(
                     'rows' => 8,

@@ -10,6 +10,6 @@
         <field name="summary" type="text" column="summary" nullable="true" />
         <field name="createdAt" type="datetime" column="created_at" />
 
-        <many-to-one target-entity="HR\Bundle\UserBundle\Entity\User" field="user" inversed-by="positions" />
+        <many-to-one target-entity="HR\Bundle\UserBundle\Entity\User" field="user" inversed-by="skills" />
     </entity>
 </doctrine-mapping>

@@ -2,7 +2,6 @@
 namespace HR\Bundle\UserBundle\Controller;
 
 use HR\Bundle\UserBundle\Event\FilterUserResponseEvent;
-use HR\Bundle\UserBundle\Event\UserEvent;
 use HR\Bundle\UserBundle\UserEvents;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;

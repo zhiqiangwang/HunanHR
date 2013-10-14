@@ -4,41 +4,9 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="register" pattern="/register">
-        <default key="_controller">HRUserBundle:Registration:register</default>
-    </route>
-
-    <route id="login" pattern="/login">
-        <default key="_controller">HRUserBundle:Security:login</default>
-    </route>
-
-    <route id="login_check" pattern="/login_check">
-        <default key="_controller">HRUserBundle:Security:loginCheck</default>
-    </route>
-
-    <route id="logout" pattern="/logout">
-        <default key="_controller">HRUserBundle:Security:logout</default>
-    </route>
-
-    <route id="profile_edit" pattern="/settings/profile">
-        <default key="_controller">HRUserBundle:Profile:edit</default>
-    </route>
-
-    <route id="profile_show" pattern="/user/{userId}">
-        <default key="_controller">HRUserBundle:Profile:show</default>
-        <requirement key="userId">\d+</requirement>
-    </route>
-
-    <route id="profile_jobs" pattern="/user/{userId}/jobs">
-        <default key="_controller">HRUserBundle:Profile:jobs</default>
-        <requirement key="userId">\d+</requirement>
-    </route>
-
-    <route id="change_password" pattern="/settings/password">
-        <default key="_controller">HRUserBundle:ChangePassword:edit</default>
-    </route>
-
-    <route id="upload_face" pattern="/settings/face">
-        <default key="_controller">HRUserBundle:Photo:upload</default>
-    </route>
+    <import resource="routing/registration.xml" />
+    <import resource="routing/security.xml" />
+    <import resource="routing/profile.xml" />
+    <import resource="routing/resetting.xml" prefix="/resetting" />
+    <import resource="routing/change_password.xml" />
 </routes>

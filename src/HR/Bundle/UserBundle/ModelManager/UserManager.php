@@ -19,6 +19,9 @@ abstract class UserManager implements UserManagerInterface
         $this->encoderFactory = $encoderFactory;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function createUser()
     {
         $class = $this->getClass();
@@ -27,16 +30,25 @@ abstract class UserManager implements UserManagerInterface
         return $user;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function findUserByUsername($username)
     {
         return $this->findUserBy(array('username' => $username));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function findUserByEmail($email)
     {
         return $this->findUserBy(array('email' => $email));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function findUserByUsernameOrEmail($usernameOrEmail)
     {
         if (filter_var($usernameOrEmail, FILTER_VALIDATE_EMAIL)) {
@@ -46,6 +58,17 @@ abstract class UserManager implements UserManagerInterface
         return $this->findUserByUsername($usernameOrEmail);
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function findUserByConfirmationToken($confirmationToken)
+    {
+        return $this->findUserBy(array('confirmationToken' => $confirmationToken));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function updatePassword(UserInterface $user)
     {
         if (null !== $password = $user->getPlainPassword()) {

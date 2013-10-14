@@ -72,6 +72,7 @@
                 <option name="groups">
                     <value>Registration</value>
                     <value>ChangePassword</value>
+                    <value>Resetting</value>
                 </option>
             </constraint>
             <constraint name="Length">
@@ -80,6 +81,7 @@
                 <option name="groups">
                     <value>Registration</value>
                     <value>ChangePassword</value>
+                    <value>Resetting</value>
                 </option>
             </constraint>
         </property>

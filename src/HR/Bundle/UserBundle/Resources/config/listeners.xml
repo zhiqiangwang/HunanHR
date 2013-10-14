@@ -3,16 +3,18 @@
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <parameters>
-        <parameter key="user.firewall_name">main</parameter>
-    </parameters>
-
     <services>
         <service id="user.listener.authentication" class="HR\Bundle\UserBundle\EventListener\AuthenticationListener">
             <tag name="kernel.event_subscriber" />
             <argument type="service" id="user.security.login_manager" />
-            <argument>%user.firewall_name%</argument>
+            <argument>main</argument>
+        </service>
+
+        <service id="user.listener.email_confirmation"
+                 class="HR\Bundle\UserBundle\EventListener\EmailConfirmationListener">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="hr.mailer" />
+            <argument type="service" id="user.util.token_generator" />
         </service>
     </services>
 </container>
