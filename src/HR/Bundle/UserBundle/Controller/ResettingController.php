@@ -25,12 +25,14 @@ class ResettingController extends Controller
 
     public function sendEmailAction(Request $request)
     {
+        $this->get('breadcrumb')->add('找回密码');
+
         $email = $request->request->get('email');
 
         $user = $this->getUserManager()->findUserByUsernameOrEmail($email);
 
         if (null === $user) {
-            return $this->render('HRUserBundle:Resetting:request.html.twig', array('error' => '用户名或Email是无效的'));
+            return $this->render('HRUserBundle:Resetting:request.html.twig', array('error' => '用户名或电子邮件地址无效'));
         }
 
         if ($user->isPasswordRequestNonExpired($this->container->getParameter('user_resetting_token_ttl'))) {

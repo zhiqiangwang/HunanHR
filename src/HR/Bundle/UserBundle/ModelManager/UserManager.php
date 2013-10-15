@@ -33,6 +33,14 @@ abstract class UserManager implements UserManagerInterface
     /**
      * {@inheritdoc}
      */
+    public function findUserById($id)
+    {
+        return $this->findUserBy(array('id' => $id));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function findUserByUsername($username)
     {
         return $this->findUserBy(array('username' => $username));

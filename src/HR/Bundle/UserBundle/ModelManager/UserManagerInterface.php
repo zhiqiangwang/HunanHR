@@ -33,6 +33,13 @@ interface UserManagerInterface
     public function findUserBy(array $criteria);
 
     /**
+     * @param int $id
+     *
+     * @return UserInterface
+     */
+    public function findUserById($id);
+
+    /**
      * @param string $username
      *
      * @return UserInterface

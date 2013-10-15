@@ -6,9 +6,9 @@
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO" />
         </id>
-        <field name="email" type="string" column="email" length="255" unique="true" />
         <field name="username" type="string" column="username" length="20" unique="true" />
         <field name="password" type="string" column="password" length="255" />
+        <field name="email" type="string" column="email" length="255" unique="true" />
         <field name="salt" type="string" column="salt" length="255" />
         <field name="screenName" type="string" column="screen_name" length="20" />
         <field name="realName" type="string" column="real_name" length="20" nullable="true" />
@@ -72,5 +72,11 @@
                 <order-by-field name="createdAt" direction="DESC" />
             </order-by>
         </one-to-many>
+
+        <many-to-many target-entity="Group" field="groups">
+            <cascade>
+                <cascade-remove />
+            </cascade>
+        </many-to-many>
     </entity>
 </doctrine-mapping>

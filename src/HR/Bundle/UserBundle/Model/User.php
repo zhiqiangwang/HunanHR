@@ -12,7 +12,7 @@ use HR\Bundle\SkillBundle\Entity\Skill;
  *
  * @author Wenming Tang <tang@babyfamily.com>
  */
-abstract class User implements UserInterface
+abstract class User implements UserInterface, GroupableInterface
 {
     /**
      * @var integer
@@ -145,6 +145,11 @@ abstract class User implements UserInterface
     protected $jobs;
 
     /**
+     * @var ArrayCollection
+     */
+    protected $groups;
+
+    /**
      * @var array
      */
     protected $roles;
@@ -205,6 +210,7 @@ abstract class User implements UserInterface
         $this->salt               = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
         $this->numJobs            = 0;
         $this->createdAt          = new \Datetime();
+        $this->groups             = new ArrayCollection();
         $this->positions          = new ArrayCollection();
         $this->educations         = new ArrayCollection();
         $this->skills             = new ArrayCollection();
@@ -286,7 +292,7 @@ abstract class User implements UserInterface
      */
     public function eraseCredentials()
     {
-        return $this->setPlainPassword(null);
+        return $this->plainPassword = null;
     }
 
     /**
@@ -610,26 +616,6 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function addPosition(PositionInterface $position)
-    {
-        $this->positions->add($position);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function removePosition(PositionInterface $position)
-    {
-        $this->positions->removeElement($position);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getPositions()
     {
         return $this->positions;
@@ -638,49 +624,9 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function addEducation(EducationInterface $education)
-    {
-        $this->educations->add($education);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function removeEducation(EducationInterface $education)
-    {
-        $this->educations->removeElement($education);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getEducations()
     {
         return $this->educations;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function addSkill(Skill $skill)
-    {
-        $this->skills->add($skill);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function removeSkill(Skill $skill)
-    {
-        $this->skills->removeElement($skill);
-
-        return $this;
     }
 
     /**
@@ -738,7 +684,12 @@ abstract class User implements UserInterface
      */
     public function getRoles()
     {
-        $roles   = $this->roles;
+        $roles = $this->roles;
+
+        foreach ($this->getGroups() as $group) {
+            $roles = array_merge($roles, $group->getRoles());
+        }
+
         $roles[] = static::ROLE_DEFAULT;
 
         return array_unique($roles);
@@ -760,6 +711,7 @@ abstract class User implements UserInterface
 
         return $this;
     }
+
 
     /**
      * {@inheritdoc}
@@ -785,9 +737,84 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
+    public function getGroups()
+    {
+        return $this->groups ? : $this->groups = new ArrayCollection();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getGroupNames()
+    {
+        $names = array();
+        foreach ($this->getGroups() as $group) {
+            $names[] = $group->getName();
+        }
+
+        return $names;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasGroup($name)
+    {
+        return in_array($name, $this->getGroupNames());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addGroup(GroupInterface $group)
+    {
+        if (!$this->getGroups()->contains($group)) {
+            $this->getGroups()->add($group);
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeGroup(GroupInterface $group)
+    {
+        if ($this->getGroups()->contains($group)) {
+            $this->getGroups()->removeElement($group);
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function setEnabled($boolean)
     {
         $this->enabled = (Boolean)$boolean;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isSuperAdmin()
+    {
+        return $this->hasRole(static::ROLE_SUPER_ADMIN);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setSuperAdmin($boolean)
+    {
+        if (true === $boolean) {
+            $this->addRole(static::ROLE_SUPER_ADMIN);
+        } else {
+            $this->removeRole(static::ROLE_SUPER_ADMIN);
+        }
 
         return $this;
     }
@@ -855,9 +882,7 @@ abstract class User implements UserInterface
     }
 
     /**
-     * @param boolean $boolean
-     *
-     * @return $this
+     * {@inheritdoc}
      */
     public function setCredentialsExpired($boolean)
     {
@@ -941,6 +966,44 @@ abstract class User implements UserInterface
      */
     public function equals(UserInterface $user)
     {
-        return $this->id == $user->getId();
+        return null !== $user && $this->getId() === $user->getId();
+    }
+
+    public function serialize()
+    {
+        return serialize(array(
+            $this->password,
+            $this->salt,
+            $this->username,
+            $this->expired,
+            $this->locked,
+            $this->credentialsExpired,
+            $this->enabled,
+            $this->id,
+        ));
+    }
+
+    /**
+     * Unserializes the user.
+     *
+     * @param string $serialized
+     */
+    public function unserialize($serialized)
+    {
+        $data = unserialize($serialized);
+        // add a few extra elements in the array to ensure that we have enough keys when unserializing
+        // older data which does not include all properties.
+        $data = array_merge($data, array_fill(0, 2, null));
+
+        list(
+            $this->password,
+            $this->salt,
+            $this->username,
+            $this->expired,
+            $this->locked,
+            $this->credentialsExpired,
+            $this->enabled,
+            $this->id
+            ) = $data;
     }
 }

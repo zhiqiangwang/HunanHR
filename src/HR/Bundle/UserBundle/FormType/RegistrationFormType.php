@@ -1,6 +1,7 @@
 <?php
 namespace HR\Bundle\UserBundle\FormType;
 
+use HR\Bundle\UserBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -13,10 +14,27 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', 'text', array('label' => '用户名'))
+            ->add('username', 'text', array(
+                    'label' => '用户名',
+                    'attr'  => array(
+                        'placeholder' => '字母、数字、_或减号'
+                    ))
+            )
             ->add('email', 'email', array('label' => '电子邮件地址'))
-            ->add('plainPassword', 'password', array('label' => '设置密码'))
+            ->add('plainPassword', 'password',
+                array('label' => '设置密码')
+            )
             ->add('screenName', 'text', array('label' => '昵称'))
+            ->add('gender', 'choice', array(
+                'label'       => '性别',
+                'choices'     => User::getGenders(),
+                'expanded'    => true,
+                'required'    => false,
+                'empty_value' => false,
+                'attr'        => array(
+                    'class' => 'embed'
+                )
+            ))
             ->add('save', 'submit', array('label' => '注册'));
     }
 

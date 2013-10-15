@@ -15,7 +15,15 @@ class ProfileFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', 'email', array('label' => '电子邮件地址'))
+            ->add('username', 'text', array(
+                    'label' => '用户名',
+                    'attr'  => array(
+                        'placeholder' => '字母、数字、_或减号'
+                    ))
+            )
+            ->add('email', 'email', array(
+                'label' => '电子邮件地址'
+            ))
             ->add('screenName', 'text', array('label' => '昵称'))
             ->add('realName', 'text', array('label' => '真实姓名', 'required' => false))
             ->add('gender', 'choice', array(
@@ -39,8 +47,8 @@ class ProfileFormType extends AbstractType
                 )
             ))
             ->add('degree', 'choice', array(
-                'label'    => '最高学历',
-                'required' => false,
+                'label'       => '最高学历',
+                'required'    => false,
                 'choices'     => Education::getDegrees(),
                 'empty_value' => '-',
                 'attr'        => array(

@@ -4,9 +4,14 @@
     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') and app.user.emailConfirmed == false %}
         <div class="col-md-12">
             <div class="alert alert-warning email-confirmed">
-                <h2>电子邮件地址未确认</h2>
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
 
-                <p>确认你的邮件地址就可以 <strong>发送简历或发布职位</strong> 啦！邮件已发送至 <strong>{{ app.user.email }}</strong>，点击确认邮件内的链接即可完成邮件确认。</p>
+                <h2>
+                    <span class="glyphicon glyphicon-info-sign"></span> 电子邮件地址未确认
+                </h2>
+
+                <p>确认你的邮件地址就可以<strong>发送简历或发布职位</strong>啦！邮件已发送至 <strong>{{ app.user.email }}</strong>，点击确认邮件内的链接即可完成邮件确认。
+                </p>
 
                 <p>如果您未收到确认邮件？请检查您的垃圾邮件文件夹。 <a href="{{ path('profile_edit') }}">邮件填错了？更换一个新的邮件地址</a>
                 </p>
@@ -23,7 +28,7 @@
                 {% for job in pager.getResults %}
                     <li class="item">
                         <div class="item-header">
-                            <img src="{{ asset(job.user.avatarSmallUrl) }}" class="avatar"/>
+                            <a href="{{ path('profile_show', {'userId': job.user.id}) }}" target="_blank"><img src="{{ asset(job.user.avatarSmallUrl) }}" class="avatar" title="{{ job.user.screenName }}"/></a>
 
                             <div class="meta">
                                 <a href="{{ path('profile_show', {'userId': job.user.id}) }}" target="_blank">{{ job.user.screenName }}</a> 在 {{ job.createdAt|date('Y-m-d') }} 发布的职位

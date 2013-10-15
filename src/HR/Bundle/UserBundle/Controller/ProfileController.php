@@ -41,6 +41,8 @@ class ProfileController extends Controller
 
             if ($oldUser->getEmail() !== $user->getEmail()) {
                 $dispatcher->dispatch(UserEvents::EMAIL_CHANGE_COMPLETED, new UserEvent($user, $request));
+
+                $this->get('session')->getFlashBag()->add('success', sprintf('验证邮件已发送至%s', $user->getEmail()));
             }
 
             $this->getUserManager()->updateUser($user);

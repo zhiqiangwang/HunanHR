@@ -159,8 +159,14 @@
         $(document).ready(function () {
             var ele = $('.alert-messages');
             if (ele.length > 0) {
-                setTimeout(function () {
-                    ele.remove();
+                var timer = setInterval(function () {
+                    var eleChild = ele.find('.alert').eq(-1);
+                    if (eleChild.length <= 0) {
+                        ele.remove();
+                        clearInterval(timer);
+                        return;
+                    }
+                    eleChild.remove();
                 }, 2000);
             }
         })

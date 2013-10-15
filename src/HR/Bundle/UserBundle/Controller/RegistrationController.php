@@ -69,9 +69,7 @@ class RegistrationController extends Controller
 
         $this->getUserManager()->updateUser($user);
 
-        $response = $this->redirect($this->generateUrl('login'));
-
-        $dispatcher->dispatch(UserEvents::REGISTRATION_CONFIRMED, new FilterUserResponseEvent($user, $request, $response));
+        $response = $this->redirect($this->generateUrl('home'));
 
         $this->get('session')->getFlashBag()->add('success', '您的电子邮件地址已确认');
 

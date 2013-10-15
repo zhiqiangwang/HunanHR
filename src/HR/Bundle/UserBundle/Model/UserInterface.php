@@ -13,7 +13,7 @@ use HR\Bundle\PositionBundle\Model\PositionInterface;
  * @package HR\Bundle\UserBundle\Entity
  * @author  Wenming Tang <tang@babyfamily.com>
  */
-interface UserInterface extends AdvancedUserInterface
+interface UserInterface extends AdvancedUserInterface, \Serializable
 {
     const ROLE_DEFAULT     = 'ROLE_USER';
     const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
@@ -273,56 +273,14 @@ interface UserInterface extends AdvancedUserInterface
     public function isPasswordRequestNonExpired($ttl);
 
     /**
-     * @param PositionInterface $position
-     *
-     * @return $this
-     */
-    public function addPosition(PositionInterface $position);
-
-    /**
-     * @param PositionInterface $position
-     *
-     * @return $this
-     */
-    public function removePosition(PositionInterface $position);
-
-    /**
      * @return array of Position
      */
     public function getPositions();
 
     /**
-     * @param EducationInterface $education
-     *
-     * @return $this
-     */
-    public function addEducation(EducationInterface $education);
-
-    /**
-     * @param EducationInterface $education
-     *
-     * @return $this
-     */
-    public function removeEducation(EducationInterface $education);
-
-    /**
      * @return array of education
      */
     public function getEducations();
-
-    /**
-     * @param Skill $skill
-     *
-     * @return $this
-     */
-    public function addSkill(Skill $skill);
-
-    /**
-     * @param Skill $skill
-     *
-     * @return $this
-     */
-    public function removeSkill(Skill $skill);
 
     /**
      * @return array
@@ -347,6 +305,18 @@ interface UserInterface extends AdvancedUserInterface
      * @return array
      */
     public function getJobs();
+
+    /**
+     * @return boolean
+     */
+    public function isSuperAdmin();
+
+    /**
+     * @param bool $boolean
+     *
+     * @return $this
+     */
+    public function setSuperAdmin($boolean);
 
     /**
      * @param array $roles

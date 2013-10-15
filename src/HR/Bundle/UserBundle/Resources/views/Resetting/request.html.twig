@@ -1,12 +1,12 @@
 {% extends 'HRUserBundle::layout.html.twig' %}
 
 {% block user_content %}
-    <p class="text-muted">忘记密码？请输入您的用户名或Email进行重置。</p>
+    <p class="text-muted">忘记密码？请输入您的用户名或电子邮件地址进行重置。</p>
 
     <form class="form-horizontal" action="{{ path("user_resetting_send_email") }}" method="post">
 
         <div class="form-group">
-            <label for="email" class="control-label col-md-3"><span class="required">*</span>用户名或Email</label>
+            <label for="email" class="control-label col-md-3"><span class="required">*</span>用户名或电子邮件地址</label>
 
             <div class="col-md-9">
                 <input type="text" id="email" name="email" required="required"/>

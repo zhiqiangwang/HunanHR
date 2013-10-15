@@ -7,6 +7,14 @@
 
     <class name="HR\Bundle\UserBundle\Entity\User">
         <constraint name="Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity">
+            <option name="fields">username</option>
+            <option name="message">该用户名已存在</option>
+            <option name="groups">
+                <value>Registration</value>
+                <value>Profile</value>
+            </option>
+        </constraint>
+        <constraint name="Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity">
             <option name="fields">email</option>
             <option name="message">该电子邮件地址已存在</option>
             <option name="groups">
@@ -14,34 +22,17 @@
                 <value>Profile</value>
             </option>
         </constraint>
-        <constraint name="Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity">
-            <option name="fields">username</option>
-            <option name="message">该用户名不可用</option>
-            <option name="groups">
-                <value>Registration</value>
-                <value>Profile</value>
-            </option>
-        </constraint>
-
-        <property name="email">
-            <constraint name="NotBlank">
-                <option name="message">电子邮件地址不能为空</option>
-                <option name="groups">
-                    <value>Registration</value>
-                    <value>Profile</value>
-                </option>
-            </constraint>
-            <constraint name="Email">
-                <option name="message">"{{ value }}" 不是一个有效的电子邮件地址</option>
-                <option name="groups">
-                    <value>Registration</value>
-                    <value>Profile</value>
-                </option>
-            </constraint>
-        </property>
         <property name="username">
             <constraint name="NotBlank">
                 <option name="message">用户名不能为空</option>
+                <option name="groups">
+                    <value>Registration</value>
+                    <value>Profile</value>
+                </option>
+            </constraint>
+            <constraint name="Regex">
+                <option name="pattern">/^[^-_]+[a-z0-9-_]+[^-_]$/</option>
+                <option name="message">用户名只能包含字母、数字、_或减号，不能以_或减号开头或结尾。</option>
                 <option name="groups">
                     <value>Registration</value>
                     <value>Profile</value>
@@ -57,9 +48,18 @@
                     <value>Profile</value>
                 </option>
             </constraint>
-            <constraint name="Regex">
-                <option name="pattern">/^[^-_]+[a-z0-9-_]+[^-_]$/</option>
-                <option name="message">用户名只能包含字母、数字、_或减号，不能以_或减号开头或结尾。</option>
+        </property>
+
+        <property name="email">
+            <constraint name="NotBlank">
+                <option name="message">电子邮件地址不能为空</option>
+                <option name="groups">
+                    <value>Registration</value>
+                    <value>Profile</value>
+                </option>
+            </constraint>
+            <constraint name="Email">
+                <option name="message">"{{ value }}" 不是一个有效的电子邮件地址</option>
                 <option name="groups">
                     <value>Registration</value>
                     <value>Profile</value>
@@ -94,7 +94,7 @@
                 </option>
             </constraint>
             <constraint name="Length">
-                <option name="min">2</option>
+                <option name="min">3</option>
                 <option name="minMessage">昵称长度至少需要{{ limit }}个字符</option>
                 <option name="max">20</option>
                 <option name="maxMessage">昵称长度不能超过{{ limit }}个字符</option>
@@ -116,6 +116,13 @@
             </constraint>
         </property>
         <property name="gender">
+            <constraint name="NotBlank">
+                <option name="message">请选择性别</option>
+                <option name="groups">
+                    <value>Registration</value>
+                    <value>Profile</value>
+                </option>
+            </constraint>
             <constraint name="Choice">
                 <option name="choices">
                     <value>male</value>
@@ -123,6 +130,7 @@
                 </option>
                 <option name="message">请选择有效的选项</option>
                 <option name="groups">
+                    <value>Registration</value>
                     <value>Profile</value>
                 </option>
             </constraint>
