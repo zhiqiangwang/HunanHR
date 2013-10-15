@@ -65,6 +65,44 @@ class DeliveryController extends Controller
     }
 
     /**
+     * @Template()
+     */
+    public function sentAction()
+    {
+        if (null == $user = $this->getUser()) {
+            throw new AccessDeniedException();
+        }
+
+        $this->get('breadcrumb')
+            ->add('发出的简历');
+
+        $pager = $this->getDeliveryManager()->findDeliveriesBySender($user, $this->getRequest()->get('page'));
+
+        return array(
+            'pager' => $pager
+        );
+    }
+
+    /**
+     * @Template()
+     */
+    public function receivedAction()
+    {
+        if (null == $user = $this->getUser()) {
+            throw new AccessDeniedException();
+        }
+
+        $this->get('breadcrumb')
+            ->add('收到的简历');
+
+        $pager = $this->getDeliveryManager()->findDeliveriesByReceiver($user, $this->getRequest()->get('page'));
+
+        return array(
+            'pager' => $pager
+        );
+    }
+
+    /**
      * @return \Symfony\Component\Form\FormInterface
      */
     private function getForm()

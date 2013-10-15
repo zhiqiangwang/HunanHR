@@ -1,0 +1,28 @@
+{% extends 'HRUserBundle::layout.html.twig' %}
+
+{% block user_content %}
+    <table class="table table-bordered">
+        <tr>
+            <th class="text-center">公司或机构</th>
+            <th class="text-center">职位</th>
+            <th class="text-center">简历投递时间</th>
+        </tr>
+        {% for delivery in pager.getResults %}
+            <tr>
+                <td class="text-center">{{ delivery.job.companyName }}</td>
+                <td class="text-center">
+                    <a href="{{ path('job_show', {'jobId': delivery.job.id}) }}" target="_blank">{{ delivery.job.title }}</a>
+                </td>
+                <td class="text-center">{{ delivery.createdAt|date('Y-m-d H:i') }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3" class="text-center text-muted">没有发出过简历</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    {% if pager.isPaginable %}
+        {{ paginate(pager, 'delivery_sent') }}
+    {% endif %}
+{% endblock %}

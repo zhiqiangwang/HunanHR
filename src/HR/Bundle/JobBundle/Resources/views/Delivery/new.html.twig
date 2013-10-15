@@ -5,7 +5,7 @@
         您的个人资料将发送到对方邮箱
     </div>
 
-    {{ form_start(form, {'action': path('job_delivery', {'jobId': job.id}), 'attr': {'class': 'form-horizontal' }}) }}
+    {{ form_start(form, {'action': path('delivery_new', {'jobId': job.id}), 'attr': {'class': 'form-horizontal' }}) }}
 
     <div class="form-group">
         <div class="col-lg-2 control-label">

@@ -26,10 +26,11 @@ interface DeliveryManagerInterface
 
     /**
      * @param UserInterface $sender
+     * @param int           $page
      *
      * @return DeliveryInterface[]
      */
-    public function findDeliveriesBySender(UserInterface $sender);
+    public function findDeliveriesBySender(UserInterface $sender, $page = 1);
 
     /**
      * @param UserInterface $sender
@@ -41,10 +42,11 @@ interface DeliveryManagerInterface
 
     /**
      * @param UserInterface $receiver
+     * @param int           $page
      *
      * @return DeliveryInterface[]
      */
-    public function findDeliveriesByReceiver(UserInterface $receiver);
+    public function findDeliveriesByReceiver(UserInterface $receiver, $page = 1);
 
     /**
      * @param int $id

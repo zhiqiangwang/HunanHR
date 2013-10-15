@@ -6,6 +6,8 @@ use Doctrine\ORM\NoResultException;
 use HR\Bundle\JobBundle\Model\DeliveryInterface;
 use HR\Bundle\JobBundle\Model\JobInterface;
 use  HR\Bundle\JobBundle\ModelManager\DeliveryManager as BaseDeliveryManager;
+use HR\Bundle\JobBundle\Pagination\Pager;
+use HR\Bundle\JobBundle\Pagination\ProxyQuery;
 use HR\Bundle\UserBundle\Model\UserInterface;
 
 /**
@@ -48,21 +50,25 @@ class DeliveryManager extends BaseDeliveryManager
 
     /**
      * @param UserInterface $sender
+     * @param int           $page
      *
      * @return DeliveryInterface[]
      */
-    public function findDeliveriesBySender(UserInterface $sender)
+    public function findDeliveriesBySender(UserInterface $sender, $page = 1)
     {
-        $q = $this->repository->createQueryBuilder('a')
+        $qb = $this->repository->createQueryBuilder('a')
             ->select('a,s,r,j')
             ->join('a.sender', 's')
             ->join('a.receiver', 'r')
             ->join('a.job', 'j')
             ->where('s.id = :sender')
             ->setParameter('sender', $sender->getId())
-            ->getQuery();
+            ->orderBy('a.createdAt', 'DESC');
 
-        return $q->getResult();
+        $pager = new Pager(new ProxyQuery($qb));
+        $pager->setPage($page);
+
+        return $pager;
     }
 
     /**
@@ -95,21 +101,25 @@ class DeliveryManager extends BaseDeliveryManager
 
     /**
      * @param UserInterface $receiver
+     * @param int           $page
      *
      * @return DeliveryInterface[]
      */
-    public function findDeliveriesByReceiver(UserInterface $receiver)
+    public function findDeliveriesByReceiver(UserInterface $receiver, $page = 1)
     {
-        $q = $this->repository->createQueryBuilder('a')
+        $qb = $this->repository->createQueryBuilder('a')
             ->select('a,s,r,j')
             ->join('a.sender', 's')
             ->join('a.receiver', 'r')
             ->join('a.job', 'j')
             ->where('r.id = :receiver')
             ->setParameter('receiver', $receiver->getId())
-            ->getQuery();
+            ->orderBy('a.createdAt', 'DESC');
 
-        return $q->getResult();
+        $pager = new Pager(new ProxyQuery($qb));
+        $pager->setPage($page);
+
+        return $pager;
     }
 
     /**
