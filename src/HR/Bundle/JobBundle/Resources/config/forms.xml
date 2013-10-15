@@ -9,9 +9,18 @@
             <tag name="form.type" />
         </service>
 
+        <service id="delivery.form.type" class="HR\Bundle\JobBundle\Form\DeliveryFormType">
+            <tag name="form.type" />
+        </service>
+
         <service id="job.form" class="Symfony\Component\Form\FormFactory" factory-service="form.factory"
                  factory-method="create">
             <argument type="service" id="job.form.type" />
+        </service>
+
+        <service id="delivery.form" class="Symfony\Component\Form\FormFactory" factory-service="form.factory"
+                 factory-method="create">
+            <argument type="service" id="delivery.form.type" />
         </service>
     </services>
 </container>

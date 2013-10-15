@@ -1,6 +1,0 @@
-{% extends 'HRUserBundle::layout.html.twig' %}
-
-{% block user_content %}
-    <p class="text-muted">当用户名更改后，您需要重新登录。</p>
-    {{ form(form, {'action': path('change_username'), 'attr': {'class': 'form-horizontal' }}) }}
-{% endblock %}

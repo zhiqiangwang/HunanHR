@@ -22,4 +22,9 @@
         <default key="_controller">HRJobBundle:Job:delete</default>
         <requirement key="jobId">\d+</requirement>
     </route>
+
+    <route id="job_delivery" pattern="/job/{jobId}/delivery">
+        <default key="_controller">HRJobBundle:Delivery:new</default>
+        <requirement key="jobId">\d+</requirement>
+    </route>
 </routes>

@@ -22,7 +22,7 @@ class JobFormType extends AbstractType
             ->add('description', null, array(
                 'label'    => '职位详情',
                 'attr'     => array(
-                    'rows' => 18,
+                    'rows' => 25,
                     'cols' => 60
                 )
             ))

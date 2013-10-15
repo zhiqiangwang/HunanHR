@@ -1,13 +1,12 @@
 {% extends '::base.html.twig' %}
 
 {% block content %}
-
     <div class="module">
         <div class="flex-module view">
 
             <div class="module-header contain-btn clearfix">
                 <div class="pull-right">
-                    <a href="" class="btn btn-success">发简历</a>
+                    <a href="{{ path('job_delivery', {'jobId': job.id}) }}" class="btn btn-success">发简历</a>
                     {% if can_edit_job(job) %}
                     <a href="{{ path('job_edit', {'jobId': job.id}) }}" class="btn btn-default">编辑</a>
                     {% endif %}

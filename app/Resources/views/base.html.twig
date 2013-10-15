@@ -146,6 +146,9 @@
     <script src="{{ asset('js/hh.js') }}"></script>
 {% endblock %}
 
+{% block footer %}
+{% endblock %}
+
 {% if app.session.flashbag.has('success') %}
     <div class="alert-messages">
         {% for flashMessage in app.session.flashbag.get('success') %}

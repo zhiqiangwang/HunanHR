@@ -36,6 +36,8 @@ class JobController extends Controller
         if ($form->isValid()) {
             $this->getJobManager()->updateJob($job);
 
+            $this->get('session')->getFlashBag()->add('success', '职位已发布');
+
             $this->getDispatcher()->dispatch(JobEvents::JOB_SAVE_COMPLETED, new JobEvent($job));
 
             return $this->redirect($this->generateUrl('job_show', array('jobId' => $job->getId())));
@@ -94,6 +96,8 @@ class JobController extends Controller
 
         if ($form->isValid()) {
             $this->getJobManager()->updateJob($job);
+
+            $this->get('session')->getFlashBag()->add('success', '职位已更新');
 
             $this->getDispatcher()->dispatch(JobEvents::JOB_EDIT_COMPLETED, new JobEvent($job));
 

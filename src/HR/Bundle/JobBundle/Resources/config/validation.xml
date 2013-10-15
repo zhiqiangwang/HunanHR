@@ -70,4 +70,26 @@
             </constraint>
         </property>
     </class>
+
+    <class name="HR\Bundle\JobBundle\Entity\Delivery">
+        <property name="title">
+            <constraint name="NotBlank">
+                <option name="message">标题不能为空</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="max">200</option>
+                <option name="maxMessage">标题不能超过 {{ limit }} 个字符</option>
+            </constraint>
+        </property>
+
+        <property name="body">
+            <constraint name="NotBlank">
+                <option name="message">内容不能为空</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="max">500</option>
+                <option name="maxMessage">内容不能超过 {{ limit }} 个字符</option>
+            </constraint>
+        </property>
+    </class>
 </constraint-mapping>

@@ -8,7 +8,8 @@ class StringExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            'substring' => new \Twig_Filter_Method($this, 'substring', array("is_safe" => array("html"))),
+            'substring'       => new \Twig_Filter_Method($this, 'substring', array("is_safe" => array("html"))),
+            'obfuscate_email' => new \Twig_Filter_Method($this, 'obfuscateEmail', array("is_safe" => array("html"))),
         );
     }
 
@@ -22,6 +23,15 @@ class StringExtension extends \Twig_Extension
         }
 
         return $substring;
+    }
+
+    public function obfuscateEmail($email)
+    {
+        if (false !== $pos = strpos($email, '@')) {
+            $email = '...' . substr($email, $pos);
+        }
+
+        return $email;
     }
 
     public function getName()

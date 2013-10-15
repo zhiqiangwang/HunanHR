@@ -7,12 +7,20 @@
     <parameters>
         <parameter key="job.entity.class">HRJobBundle:Job</parameter>
         <parameter key="job.manager.default.class">HR\Bundle\JobBundle\EntityManager\JobManager</parameter>
+
+        <parameter key="delivery.entity.class">HRJobBundle:Delivery</parameter>
+        <parameter key="delivery.manager.class">HR\Bundle\JobBundle\EntityManager\DeliveryManager</parameter>
     </parameters>
 
     <services>
         <service id="job.manager.default" class="%job.manager.default.class%">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument>%job.entity.class%</argument>
+        </service>
+
+        <service id="delivery.manager" class="%delivery.manager.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument>%delivery.entity.class%</argument>
         </service>
     </services>
 
