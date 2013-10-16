@@ -22,7 +22,7 @@ class ChangePasswordController extends Controller
             throw new AccessDeniedException();
         }
 
-        $this->get('breadcrumb')->add('设置', $this->generateUrl('profile_edit'))->add('修改密码');
+        $this->get('breadcrumb')->add('基本资料', $this->generateUrl('profile_edit'))->add('修改密码');
 
         /** @var \HR\UserBundle\EntityManager\UserManager $userManager */
         $userManager = $this->get('user.user_manager');

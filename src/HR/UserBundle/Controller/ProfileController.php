@@ -26,7 +26,7 @@ class ProfileController extends Controller
 
         $oldUser = clone $user;
 
-        $this->get('breadcrumb')->add('设置');
+        $this->get('breadcrumb')->add('基本资料');
 
         /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
         $dispatcher = $this->container->get('event_dispatcher');

@@ -29,6 +29,9 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ path('home') }}">首页</a></li>
                     <li><a href="{{ path('job_new') }}">发布职位</a></li>
+                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                        <li><a href="{{ path('profile_edit') }}">个人资料</a></li>
+                    {% endif %}
                 </ul>
 
                 <ul class="nav navbar-nav pull-right">

@@ -22,7 +22,7 @@ class PhotoController extends Controller
             throw new AccessDeniedException();
         }
 
-        $this->get('breadcrumb')->add('设置', $this->generateUrl('profile_edit'))->add('上传头像');
+        $this->get('breadcrumb')->add('基本资料', $this->generateUrl('profile_edit'))->add('上传头像');
 
         /** @var \Symfony\Component\Form\FormInterface $form */
         $form = $this->get('user.form.photo');
