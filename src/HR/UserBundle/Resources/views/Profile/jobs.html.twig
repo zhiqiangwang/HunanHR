@@ -1,0 +1,29 @@
+{% extends 'HRUserBundle::layout.html.twig' %}
+
+{% block user_content %}
+    {% if pager.hasResults %}
+        <ul class="item-list">
+            {% for job in pager.getResults %}
+                <li class="item hidden-avatar">
+                    <div class="item-header">
+                        <div class="meta">在 {{ job.createdAt|date('Y-m-d') }} 发布的职位</div>
+
+                        <div class="title">
+                            <a href="{{ path('job_show', {'jobId': job.id}) }}" target="_blank">{{ job.position }}</a>
+                            <span class="divider">•</span>
+                            <span class="company">{{ job.companyName }}</span>
+                            <span class="divider">•</span>
+                            <span class="region">{{ job.city }}</span>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-muted">没有发布任何职位</p>
+    {% endif %}
+
+    {% if pager.isPaginable %}
+        {{ paginate(pager, 'profile_jobs', {'username': user.username}) }}
+    {% endif %}
+{% endblock %}

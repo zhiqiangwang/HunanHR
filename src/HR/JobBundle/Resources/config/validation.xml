@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
+        http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="HR\JobBundle\Entity\Job">
+        <property name="position">
+            <constraint name="NotBlank">
+                <option name="message">招聘职位不能为空</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="max">50</option>
+                <option name="maxMessage">招聘职位长度不能超过 {{ limit }} 个字符</option>
+            </constraint>
+        </property>
+        <property name="description">
+            <constraint name="NotBlank">
+                <option name="message">职位详情不能为空</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="max">2000</option>
+                <option name="maxMessage">职位详情长度不能超过 {{ limit }} 个字符</option>
+            </constraint>
+        </property>
+        <property name="type">
+            <constraint name="Range">
+                <option name="min">1</option>
+                <option name="max">5</option>
+                <option name="minMessage">请选择正确的工作性质</option>
+                <option name="maxMessage">请选择正确的工作性质</option>
+            </constraint>
+        </property>
+        <property name="companyName">
+            <constraint name="NotBlank">
+                <option name="message">公司或机构名称不能为空</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="max">50</option>
+                <option name="maxMessage">公司或机构名称不能超过 {{ limit }} 个字符</option>
+            </constraint>
+        </property>
+        <property name="companyDescription">
+            <constraint name="Length">
+                <option name="max">2000</option>
+                <option name="maxMessage">公司或机构介绍不能超过 {{ limit }} 个字符</option>
+            </constraint>
+        </property>
+        <property name="city">
+            <constraint name="NotBlank">
+                <option name="message">请选择工作地点</option>
+            </constraint>
+        </property>
+        <property name="location">
+            <constraint name="NotBlank">
+                <option name="message">详细工作地点不能为空</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="max">100</option>
+                <option name="maxMessage">详细工作地点不能超过 {{ limit }} 个字符</option>
+            </constraint>
+        </property>
+        <property name="contactEmail">
+            <constraint name="NotBlank">
+                <option name="message">简历接收Email不能为空</option>
+            </constraint>
+            <constraint name="Email">
+                <option name="message">简历接收Email格式不正确</option>
+            </constraint>
+        </property>
+    </class>
+
+    <class name="HR\JobBundle\Entity\Delivery">
+        <property name="title">
+            <constraint name="NotBlank">
+                <option name="message">标题不能为空</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="max">200</option>
+                <option name="maxMessage">标题不能超过 {{ limit }} 个字符</option>
+            </constraint>
+        </property>
+
+        <property name="body">
+            <constraint name="NotBlank">
+                <option name="message">内容不能为空</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="max">500</option>
+                <option name="maxMessage">内容不能超过 {{ limit }} 个字符</option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

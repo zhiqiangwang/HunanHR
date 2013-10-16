@@ -28,4 +28,4 @@ assetic:
     use_controller: true
 
 swiftmailer:
-    delivery_address: tang@babyfamily.com
+#    delivery_address: tang@babyfamily.com

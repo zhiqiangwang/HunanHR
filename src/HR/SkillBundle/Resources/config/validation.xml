@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
+        http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="HR\SkillBundle\Entity\Skill">
+        <property name="name">
+            <constraint name="NotBlank">
+                <option name="message">技能名称不能为空</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="max">100</option>
+                <option name="maxMessage">技能名称长度不能超过 {{ limit }} 个字符</option>
+            </constraint>
+        </property>
+        <property name="summary">
+            <constraint name="Length">
+                <option name="max">500</option>
+                <option name="maxMessage">描述长度不能超过 {{ limit }} 个字符</option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

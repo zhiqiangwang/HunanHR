@@ -1,0 +1,9 @@
+{% extends 'HRUserBundle::layout.html.twig' %}
+
+{% block user_content %}
+    <div class="resume">
+        <div class="body">
+            {% include 'HRUserBundle:Resume:profile.html.twig' with {'user': user} %}
+        </div>
+    </div>
+{% endblock %}

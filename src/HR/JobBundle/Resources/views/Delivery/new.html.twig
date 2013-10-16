@@ -1,0 +1,39 @@
+{% extends 'HRUserBundle::layout.html.twig' %}
+
+{% block user_content %}
+    {{ form_start(form, {'action': path('delivery_new', {'jobId': job.id}), 'attr': {'class': 'form-horizontal' }}) }}
+
+    <div class="form-group">
+        <div class="col-lg-2 control-label">
+            <label>收件人</label>
+        </div>
+        <div class="col-lg-10 form-control-static text-muted">
+            {{ job.user.email|obfuscate_email }}
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+
+{% endblock %}
+
+{% block ext_content %}
+
+    <div class="module">
+        <div class="flex-module">
+            <div class="module-header contain-btn clearfix">
+                <div class="pull-right text-muted">
+                    (完善后继续发送简历)
+                    <a href="{{ path('profile_edit', {'from' : path('delivery_new', {'jobId': job.id}) }) }}" class="btn btn-success">完善简历</a>
+                </div>
+                <h2>简历预览</h2>
+            </div>
+
+            <div class="resume">
+                <div class="body">
+                    {% include 'HRUserBundle:Resume:profile.html.twig' with {'user': user} %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

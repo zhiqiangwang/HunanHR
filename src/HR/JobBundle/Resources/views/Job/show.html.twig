@@ -1,0 +1,87 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <div class="module">
+        <div class="flex-module view">
+
+            <div class="module-header contain-btn clearfix">
+                <div class="pull-right">
+                    <a href="{{ path('delivery_new', {'jobId': job.id}) }}" class="btn btn-success">发简历</a>
+                    {% if can_edit_job(job) %}
+                    <a href="{{ path('job_edit', {'jobId': job.id}) }}" class="btn btn-default">编辑</a>
+                    {% endif %}
+                    {% if can_delete_job(job) %}
+                        <a href="{{ path('job_delete', {'jobId': job.id}) }}" class="btn btn-default" onclick="return confirm('确认要删除该职位吗?')">删除</a>
+                    {% endif %}
+
+                    <div class="btn btn-like">
+                        <wb:like appkey="1345Qz" type="simple"></wb:like>
+                    </div>
+                </div>
+                <ol class="breadcrumb">
+                    <li><a href="/">湖南英才网</a></li>
+                    <li class="active">职位详情</li>
+                </ol>
+            </div>
+
+            <div class="item">
+                <div class="item-header">
+                    <img src="{{ asset(job.user.avatarSmallUrl) }}" class="avatar"/>
+
+                    <div class="meta"><a href="{{ path('profile_show', {'username': job.user.username}) }}" target="_blank">{{ job.user.screenName }}</a> 在 {{ job.createdAt|date('Y-m-d') }} 发布的职位</div>
+
+                    <div class="title">
+                        <a href="{{ path('job_show', {'jobId': job.id}) }}">{{ job.position|substring(15) }}</a>
+                        <span class="divider">•</span>
+                        <span class="company">{{ job.companyName|substring(15) }}</span>
+                        <span class="divider">•</span>
+                        <span class="region">{{ job.city }}</span>
+                    </div>
+
+                </div>
+
+                <div class="item-body">
+                    {% if job.companyDescription is not null %}
+                    {{ job.companyDescription|markup }}
+                    <hr />
+                    {% endif %}
+
+                    {% if job.description is not null %}
+                    {{ job.description|markup }}
+                    {% endif %}
+
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>工作性质</th>
+                            <td>{{ job.typeName }}</td>
+                        </tr>
+                        <tr>
+                            <th>工作地点</th>
+                            <td>{{ job.city }}</td>
+                        </tr>
+                        {% if job.location is not null %}
+                        <tr>
+                            <th>详细地址</th>
+                            <td>{{ job.location }}</td>
+                        </tr>
+                        {% endif %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /module -->
+
+{% endblock %}
+
+{% block meta %}
+    <meta property="og:type" content="webpage"/>
+    <meta property="og:url" content="{{ url('job_show', {'jobId': job.id}) }}"/>
+    <meta property="og:title" content="【招聘】{{ job.companyName ~ ': '~ job.position }}"/>
+    <meta property="og:description" content="xsss"/>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+{% endblock %}

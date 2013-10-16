@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="job.form.type" class="HR\JobBundle\Form\JobFormType">
+            <tag name="form.type" />
+        </service>
+
+        <service id="delivery.form.type" class="HR\JobBundle\Form\DeliveryFormType">
+            <tag name="form.type" />
+        </service>
+
+        <service id="job.form" class="Symfony\Component\Form\FormFactory" factory-service="form.factory"
+                 factory-method="create">
+            <argument type="service" id="job.form.type" />
+        </service>
+
+        <service id="delivery.form" class="Symfony\Component\Form\FormFactory" factory-service="form.factory"
+                 factory-method="create">
+            <argument type="service" id="delivery.form.type" />
+        </service>
+    </services>
+</container>

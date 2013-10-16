@@ -14,6 +14,8 @@ framework:
     validation:      { enable_annotations: false }
     templating:
         engines: ['twig']
+        assets_base_urls:
+            http: ['http://www.hr.com']
         #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trusted_proxies: ~
@@ -67,4 +69,6 @@ swiftmailer:
     host:      %mailer_host%
     username:  %mailer_user%
     password:  %mailer_password%
-    spool:     { type: memory }
+    spool:
+        type: file
+        path: "%kernel.root_dir%/spool"

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="user.security.interactive_login_listener.class">HR\UserBundle\EventListener\LastLoginListener</parameter>
+        <parameter key="user.security.login_manager.class">HR\UserBundle\Security\LoginManager</parameter>
+        <parameter key="user.user_provider.class">HR\UserBundle\Security\UserProvider</parameter>
+    </parameters>
+
+    <services>
+        <service id="user.security.interactive_login_listener" class="%user.security.interactive_login_listener.class%" scope="request">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="user.user_manager" />
+            <argument type="service" id="request" />
+        </service>
+
+        <service id="user.security.login_manager" class="%user.security.login_manager.class%">
+            <argument type="service" id="security.context" />
+            <argument type="service" id="security.user_checker" />
+            <argument type="service" id="security.authentication.session_strategy" />
+            <argument type="service" id="service_container" />
+        </service>
+
+        <service id="user.user_provider" class="%user.user_provider.class%">
+            <argument type="service" id="user.user_manager" />
+        </service>
+
+        <service id="user.security.authentication.rememberme.services.simplehash.main"
+                 alias="security.authentication.rememberme.services.simplehash.main" />
+    </services>
+</container>

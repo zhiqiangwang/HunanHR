@@ -77,19 +77,19 @@
                                         <div class="card">
                                             <div class="avatar-wrapper">
                                                 <div class="upload-face">
-                                                    <a href="{{ path('profile_show', {'userId': app.user.id}) }}"><img src="{{ asset(app.user.avatarBigUrl) }}" class="avatar"/></a>
+                                                    <a href="{{ path('profile_show', {'username': app.user.username}) }}"><img src="{{ asset(app.user.avatarBigUrl) }}" class="avatar"/></a>
                                                     <a class="upload-action" href="{{ path('upload_face') }}">修改头像</a>
                                                 </div>
                                             </div>
 
                                             <strong class="fullname"><a
-                                                        href="{{ path('profile_show', {'userId': app.user.id}) }}">{{ app.user.screenName }}</a></strong>
+                                                        href="{{ path('profile_show', {'username': app.user.username}) }}">{{ app.user.screenName }}</a></strong>
 
                                             <p class="metadata">{{ app.user.bio|substring(20) }}</p>
                                         </div>
                                     </div>
                                     <div class="action clearfix">
-                                        <a href="">0条新提醒</a>
+                                        {#<a href="">0 条未读提醒</a>#}
                                         <a href="{{ path('profile_edit') }}" class="btn btn-default pull-right">资料设置</a>
                                     </div>
                                 </div>

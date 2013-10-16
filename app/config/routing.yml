@@ -1,3 +1,7 @@
+notification:
+    resource: "@HRNotificationBundle/Resources/config/routing.xml"
+    prefix:   /
+
 page:
     resource: "@HRPageBundle/Resources/config/routing.xml"
     prefix:   /

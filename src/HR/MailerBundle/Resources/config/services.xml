@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="user.resetting.email.template">HRMailerBundle:Mailer:resetting.txt.twig</parameter>
+        <parameter key="user.registration.confirmation.template">HRMailerBundle:Mailer:registration.txt.twig</parameter>
+        <parameter key="user.resume.template">HRMailerBundle:Mailer:resume.html.twig</parameter>
+    </parameters>
+
+    <services>
+        <service id="hr.mailer" class="HR\MailerBundle\Mailer\Mailer">
+            <argument type="service" id="mailer" />
+            <argument type="service" id="router" />
+            <argument type="service" id="twig" />
+            <argument type="collection">
+                <argument key="template" type="collection">
+                    <argument key="confirmation">%user.registration.confirmation.template%</argument>
+                    <argument key="resetting">%user.resetting.email.template%</argument>
+                    <argument key="resume">%user.resume.template%</argument>
+                </argument>
+                <argument key="from_email">no-reply@hunanhr.com</argument>
+            </argument>
+        </service>
+    </services>
+</container>

@@ -1,0 +1,236 @@
+{% block subject %}【湖南英才网】{{ delivery.title }}{% endblock %}
+
+{% block body %}
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>简历</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <style type="text/css">
+            body {
+                font-family: Microsoft YaHei, Arial, sans-serif;
+                font-size: 12px;
+                line-height: 1.428571429;
+                color: #333;
+                background: #f4f4f4;
+                padding: 0;
+            }
+
+            a {
+                color: #0084b4;
+                text-decoration: none
+            }
+
+            a:hover, a:focus {
+                color: #004c68;
+                text-decoration: underline
+            }
+
+            a:focus {
+                outline: thin dotted #333;
+                outline: 5px auto -webkit-focus-ring-color;
+                outline-offset: -2px
+            }
+
+            img {
+                vertical-align: middle
+            }
+
+            hr {
+                margin-top: 17px;
+                margin-bottom: 17px;
+                border: 0;
+                border-top: 1px solid #eee
+            }
+
+            p {
+                margin: 0 0 8.5px
+            }
+
+            h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+                font-family: Helvetica, Arial, sans-serif;
+                font-weight: 500;
+                line-height: 1.1;
+                color: inherit
+            }
+
+            h1, h2, h3 {
+                margin-top: 0;
+                margin-bottom: 8.5px
+            }
+
+            h4, h5, h6 {
+                margin-top: 0;
+                margin-bottom: 8.5px
+            }
+
+            .resume-body {
+                background: #f4f4f4
+            }
+
+            .resume-email {
+                width: 600px;
+                margin: 15px auto;
+                box-shadow: 0 4px 5px #ccc
+            }
+
+            .resume-email .body {
+                padding: 30px
+            }
+
+            .resume {
+                font-size: 14px;
+                color: #666;
+                background: #fff
+            }
+
+            .resume p {
+                margin: 0
+            }
+
+            .resume .text-muted {
+                padding: 4px;
+                margin-bottom: 10px
+            }
+
+            .resume .title {
+                height: 50px;
+                text-align: center;
+                background: url({{ asset('img/resume-header.gif') }}) repeat-x top
+            }
+
+            .resume .title h1 {
+                margin: 0;
+                font-size: 20px;
+                font-style: italic;
+                font-family: Microsoft YaHei, Arial, sans-serif;
+                line-height: 50px;
+                color: #c27c00
+            }
+
+            .resume .body .user {
+                position: relative;
+                height: 48px;
+                padding-top: 5px;
+                padding-left: 58px
+            }
+
+            .resume .body .user img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 48px;
+                height: 48px
+            }
+
+            .resume .body .user h2 {
+                margin-bottom: 10px;
+                font-size: 16px
+            }
+
+            .resume .body .user p {
+                margin: 0;
+                font-size: 12px;
+                color: #666
+            }
+
+            .resume .body h3 {
+                margin: 15px 0 5px;
+                font-size: 16px;
+                font-weight: normal
+            }
+
+            .resume .quote {
+                margin-bottom: 20px
+            }
+
+            .resume .quote .arrow {
+                height: 11px
+            }
+
+            .resume .quote .arrow img {
+                height: 20px
+            }
+
+            .resume .quote .quote-body {
+                padding: 10px;
+                background: #f4f4f4
+            }
+
+            .resume h4 {
+                font-size: 14px;
+                font-weight: bold;
+                color: #c27c00;
+            }
+
+            .resume .profile {
+                border: 1px solid #eee
+            }
+
+            .resume .profile hr {
+                margin: 5px 0
+            }
+
+            .resume .profile h5 {
+                padding: 5px;
+                font-size: 14px;
+                background: url({{ asset('img/resume-h5.png') }}) repeat
+            }
+
+            .resume .profile table {
+                width: 100%
+            }
+
+            .resume .profile table th, .resume .profile table td {
+                font-size: 14px;
+                padding: 3px
+            }
+
+            .resume .profile table th {
+                width: 120px;
+                font-weight: normal;
+                color: #999;
+                text-align: right
+            }
+        </style>
+    </head>
+    <body class="resume-body">
+    <div class="resume-email">
+        <div class="resume">
+            <div class="title">
+                <h1>湖南英才网 (HunanHr.com)</h1>
+            </div>
+            <div class="body">
+                <div class="user">
+                    <a href="{{ url('profile_show', {'username': delivery.sender.username }) }}" target="_blank"><img src="{{ asset(delivery.sender.avatarBigUrl) }}"/></a>
+
+                    <h2>
+                        <a href="{{ url('profile_show', {'username': delivery.sender.username }) }}" target="_blank" style="color: #666; text-decoration: none">{{ delivery.sender.screenName }}</a>
+                    </h2>
+
+                    {% if delivery.sender.jobTitle and delivery.sender.companyName %}
+                        <p>{{ delivery.sender.jobTitle }}，{{ delivery.sender.companyName }}</p>
+                    {% endif %}
+                </div>
+                <h3>在湖南英才网向您投递了简历</h3>
+
+                <div class="quote">
+                    <div class="arrow"><img src="{{ asset('img/resume-arrow.png') }}"/></div>
+                    <div class="quote-body">
+                        {{ delivery.body }}
+                    </div>
+                </div>
+
+                <h4>简历</h4>
+
+                {% include 'HRUserBundle:Resume:profile.html.twig' with {'user': delivery.sender} %}
+
+                <hr/>
+                <p>湖南地区找工作、找人才，登录湖南英才网：<a href="http://www.hunanhr.com" target="_blank">http://www.hunanhr.com</a></p>
+            </div>
+        </div>
+    </div>
+    </body>
+    </html>
+{% endblock %}

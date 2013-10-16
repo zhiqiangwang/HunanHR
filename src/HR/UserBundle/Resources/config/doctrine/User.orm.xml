@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="HR\UserBundle\Entity\User" table="user">
+
+        <indexes>
+            <index columns="created_at" />
+        </indexes>
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO" />
+        </id>
+        <field name="username" type="string" column="username" length="20" unique="true" />
+        <field name="password" type="string" column="password" length="255" />
+        <field name="email" type="string" column="email" length="255" unique="true" />
+        <field name="salt" type="string" column="salt" length="255" />
+        <field name="screenName" type="string" column="screen_name" length="20" />
+        <field name="realName" type="string" column="real_name" length="20" nullable="true" />
+        <field name="gender" type="string" column="gender" length="6" nullable="true" />
+        <field name="birthday" type="date" column="birthday" nullable="true" />
+        <field name="jobTitle" type="text" column="job_title" length="100" nullable="true" />
+        <field name="companyName" type="text" column="company_name" length="200" nullable="true" />
+        <field name="degree" type="smallint" column="degree" nullable="true" />
+        <field name="phoneNumber" type="string" column="phone_number" length="11" nullable="true" />
+        <field name="homepage" type="string" column="homepage" length="255" nullable="true" />
+        <field name="bio" type="text" column="bio" nullable="true" />
+        <field name="avatarBigUrl" type="string" column="avatar_big_url" length="255" nullable="true" />
+        <field name="avatarSmallUrl" type="string" column="avatar_small_url" length="255" nullable="true" />
+        <field name="numJobs" type="integer" column="num_jobs" />
+        <field name="emailConfirmed" column="email_confirmed" type="boolean" />
+        <field name="confirmationToken" column="confirmation_token" type="string" nullable="true" />
+        <field name="passwordRequestedAt" column="password_requested_at" type="datetime" nullable="true" />
+        <field name="roles" type="array" column="roles" nullable="true" />
+        <field name="enabled" type="boolean" column="enabled" />
+        <field name="locked" type="boolean" column="locked" />
+        <field name="expired" type="boolean" column="expired" />
+        <field name="expiresAt" type="datetime" column="expires_at" nullable="true" />
+        <field name="credentialsExpired" type="boolean" column="credentials_expired" />
+        <field name="credentialsExpiresAt" type="datetime" column="credentials_expires_at" nullable="true" />
+        <field name="createdAt" type="datetime" column="created_at" />
+        <field name="lastLogin" type="datetime" column="last_login" nullable="true" />
+        <field name="lastLoginIp" type="string" column="last_login_ip" length="15" nullable="true" />
+
+        <one-to-many target-entity="HR\PositionBundle\Entity\Position" mapped-by="user" field="positions">
+            <cascade>
+                <cascade-remove />
+            </cascade>
+            <order-by>
+                <order-by-field name="endDate" direction="DESC" />
+            </order-by>
+        </one-to-many>
+
+        <one-to-many target-entity="HR\EducationBundle\Entity\Education" mapped-by="user" field="educations">
+            <cascade>
+                <cascade-remove />
+            </cascade>
+            <order-by>
+                <order-by-field name="endDate" direction="DESC" />
+            </order-by>
+        </one-to-many>
+
+        <one-to-many target-entity="HR\SkillBundle\Entity\Skill" mapped-by="user" field="skills">
+            <cascade>
+                <cascade-remove />
+            </cascade>
+            <order-by>
+                <order-by-field name="createdAt" direction="DESC" />
+            </order-by>
+        </one-to-many>
+
+        <one-to-many target-entity="HR\JobBundle\Entity\Job" mapped-by="user" field="jobs">
+            <cascade>
+                <cascade-remove />
+            </cascade>
+            <order-by>
+                <order-by-field name="createdAt" direction="DESC" />
+            </order-by>
+        </one-to-many>
+
+        <many-to-many target-entity="Group" field="groups">
+            <cascade>
+                <cascade-remove />
+            </cascade>
+        </many-to-many>
+    </entity>
+</doctrine-mapping>
