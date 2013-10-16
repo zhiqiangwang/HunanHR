@@ -91,7 +91,7 @@
                 </option>
             </constraint>
             <constraint name="Length">
-                <option name="min">3</option>
+                <option name="min">2</option>
                 <option name="minMessage">昵称长度至少需要{{ limit }}个字符</option>
                 <option name="max">20</option>
                 <option name="maxMessage">昵称长度不能超过{{ limit }}个字符</option>
