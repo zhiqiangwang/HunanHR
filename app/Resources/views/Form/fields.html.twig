@@ -1,12 +1,29 @@
 {% extends 'form_div_layout.html.twig' %}
 
 {% block form_label %}
-    {% if required and not compound %}
+    {% set required_star = true %}
+
+    {% if label_attr.required_star is defined and not label_attr.required_star %}
+        {% set required_star = false %}
+    {% endif %}
+
+    {% if required and required_star %}
         <span class="required" title="该项为必填项">*</span>
     {% endif %}
 
     {{ parent() }}
 {% endblock %}
+
+{% block choice_widget_expanded %}
+    {% spaceless %}
+        <div {{ block('widget_container_attributes') }}>
+            {% for child in form %}
+                {{ form_widget(child) }}
+                {{ form_label(child, null, {'label_attr': {'required_star': false }}) }}
+            {% endfor %}
+        </div>
+    {% endspaceless %}
+{% endblock choice_widget_expanded %}
 
 {% block form_row %}
     {% spaceless %}
