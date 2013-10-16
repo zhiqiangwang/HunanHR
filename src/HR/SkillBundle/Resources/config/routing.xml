@@ -5,16 +5,16 @@
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
     <route id="skill_list" pattern="/settings/skill">
-        <default key="_controller">HRSkillBundle:skill:index</default>
+        <default key="_controller">HRSkillBundle:Skill:index</default>
     </route>
 
     <route id="skill_edit" pattern="/settings/skill/edit/{skillId}">
-        <default key="_controller">HRSkillBundle:skill:edit</default>
+        <default key="_controller">HRSkillBundle:Skill:edit</default>
         <requirement key="skillId">\d+</requirement>
     </route>
 
     <route id="skill_delete" pattern="/settings/skill/delete/{skillId}">
-        <default key="_controller">HRSkillBundle:skill:delete</default>
+        <default key="_controller">HRSkillBundle:Skill:delete</default>
         <requirement key="skillId">\d+</requirement>
     </route>
 </routes>
