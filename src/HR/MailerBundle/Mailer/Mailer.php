@@ -73,9 +73,7 @@ class Mailer implements MailerInterface
             ->setSubject($subject)
             ->setFrom($fromEmail)
             ->setTo($toEmail)
-            ->setBody($textBody)
-            ->setCharset('UTF-8')
-            ->setContentType($contentType);
+            ->setBody($textBody, $contentType, 'UTF-8');
 
         $this->mailer->send($message);
     }
