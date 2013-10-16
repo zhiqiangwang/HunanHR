@@ -92,13 +92,13 @@ class AclJobManager implements JobManagerInterface
     /**
      * {@inheritDoc}
      */
-    public function deleteJob(JobInterface $job)
+    public function softDeleteJob(JobInterface $job)
     {
         if (!$this->jobAcl->canDelete($job)) {
             throw new AccessDeniedException();
         }
 
-        $this->realManager->deleteJob($job);
+        $this->realManager->softDeleteJob($job);
     }
 
     /**

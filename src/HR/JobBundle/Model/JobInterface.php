@@ -137,6 +137,18 @@ interface JobInterface
     public function getLocation();
 
     /**
+     * @param bool $boolean
+     *
+     * @return $this
+     */
+    public function setIsDeleted($boolean);
+
+    /**
+     * @return bool
+     */
+    public function isDeleted();
+
+    /**
      * Get createdAt
      *
      * @return \DateTime

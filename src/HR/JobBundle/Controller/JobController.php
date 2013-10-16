@@ -129,7 +129,7 @@ class JobController extends Controller
             throw new AccessDeniedException();
         }
 
-        $this->getJobManager()->deleteJob($job);
+        $this->getJobManager()->softDeleteJob($job);
 
         $this->getDispatcher()->dispatch(JobEvents::JOB_DELETE_COMPLETED, new JobEvent($job));
 

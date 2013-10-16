@@ -21,7 +21,7 @@ interface JobManagerInterface
 
     public function updateJob(JobInterface $job);
 
-    public function deleteJob(JobInterface $job);
+    public function softDeleteJob(JobInterface $job);
 
     public function isNewJob(JobInterface $job);
 

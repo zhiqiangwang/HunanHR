@@ -55,6 +55,11 @@ class Job implements JobInterface
     protected $contactEmail;
 
     /**
+     * @var bool
+     */
+    protected $isDeleted;
+
+    /**
      * @var \DateTime
      */
     protected $createdAt;
@@ -72,6 +77,7 @@ class Job implements JobInterface
     public function __construct()
     {
         $this->createdAt = new \Datetime();
+        $this->isDeleted = false;
     }
 
     /**
@@ -222,6 +228,24 @@ class Job implements JobInterface
     public function getContactEmail()
     {
         return $this->contactEmail;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setIsDeleted($isDeleted)
+    {
+        $this->isDeleted = $isDeleted;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isDeleted()
+    {
+        return $this->isDeleted;
     }
 
     /**

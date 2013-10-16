@@ -43,6 +43,7 @@ class JobManager extends BaseJobManager
             ->join('j.user', 'u')
             ->join('j.city', 'c')
             ->where('u.id = :user')
+            ->andWhere('j.isDeleted = false')
             ->addOrderBy('j.createdAt', 'DESC')
             ->setParameter('user', $user->getId());
 
@@ -58,6 +59,7 @@ class JobManager extends BaseJobManager
             ->select('j, u, c')
             ->join('j.user', 'u')
             ->join('j.city', 'c')
+            ->andWhere('j.isDeleted = false')
             ->addOrderBy('j.createdAt', 'DESC');
 
         $pager = new Pager(new ProxyQuery($qb));
@@ -73,6 +75,7 @@ class JobManager extends BaseJobManager
             ->join('j.user', 'u')
             ->join('j.city', 'c')
             ->where('j.id = :id')
+            ->andWhere('j.isDeleted = false')
             ->setParameter('id', $id)
             ->getQuery();
 
@@ -96,9 +99,11 @@ class JobManager extends BaseJobManager
         $this->em->flush();
     }
 
-    public function deleteJob(JobInterface $job)
+    public function softDeleteJob(JobInterface $job)
     {
-        $this->em->remove($job);
+        $job->setIsDeleted(true);
+
+        $this->em->persist($job);
         $this->em->flush();
     }
 

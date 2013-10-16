@@ -3,6 +3,7 @@
     <entity name="HR\JobBundle\Entity\Job" table="job">
         <indexes>
             <index columns="created_at" />
+            <index columns="is_deleted" />
         </indexes>
 
         <id name="id" type="integer" column="id">
@@ -15,6 +16,7 @@
         <field name="companyDescription" type="text" column="company_description" nullable="true" />
         <field name="contactEmail" type="string" column="contact_email" length="100" />
         <field name="location" type="string" column="location" length="100" nullable="true" />
+        <field name="isDeleted" type="boolean" column="is_deleted" />
         <field name="createdAt" type="datetime" column="created_at" />
         <field name="updatedAt" type="datetime" column="updated_at" nullable="true" />
 
