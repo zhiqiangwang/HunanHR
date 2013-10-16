@@ -37,9 +37,9 @@ class DeliveryController extends Controller
         $delivery = $deliveryManager->findDeliveryBySenderAndJob($user, $job);
 
         if (null !== $delivery) {
-//            $this->get('session')->getFlashBag()->add('success', '该职位已发送过简历');
-//
-//            return $this->redirect($this->generateUrl('job_show', array('jobId' => $jobId)));
+            $this->get('session')->getFlashBag()->add('success', '该职位已发送过简历');
+
+            return $this->redirect($this->generateUrl('job_show', array('jobId' => $jobId)));
         }
 
         $delivery = $deliveryManager->createDelivery($user, $job);
