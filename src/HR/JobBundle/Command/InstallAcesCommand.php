@@ -44,7 +44,7 @@ EOT
         if ($input->getOption('flush')) {
             $output->writeln('Flushing Global ACEs');
 
-            $jobAcl->uninstallFallbackAcl();
+            $jobAcl->uninstallFallBackAcl();
         }
 
         $jobAcl->installFallbackAcl();
