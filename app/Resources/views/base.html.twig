@@ -90,6 +90,10 @@
                                             <strong class="fullname"><a
                                                         href="{{ path('profile_show', {'username': app.user.username}) }}">{{ app.user.screenName }}</a></strong>
 
+
+                                            {% if app.user.groupNames %}
+                                            <span class="text-muted">({% for groupName in app.user.groupNames %}{{ groupName }}{% endfor %})</span>
+                                            {% endif %}
                                             <p class="metadata">{{ app.user.bio|substring(20) }}</p>
                                         </div>
                                     </div>
