@@ -2,6 +2,13 @@
 
 {% block user_content %}
 
+    <ul class="nav nav-tabs">
+        <li><a href="{{ path('profile_edit') }}">基本资料</a></li>
+        <li class="active"><a href="{{ path('position_list') }}">职业经历</a></li>
+        <li><a href="{{ path('education_list') }}">教育经历</a></li>
+        <li><a href="{{ path('skill_list') }}">技能信息</a></li>
+    </ul>
+
     {% if positions|length > 0 %}
         <table class="table table-bordered">
             <tr>
@@ -28,6 +35,7 @@
 {% endblock %}
 
 {% block ext_content %}
+
     {% if positions|length <= 10 %}
         <div class="module">
             <div class="flex-module">
@@ -42,6 +50,7 @@
 
                 <div class="form-group">
                     <div class="col-sm-2 control-label">
+                        <span class="required">*</span>
                         <label>起止时间</label>
                     </div>
                     <div class="col-sm-10 embed">
@@ -57,8 +66,4 @@
             </div>
         </div>
     {% endif %}
-{% endblock %}
-
-{% block sidebar_crad_bottom %}
-    {% include 'HRUserBundle::settingMenu.html.twig' with {'active' : 'position'} %}
 {% endblock %}

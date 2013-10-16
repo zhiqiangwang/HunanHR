@@ -1,6 +1,14 @@
 {% extends 'HRUserBundle::layout.html.twig' %}
 
 {% block user_content %}
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{{ path('profile_edit') }}">基本资料</a></li>
+        <li><a href="{{ path('position_list') }}">职业经历</a></li>
+        <li><a href="{{ path('education_list') }}">教育经历</a></li>
+        <li><a href="{{ path('skill_list') }}">技能信息</a></li>
+    </ul>
+
     {{ form_start(form, {'action': path('profile_edit', {'from': app.request.get('from') }), 'attr': {'class': 'form-horizontal' }}) }}
 
     <div class="form-group">
@@ -33,8 +41,4 @@
     </div>
 
     {{ form_end(form) }}
-{% endblock %}
-
-{% block sidebar_crad_bottom %}
-    {% include 'HRUserBundle::settingMenu.html.twig' with {'active' : 'profile'} %}
 {% endblock %}

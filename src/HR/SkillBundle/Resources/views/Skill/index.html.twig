@@ -2,6 +2,13 @@
 
 {% block user_content %}
 
+    <ul class="nav nav-tabs">
+        <li><a href="{{ path('profile_edit') }}">基本资料</a></li>
+        <li><a href="{{ path('position_list') }}">职业经历</a></li>
+        <li><a href="{{ path('education_list') }}">教育经历</a></li>
+        <li class="active"><a href="{{ path('skill_list') }}">技能信息</a></li>
+    </ul>
+
     {% if skills|length > 0 %}
         <table class="table table-bordered">
             <tr>
@@ -37,8 +44,4 @@
             </div>
         </div>
     {% endif %}
-{% endblock %}
-
-{% block sidebar_crad_bottom %}
-    {% include 'HRUserBundle::settingMenu.html.twig' with {'active' : 'skill'} %}
 {% endblock %}

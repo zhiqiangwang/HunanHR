@@ -3,7 +3,3 @@
 {% block user_content %}
     {{ form(form, {'action': path('skill_edit', {'skillId': skill.id}), 'attr': {'class': 'form-horizontal' }}) }}
 {% endblock %}
-
-{% block sidebar_crad_bottom %}
-    {% include 'HRUserBundle::settingMenu.html.twig' with {'active' : 'skill'} %}
-{% endblock %}
