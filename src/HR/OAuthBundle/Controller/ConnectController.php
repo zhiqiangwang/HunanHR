@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
 class ConnectController extends BaseConnectController
 {
@@ -38,6 +39,10 @@ class ConnectController extends BaseConnectController
             $uri = $this->generate('oauth_connect_wizard');
 
             return new RedirectResponse($uri);
+        }
+
+        if ($error instanceof AuthenticationException) {
+            $this->container->get('session')->getFlashBag()->add('success', '很抱歉，服务暂时不可用');
         }
 
         return new RedirectResponse($this->generate('login'));
@@ -75,14 +80,6 @@ class ConnectController extends BaseConnectController
             ->getResourceOwnerByName($error->getResourceOwnerName())
             ->getUserInformation($error->getRawToken());
 
-        $rawResponse = $userInformation->getResponse();
-
-        if ($rawResponse['error_code']) {
-            $this->container->get('session')->getFlashBag()->add('success', '很抱歉，服务暂不可用。');
-
-            return new RedirectResponse($this->generate('login'));
-        }
-
         /** @var \Symfony\Component\Form\FormInterface $form */
         $form = $this->container->get('user.form.registration');
 
@@ -92,12 +89,14 @@ class ConnectController extends BaseConnectController
         /** @var \HR\UserBundle\Model\UserInterface $user */
         $user = $this->getUserManager()->createUser();
 
-        // Defaults
+        // Defaults value
         $user->setScreenName($userInformation->getNickname());
         $user->setGender($userInformation->getGender());
         $user->setUsername($userInformation->getDomain());
         $user->setAvatarBigUrl($userInformation->getAvatarBigUrl());
         $user->setAvatarSmallUrl($userInformation->getAvatarSmallUrl());
+        $user->setBio($userInformation->getBio());
+        $user->setHomepage($userInformation->getHomepage());
 
         $form->setData($user);
         $form->handleRequest($request);

@@ -20,11 +20,21 @@ class WeiboUserResponse extends PathUserResponse
 
     public function getAvatarBigUrl()
     {
-        return $this->getValueForPath('profilepicture');
+        return $this->getValueForPath('avatarbigurl');
     }
 
     public function getAvatarSmallUrl()
     {
         return $this->getValueForPath('avatarsmallurl');
+    }
+
+    public function getHomepage()
+    {
+        return $this->getValueForPath('homepage');
+    }
+
+    public function getBio()
+    {
+        return $this->getValueForPath('bio');
     }
 }

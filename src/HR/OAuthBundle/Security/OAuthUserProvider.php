@@ -74,6 +74,8 @@ class OAuthUserProvider extends UserProvider implements AccountConnectorInterfac
             throw new AccountNotLinkedException(sprintf("User '%s' not found.", $username));
         }
 
+        // $this->connectManager->updateConnect($connect);
+
         return $connect->getUser();
     }
 }

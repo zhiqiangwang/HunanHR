@@ -84,10 +84,12 @@ hwi_oauth:
             client_secret:       33d7bbe742993bbd762974f66db2a018
             user_response_class: HR\OAuthBundle\OAuth\Response\WeiboUserResponse
             paths:
-                profilepicture:  avatar_large
                 gender:          gender
                 domain:          domain
+                avatarbigurl:    avatar_large
                 avatarsmallurl:  profile_image_url
+                bio:             description
+                homepage:        url
 
     connect:
         account_connector: user.oauth_provider
