@@ -42,6 +42,12 @@
         <field name="lastLogin" type="datetime" column="last_login" nullable="true" />
         <field name="lastLoginIp" type="string" column="last_login_ip" length="15" nullable="true" />
 
+        <one-to-many target-entity="HR\OAuthBundle\Entity\Connect" mapped-by="user" field="connects">
+            <cascade>
+                <cascade-remove />
+            </cascade>
+        </one-to-many>
+
         <one-to-many target-entity="HR\PositionBundle\Entity\Position" mapped-by="user" field="positions">
             <cascade>
                 <cascade-remove />

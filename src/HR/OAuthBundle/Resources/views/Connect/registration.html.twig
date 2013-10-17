@@ -1,0 +1,20 @@
+{% extends 'HRUserBundle::layout.html.twig' %}
+
+{% block user_content %}
+    <div class="alert alert-success">
+        还差一步（我们也认为这太麻烦了），您就可以通过微博帐号快速登录了。
+    </div>
+
+    {{ form_start(form, {'action': path('oauth_connect_wizard')}) }}
+
+    <div class="form-group">
+        <div class="col-lg-2 control-label">
+            <label>头像</label>
+        </div>
+        <div class="col-lg-10">
+            <img src="{{ userInformation.profilePicture }}" class="avatar"/>
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+{% endblock %}

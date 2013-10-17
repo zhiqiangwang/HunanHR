@@ -72,3 +72,22 @@ swiftmailer:
     spool:
         type: file
         path: "%kernel.root_dir%/spool"
+
+# OAuth
+hwi_oauth:
+    firewall_name: main
+
+    resource_owners:
+        weibo:
+            type:                sina_weibo
+            client_id:           650975791
+            client_secret:       33d7bbe742993bbd762974f66db2a018
+            user_response_class: HR\OAuthBundle\OAuth\Response\WeiboUserResponse
+            paths:
+                profilepicture:  avatar_large
+                gender:          gender
+                domain:          domain
+                avatarsmallurl:  profile_image_url
+
+    connect:
+        account_connector: user.oauth_provider

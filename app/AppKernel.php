@@ -16,6 +16,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new HR\UserBundle\HRUserBundle(),
             new HR\BreadcrumbBundle\HRBreadcrumbBundle(),
             new HR\PositionBundle\HRPositionBundle(),
@@ -26,6 +27,7 @@ class AppKernel extends Kernel
             new HR\PageBundle\HRPageBundle(),
             new HR\MailerBundle\HRMailerBundle(),
             new HR\NotificationBundle\HRNotificationBundle(),
+            new HR\OAuthBundle\HROAuthBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

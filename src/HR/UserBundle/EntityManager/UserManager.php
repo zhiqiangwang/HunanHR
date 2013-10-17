@@ -35,16 +35,25 @@ class UserManager extends BaseUserManager
         $this->class      = $this->em->getClassMetadata($class)->getName();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function findUserBy(array $criteria)
     {
         return $this->repository->findOneBy($criteria);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function findUsers()
     {
         return $this->repository->findAll();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function updateUser(UserInterface $user)
     {
         $this->updatePassword($user);
@@ -53,6 +62,9 @@ class UserManager extends BaseUserManager
         $this->em->flush();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getClass()
     {
         return $this->class;

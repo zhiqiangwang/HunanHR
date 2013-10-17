@@ -2,10 +2,8 @@
 namespace HR\UserBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use HR\EducationBundle\Model\EducationInterface;
 use HR\JobBundle\Model\JobInterface;
-use HR\PositionBundle\Model\PositionInterface;
-use HR\SkillBundle\Entity\Skill;
+use HR\OAuthBundle\Model\ConnectInterface;
 
 /**
  * User Model
@@ -125,6 +123,11 @@ abstract class User implements UserInterface, GroupableInterface
     protected $passwordRequestedAt;
 
     /**
+     * @var ConnectInterface[]
+     */
+    protected $connects;
+
+    /**
      * @var ArrayCollection
      */
     protected $positions;
@@ -211,6 +214,7 @@ abstract class User implements UserInterface, GroupableInterface
         $this->numJobs            = 0;
         $this->createdAt          = new \Datetime();
         $this->groups             = new ArrayCollection();
+        $this->connects           = new ArrayCollection();
         $this->positions          = new ArrayCollection();
         $this->educations         = new ArrayCollection();
         $this->skills             = new ArrayCollection();
@@ -616,6 +620,38 @@ abstract class User implements UserInterface, GroupableInterface
     /**
      * {@inheritdoc}
      */
+    public function addConnect(ConnectInterface $connect)
+    {
+        if (!$this->connects->contains($connect)) {
+            $this->connects->add($connect);
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeConnect(ConnectInterface $connect)
+    {
+        if ($this->connects->contains($connect)) {
+            $this->connects->removeElement($connect);
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getConnects()
+    {
+        return $this->connects;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getPositions()
     {
         return $this->positions;
@@ -768,8 +804,8 @@ abstract class User implements UserInterface, GroupableInterface
      */
     public function addGroup(GroupInterface $group)
     {
-        if (!$this->getGroups()->contains($group)) {
-            $this->getGroups()->add($group);
+        if (!$this->groups->contains($group)) {
+            $this->groups->add($group);
         }
 
         return $this;
@@ -780,8 +816,8 @@ abstract class User implements UserInterface, GroupableInterface
      */
     public function removeGroup(GroupInterface $group)
     {
-        if ($this->getGroups()->contains($group)) {
-            $this->getGroups()->removeElement($group);
+        if ($this->groups->contains($group)) {
+            $this->groups->removeElement($group);
         }
 
         return $this;

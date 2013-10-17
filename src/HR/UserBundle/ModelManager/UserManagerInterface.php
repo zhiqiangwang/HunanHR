@@ -1,6 +1,7 @@
 <?php
 namespace HR\UserBundle\ModelManager;
 
+use HR\OAuthBundle\Model\ConnectInterface;
 use HR\UserBundle\Model\UserInterface;
 
 /**
@@ -28,7 +29,7 @@ interface UserManagerInterface
     /**
      * @param array $criteria
      *
-     * @return UserInterface
+     * @return UserInterface[]
      */
     public function findUserBy(array $criteria);
 

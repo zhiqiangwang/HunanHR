@@ -1,11 +1,9 @@
 <?php
 namespace HR\UserBundle\Model;
 
-use HR\EducationBundle\Model\EducationInterface;
 use HR\JobBundle\Model\JobInterface;
-use HR\SkillBundle\Entity\Skill;
+use HR\OAuthBundle\Model\ConnectInterface;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
-use HR\PositionBundle\Model\PositionInterface;
 
 /**
  * User Interface
@@ -271,6 +269,25 @@ interface UserInterface extends AdvancedUserInterface, \Serializable
      * @return bool
      */
     public function isPasswordRequestNonExpired($ttl);
+
+    /**
+     * @param ConnectInterface $connect
+     *
+     * @return $this
+     */
+    public function addConnect(ConnectInterface $connect);
+
+    /**
+     * @param ConnectInterface $connect
+     *
+     * @return $this
+     */
+    public function removeConnect(ConnectInterface $connect);
+
+    /**
+     * @return ConnectInterface[]
+     */
+    public function getConnects();
 
     /**
      * @return array of Position
