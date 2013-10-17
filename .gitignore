@@ -11,3 +11,4 @@
 /composer.phar
 /.idea
 /web/uploads/face/*
+/app/spool/*
