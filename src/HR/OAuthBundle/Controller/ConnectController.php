@@ -75,6 +75,14 @@ class ConnectController extends BaseConnectController
             ->getResourceOwnerByName($error->getResourceOwnerName())
             ->getUserInformation($error->getRawToken());
 
+        $rawResponse = $userInformation->getResponse();
+
+        if ($rawResponse['error_code']) {
+            $this->container->get('session')->getFlashBag()->add('success', '很抱歉，服务暂不可用。');
+
+            return new RedirectResponse($this->generate('login'));
+        }
+
         /** @var \Symfony\Component\Form\FormInterface $form */
         $form = $this->container->get('user.form.registration');
 
