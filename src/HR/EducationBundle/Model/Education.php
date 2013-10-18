@@ -20,7 +20,7 @@ abstract class Education implements EducationInterface
     /**
      * @var integer
      */
-    protected $degree = 5;
+    protected $degree;
 
     /**
      * @var integer
