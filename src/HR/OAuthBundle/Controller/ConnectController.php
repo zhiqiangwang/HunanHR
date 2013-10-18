@@ -152,22 +152,6 @@ class ConnectController extends Controller
         $user->setBio($userInformation->getBio());
         $user->setHomepage($userInformation->getHomepage());
 
-        if ($userInformation->getResourceOwner()->getName() == 'qq') {
-
-            $user->setUsername(time());
-            $user->setPassword('');
-            $user->setEmail(time());
-
-            $this->container->get('hwi_oauth.account.connector')->connect($user, $userInformation);
-            $this->setFlash('注册完成，请完善您的资料。');
-
-            $response = $this->redirect($this->generateUrl('profile_edit'));
-
-            $dispatcher->dispatch(UserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
-
-            return $response;
-        }
-
         $form->setData($user);
         $form->handleRequest($request);
 
