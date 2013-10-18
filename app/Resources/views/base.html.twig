@@ -112,13 +112,12 @@
                                     </div>
                                     <p class="slogan">湖南英才网（Beta）是一个靠谱的招聘社区，专注湖南地区的网络招聘。</p>
 
+                                    {% block siebar_sns_login %}
                                     <hr />
                                     <p class="text-muted">使用社交网络帐号注册</p>
-
-                                    {% block siebar_sns_login %}
                                         <div class="sns-btn-group">
                                             <a href="{{ path('oauth_weibo') }}" class="btn btn-weibo"><span class="icon icon-weibo"></span> 新浪微博</a>
-                                            <a href="{{ path('oauth_qq') }}" class="btn btn-qq"><span class="icon icon-tengxunweibo"></span> QQ帐号</a>
+                                            <a href="{{ path('oauth_qq') }}" class="btn btn-qq"><span class="icon icon-qq"></span> QQ帐号</a>
                                         </div>
                                     {% endblock %}
                                 </div>
