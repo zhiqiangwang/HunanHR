@@ -177,11 +177,14 @@ class ConnectController extends Controller
     }
 
     /**
-     * @param $message
+     * Set flash message
+     *
+     * @param string $message
+     * @param string $level
      */
-    protected function setFlash($message)
+    protected function setFlash($message, $level = 'success')
     {
-        $this->container->get('session')->getFlashBag()->add('success', $message);
+        $this->container->get('session')->getFlashBag()->add($level, $message);
     }
 
     /**
