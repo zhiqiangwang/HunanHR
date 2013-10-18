@@ -154,9 +154,9 @@ class ConnectController extends Controller
 
         if ($userInformation->getResourceOwner()->getName() == 'qq') {
 
-            $user->setUsername($userInformation->getNickname());
+            $user->setUsername(time());
             $user->setPassword('');
-            $user->setEmail('');
+            $user->setEmail(time());
 
             $this->container->get('hwi_oauth.account.connector')->connect($user, $userInformation);
             $this->setFlash('注册完成，请完善您的资料。');
