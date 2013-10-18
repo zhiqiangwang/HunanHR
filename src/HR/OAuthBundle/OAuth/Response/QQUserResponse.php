@@ -6,16 +6,16 @@ use HWI\Bundle\OAuthBundle\OAuth\Response\PathUserResponse;
 /**
  * @author Wenming Tang <tang@babyfamily.com>
  */
-class WeiboUserResponse extends PathUserResponse
+class QQUserResponse extends PathUserResponse
 {
     public function getGender()
     {
-        return $this->getValueForPath('gender') == 'm' ? 'male': 'female';
+        return $this->getValueForPath('gender') == '男' ? 'male': 'female';
     }
 
     public function getScreenName()
     {
-        return $this->getValueForPath('screenname');
+        return null;
     }
 
     public function getAvatarBigUrl()
@@ -30,11 +30,11 @@ class WeiboUserResponse extends PathUserResponse
 
     public function getHomepage()
     {
-        return $this->getValueForPath('homepage');
+        return null;
     }
 
     public function getBio()
     {
-        return $this->getValueForPath('bio');
+        return null;
     }
 }

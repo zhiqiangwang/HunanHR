@@ -146,7 +146,7 @@ class ConnectController extends Controller
         // Defaults value
         $user->setScreenName($userInformation->getNickname());
         $user->setGender($userInformation->getGender());
-        $user->setUsername($userInformation->getDomain());
+        $user->setUsername($userInformation->getScreenName());
         $user->setAvatarBigUrl($userInformation->getAvatarBigUrl());
         $user->setAvatarSmallUrl($userInformation->getAvatarSmallUrl());
         $user->setBio($userInformation->getBio());

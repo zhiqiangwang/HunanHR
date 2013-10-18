@@ -5,6 +5,19 @@
         <div class="alert alert-warning">{{ error }}</div>
     {% endif %}
 
+    <div class="sns-login">
+        <p class="text-muted">使用社交网络帐号登录</p>
+
+        <div class="sns-btn-group">
+            <a href="{{ path('oauth_weibo') }}" class="btn btn-weibo"><span class="icon icon-weibo"></span> 新浪微博</a>
+            <a href="{{ path('oauth_qq') }}" class="btn btn-qq"><span class="icon icon-tengxunweibo"></span> QQ帐号</a>
+        </div>
+    </div>
+
+    <hr/>
+
+    <p class="text-muted">使用电子邮件地址登录</p>
+
     <form action="{{ path("login_check") }}" method="post" id="login" class="form-horizontal">
         <div class="form-group">
             <label for="username" class="control-label col-md-3">用户名</label>
@@ -19,6 +32,7 @@
 
             <div class="col-md-9">
                 <input type="password" id="password" name="_password" class="form-control"/><span class="help-inline"><a href="{{ path('user_resetting_request') }}">忘记密码?</a></span>
+
                 <div class="help-block">
                     <input type="checkbox" id="remember_me" name="_remember_me" checked="checked"/>
                     <label for="remember_me">记住我的登录</label>
@@ -34,6 +48,7 @@
             </div>
         </div>
     </form>
-    <hr />
-    <p class="text-muted col-md-offset-3"><a href="{{ path('register') }}">还没有帐号？立即注册</a></p>
+{% endblock %}
+
+{% block siebar_sns_login %}
 {% endblock %}

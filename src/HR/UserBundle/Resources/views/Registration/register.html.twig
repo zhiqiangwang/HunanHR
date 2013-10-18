@@ -1,8 +1,25 @@
 {% extends 'HRUserBundle::layout.html.twig' %}
 
 {% block user_content %}
-    {{ form(form, {'action': path('register')}) }}
 
-    <hr />
-    <p class="text-muted col-md-offset-2"><a href="{{ path('login') }}">已经有一个帐号？立即登录</a></p>
+    <div class="sns-login">
+        <p class="text-muted">使用社交网络帐号注册</p>
+
+        <div class="sns-btn-group">
+            <a href="{{ path('oauth_weibo') }}" class="btn btn-weibo"><span class="icon icon-weibo"></span> 新浪微博</a>
+            <a href="{{ path('oauth_qq') }}" class="btn btn-qq"><span class="icon icon-tengxunweibo"></span> QQ帐号</a>
+        </div>
+
+    </div>
+
+    <hr/>
+
+    <p class="text-muted">使用电子邮件地址注册</p>
+
+    <div class="col-md-offset-1">
+        {{ form(form, {'action': path('register')}) }}
+    </div>
+{% endblock %}
+
+{% block siebar_sns_login %}
 {% endblock %}

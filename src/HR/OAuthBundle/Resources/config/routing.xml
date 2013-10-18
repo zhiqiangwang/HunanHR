@@ -21,4 +21,6 @@
     </route>
 
     <route id="oauth_weibo" pattern="/auth/weibo" />
+
+    <route id="oauth_qq" pattern="/auth/qq" />
 </routes>

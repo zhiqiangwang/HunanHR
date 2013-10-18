@@ -23,10 +23,10 @@ security:
                 login_path: /login
                 check_path: /login_check
             remember_me:
-                key: %secret%
-                lifetime: 31536000
-                path: /
-                domain: ~
+                key:                %secret%
+                lifetime:           31536000
+                path:               /
+                domain:             "%cookie_domain%"
                 always_remember_me: true
             logout: ~
             anonymous: ~
@@ -34,6 +34,7 @@ security:
             oauth:
                 resource_owners:
                     weibo:         /auth/check-weibo
+                    qq:            /auth/check-qq
                 login_path:        /login
                 failure_path:      /connect/first-step
 

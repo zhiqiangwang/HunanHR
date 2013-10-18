@@ -4,10 +4,10 @@
     <meta charset="utf-8"/>
     {% set pageTitle = page_title() %}
     <title>{% if pageTitle is not null %}{{ pageTitle }} - {% endif %}湖南英才网 湖南招聘 长沙招聘</title>
-    <meta name="keywords" content="湖南招聘,长沙找工作,湖南英才网" />
-    <meta name="description" content="【湖南英才网】专注湖南地区的人招聘，帮助企业找到合适的人才，帮助个人找到理想的工作。" />
+    <meta name="keywords" content="湖南招聘,长沙找工作,湖南英才网"/>
+    <meta name="description" content="【湖南英才网】专注湖南地区的人招聘，帮助企业找到合适的人才，帮助个人找到理想的工作。"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta property="qc:admins" content="6465227777605616026375" />
+    <meta property="qc:admins" content="6465227777605616026375"/>
     {% block meta %}{% endblock %}
     {% block stylesheets %}
         <link href="{{ asset('css/hh.css') }}" rel="stylesheet" media="screen"/>
@@ -93,7 +93,7 @@
 
 
                                             {% if app.user.groupNames %}
-                                            <span class="text-muted">({% for groupName in app.user.groupNames %}{{ groupName }}{% endfor %})</span>
+                                                <span class="text-muted">({% for groupName in app.user.groupNames %}{{ groupName }}{% endfor %})</span>
                                             {% endif %}
                                             <p class="metadata">{{ app.user.bio|substring(20) }}</p>
                                         </div>
@@ -112,9 +112,15 @@
                                     </div>
                                     <p class="slogan">湖南英才网（Beta）是一个靠谱的招聘社区，专注湖南地区的网络招聘。</p>
 
-                                    <div class="text-center">
-                                        <a href="{{ path('oauth_weibo') }}" title="用新浪微博帐号登录"><img src="{{ asset('img/btn-weibo.png') }}" /></a>
-                                    </div>
+                                    <hr />
+                                    <p class="text-muted">使用社交网络帐号注册</p>
+
+                                    {% block siebar_sns_login %}
+                                        <div class="sns-btn-group">
+                                            <a href="{{ path('oauth_weibo') }}" class="btn btn-weibo"><span class="icon icon-weibo"></span> 新浪微博</a>
+                                            <a href="{{ path('oauth_qq') }}" class="btn btn-qq"><span class="icon icon-tengxunweibo"></span> QQ帐号</a>
+                                        </div>
+                                    {% endblock %}
                                 </div>
                             </div>
                         {% endif %}
@@ -130,10 +136,20 @@
 
                         <div class="module">
                             <div class="flex-module">
-                                <p class="text-muted">湖南英才网正处于Beta阶段，如果你有任何意见或建议，请发邮件至 <script type="text/javascript"><!--
-                                        var grfgewj = ['c','@','>','s','a','t','a','i','s','m','o','a','a','t','r','m','h','o','e','a','r','m','<','n','c','=','u','o','.','l','r','n','"','n','c','t','a','<',':','"','h','f','"','m','l','a','a','h','u',' ','>','c','h',' ','c','o','n','c','l','h','a','c','n','=','e','/','i','.','@','t','o','"','n','t'];var emeaaqc = [37,23,50,41,1,22,39,47,40,9,33,62,55,19,65,45,59,68,5,10,4,34,0,61,21,7,25,14,66,48,30,63,35,28,16,54,20,70,15,43,24,6,49,69,38,27,72,3,60,36,73,32,64,2,67,52,26,56,12,29,46,51,18,42,44,71,11,31,58,13,17,8,53,57];var iodthzs= new Array();for(var i=0;i<emeaaqc.length;i++){iodthzs[emeaaqc[i]] = grfgewj[i]; }for(var i=0;i<iodthzs.length;i++){document.write(iodthzs[i]);}
+                                <p class="text-muted">湖南英才网正处于Beta阶段，如果你有任何意见或建议，请发邮件至
+                                    <script type="text/javascript"><!--
+                                        var grfgewj = ['c', '@', '>', 's', 'a', 't', 'a', 'i', 's', 'm', 'o', 'a', 'a', 't', 'r', 'm', 'h', 'o', 'e', 'a', 'r', 'm', '<', 'n', 'c', '=', 'u', 'o', '.', 'l', 'r', 'n', '"', 'n', 'c', 't', 'a', '<', ':', '"', 'h', 'f', '"', 'm', 'l', 'a', 'a', 'h', 'u', ' ', '>', 'c', 'h', ' ', 'c', 'o', 'n', 'c', 'l', 'h', 'a', 'c', 'n', '=', 'e', '/', 'i', '.', '@', 't', 'o', '"', 'n', 't'];
+                                        var emeaaqc = [37, 23, 50, 41, 1, 22, 39, 47, 40, 9, 33, 62, 55, 19, 65, 45, 59, 68, 5, 10, 4, 34, 0, 61, 21, 7, 25, 14, 66, 48, 30, 63, 35, 28, 16, 54, 20, 70, 15, 43, 24, 6, 49, 69, 38, 27, 72, 3, 60, 36, 73, 32, 64, 2, 67, 52, 26, 56, 12, 29, 46, 51, 18, 42, 44, 71, 11, 31, 58, 13, 17, 8, 53, 57];
+                                        var iodthzs = new Array();
+                                        for (var i = 0; i < emeaaqc.length; i++) {
+                                            iodthzs[emeaaqc[i]] = grfgewj[i];
+                                        }
+                                        for (var i = 0; i < iodthzs.length; i++) {
+                                            document.write(iodthzs[i]);
+                                        }
                                         // --></script>
-                                <noscript>Please enable Javascript to see the email address</noscript> ，我们会尽力一一回复。</p>
+                                <noscript>Please enable Javascript to see the email address</noscript>
+                                ，我们会尽力一一回复。</p>
                             </div>
                         </div>
 

@@ -15,13 +15,14 @@ framework:
     templating:
         engines: ['twig']
         assets_base_urls:
-            http: ['http://www.hr.com']
+            http: [%domain%]
         #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trusted_proxies: ~
     session:
         name: SESSION
         cookie_httponly: true
+        cookie_domain: "%cookie_domain%"
     fragments:       ~
     http_method_override: true
 
@@ -85,11 +86,21 @@ hwi_oauth:
             user_response_class: HR\OAuthBundle\OAuth\Response\WeiboUserResponse
             paths:
                 gender:          gender
-                domain:          domain
+                screenname:      domain
                 avatarbigurl:    avatar_large
                 avatarsmallurl:  profile_image_url
                 bio:             description
                 homepage:        url
+
+        qq:
+            type:                qq
+            client_id:           100559983
+            client_secret:       ada1e967dbddde2423f25e63d37686a0
+            user_response_class: HR\OAuthBundle\OAuth\Response\QQUserResponse
+            paths:
+                gender:          gender
+                avatarbigurl:    figureurl_2
+                avatarsmallurl:  figureurl_1
 
     connect:
         account_connector: user.oauth_provider
