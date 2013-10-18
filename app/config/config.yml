@@ -20,9 +20,9 @@ framework:
     default_locale:  "%locale%"
     trusted_proxies: ~
     session:
-        name: SESSION
+        name:            SESSION
         cookie_httponly: true
-        cookie_domain: "%cookie_domain%"
+        cookie_domain:   "%cookie_domain%"
     fragments:       ~
     http_method_override: true
 
