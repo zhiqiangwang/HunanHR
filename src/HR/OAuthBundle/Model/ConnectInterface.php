@@ -47,6 +47,30 @@ interface ConnectInterface
     public function getIdentification();
 
     /**
+     * @param string $accessToken
+     *
+     * @return $this
+     */
+    public function setAccessToken($accessToken);
+
+    /**
+     * @return string
+     */
+    public function getAccessToken();
+
+    /**
+     * @param \Datetime $expiresAt
+     *
+     * @return $this
+     */
+    public function setExpiresAt(\Datetime $expiresAt);
+
+    /**
+     * @return bool
+     */
+    public function isNonExpired();
+
+    /**
      * @param UserInterface $user
      *
      * @return $this

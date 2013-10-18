@@ -23,6 +23,16 @@ abstract class Connect implements ConnectInterface
     protected $identification;
 
     /**
+     * @var string
+     */
+    protected $accessToken;
+
+    /**
+     * @var \Datetime
+     */
+    protected $expiresAt;
+
+    /**
      * @var UserInterface
      */
     protected $user;
@@ -69,6 +79,46 @@ abstract class Connect implements ConnectInterface
     public function getIdentification()
     {
         return $this->identification;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setAccessToken($accessToken)
+    {
+        $this->accessToken = $accessToken;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAccessToken()
+    {
+        return $this->accessToken;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setExpiresAt(\Datetime $expiresAt)
+    {
+        $this->expiresAt = $expiresAt;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isNonExpired()
+    {
+        if (null !== $this->expiresAt && $this->expiresAt->getTimestamp() < time()) {
+            return false;
+        }
+
+        return true;
     }
 
     /**

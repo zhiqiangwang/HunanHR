@@ -33,9 +33,9 @@ security:
 
             oauth:
                 resource_owners:
-                    weibo:         /login/check-weibo
+                    weibo:         /auth/check-weibo
                 login_path:        /login
-                failure_path:      /connect/check
+                failure_path:      /connect/first-step
 
                 oauth_user_provider:
                     service:       user.oauth_provider

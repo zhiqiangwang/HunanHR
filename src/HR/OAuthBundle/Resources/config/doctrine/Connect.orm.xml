@@ -11,6 +11,8 @@
         </id>
         <field name="provider" type="string" column="provider" length="10" />
         <field name="identification" type="string" column="identification" length="50" />
+        <field name="accessToken" type="string" column="access_token" length="100" />
+        <field name="expiresAt" type="datetime" column="expires_at" nullable="true" />
 
         <many-to-one target-entity="HR\UserBundle\Entity\User" field="user" inversed-by="connects" />
     </entity>

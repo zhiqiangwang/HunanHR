@@ -40,9 +40,8 @@ class OAuthUserProvider extends UserProvider implements AccountConnectorInterfac
         $username          = $response->getUsername();
         $resourceOwnerName = $response->getResourceOwner()->getName();
 
-        $connect = $this->connectManager->createConnect($user);
-        $connect->setProvider($resourceOwnerName);
-        $connect->setIdentification($username);
+        $expiresAt = new \Datetime();
+        $expiresAt->setTimestamp(time() + $response->getExpiresIn());
 
         $previousConnect = $this->connectManager->findConnectBy(array(
             'provider'       => $resourceOwnerName,
@@ -50,11 +49,20 @@ class OAuthUserProvider extends UserProvider implements AccountConnectorInterfac
         ));
 
         if (null !== $previousConnect) {
-            $this->connectManager->deleteConnect($previousConnect);
-        }
+            $previousConnect->setAccessToken($response->getAccessToken());
+            $previousConnect->setExpiresAt($expiresAt);
 
-        $this->userManager->updateUser($user);
-        $this->connectManager->updateConnect($connect);
+            $this->connectManager->updateConnect($previousConnect);
+        } else {
+            $connect = $this->connectManager->createConnect($user);
+            $connect->setProvider($resourceOwnerName);
+            $connect->setIdentification($username);
+            $connect->setAccessToken($response->getAccessToken());
+            $connect->setExpiresAt($expiresAt);
+
+            $this->userManager->updateUser($user);
+            $this->connectManager->updateConnect($connect);
+        }
     }
 
     /**

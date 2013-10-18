@@ -4,7 +4,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="hwi_oauth_service_redirect" pattern="/login/{service}">
+    <route id="hwi_oauth_service_redirect" pattern="/auth/{service}">
         <default key="_controller">HROAuthBundle:Connect:redirectToService</default>
     </route>
 
@@ -12,7 +12,7 @@
         <default key="_controller">HROAuthBundle:Connect:connectService</default>
     </route>
 
-    <route id="oauth_connect_check" pattern="/connect/check">
+    <route id="oauth_connect_check" pattern="/connect/first-step">
         <default key="_controller">HROAuthBundle:Connect:check</default>
     </route>
 
@@ -20,5 +20,5 @@
         <default key="_controller">HROAuthBundle:Connect:registration</default>
     </route>
 
-    <route id="oauth_weibo" pattern="/login/weibo" />
+    <route id="oauth_weibo" pattern="/auth/weibo" />
 </routes>
