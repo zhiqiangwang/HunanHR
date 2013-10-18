@@ -1,6 +1,7 @@
 <?php
 namespace HR\OAuthBundle\Controller;
 
+use Detection\MobileDetect;
 use HR\UserBundle\Event\FilterUserResponseEvent;
 use HR\UserBundle\Event\UserEvent;
 use HR\UserBundle\UserEvents;
@@ -9,15 +10,35 @@ use HWI\Bundle\OAuthBundle\Security\Core\Exception\AccountNotLinkedException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+/**
+ * @author Wenming Tang <tang@babyfamily.com>
+ */
 class ConnectController extends BaseConnectController
 {
     public function connectServiceAction(Request $request, $service)
     {
         return new RedirectResponse($this->generate('home'));
+    }
+
+    /**
+     * Redirect to auth
+     */
+    public function redirectToServiceAction(Request $request, $service)
+    {
+        $param = $this->container->getParameter('hwi_oauth.target_path_parameter');
+
+        $mobileDetect = new MobileDetect();
+        $display      = $mobileDetect->isMobile() ? 'mobile' : 'default';
+
+        if (!empty($param) && $request->hasSession() && $targetUrl = $request->get($param, null, true)) {
+            $providerKey = $this->container->getParameter('hwi_oauth.firewall_name');
+            $request->getSession()->set('_security.' . $providerKey . '.target_path', $targetUrl);
+        }
+
+        return new RedirectResponse($this->container->get('hwi_oauth.security.oauth_utils')->getAuthorizationUrl($request, $service, null, array('display' => $display)));
     }
 
     /**
@@ -42,7 +63,7 @@ class ConnectController extends BaseConnectController
         }
 
         if ($error instanceof AuthenticationException) {
-            $this->container->get('session')->getFlashBag()->add('success', '很抱歉，服务暂时不可用');
+            $this->container->get('session')->getFlashBag()->add('error', '很抱歉，服务暂不可用，请稍后重试');
         }
 
         return new RedirectResponse($this->generate('login'));
@@ -55,7 +76,7 @@ class ConnectController extends BaseConnectController
      */
     public function registrationAction(Request $request, $key = null)
     {
-        $this->container->get('breadcrumb')->add('注册');
+        $this->container->get('breadcrumb')->add('完成注册');
 
         $connect = $this->container->getParameter('hwi_oauth.connect');
         if (!$connect) {

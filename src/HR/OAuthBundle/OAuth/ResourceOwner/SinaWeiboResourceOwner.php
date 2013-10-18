@@ -12,16 +12,12 @@ class SinaWeiboResourceOwner extends BaseSinaWeiboResourceOwner
     public function getUserInformation(array $accessToken = null, array $extraParameters = array())
     {
         $userResponse = parent::getUserInformation($accessToken, $extraParameters);
+        $response     = $userResponse->getResponse();
 
-        $this->validateResponseContent($userResponse->getResponse());
-
-        return $userResponse;
-    }
-
-    protected function validateResponseContent($response)
-    {
         if (isset($response['error'])) {
             throw new AuthenticationException(sprintf('OAuth error: "%s"', $response['error']));
         }
+
+        return $userResponse;
     }
 }

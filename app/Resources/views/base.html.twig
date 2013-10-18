@@ -164,11 +164,17 @@
 {% block footer %}
 {% endblock %}
 
-{% if app.session.flashbag.has('success') %}
+{% if app.session.flashbag.has('success') or app.session.flashbag.has('error') %}
     <div class="alert-messages">
         {% for flashMessage in app.session.flashbag.get('success') %}
             <div class="alert alert-success">
                 <span class="glyphicon glyphicon-ok"></span> {{ flashMessage }}
+            </div>
+        {% endfor %}
+
+        {% for flashMessage in app.session.flashbag.get('error') %}
+            <div class="alert alert-warning">
+                <span class="glyphicon glyphicon-warning-sign"></span> {{ flashMessage }}
             </div>
         {% endfor %}
     </div>

@@ -1,13 +1,6 @@
 oauth:
     resource: "@HROAuthBundle/Resources/config/routing.xml"
-    prefix:   /connect
-
-hwi_oauth_redirect:
-    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
-    prefix:   /login
-
-oauth_weibo:
-    pattern: /login/weibo
+    prefix:   /
 
 notification:
     resource: "@HRNotificationBundle/Resources/config/routing.xml"
