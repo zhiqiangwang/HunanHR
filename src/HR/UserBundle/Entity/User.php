@@ -22,7 +22,7 @@ class User extends BaseUser
     {
         $degrees = Education::getDegrees();
 
-        return $degrees[$this->degree];
+        return $degrees[$this->degree ? : 5];
     }
 
     public static function getGenders()
