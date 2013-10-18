@@ -40,9 +40,6 @@ class OAuthUserProvider extends UserProvider implements AccountConnectorInterfac
         $username          = $response->getUsername();
         $resourceOwnerName = $response->getResourceOwner()->getName();
 
-        $expiresAt = new \Datetime();
-        $expiresAt->setTimestamp(time() + $response->getExpiresIn());
-
         $previousConnect = $this->connectManager->findConnectBy(array(
             'provider'       => $resourceOwnerName,
             'identification' => $username
@@ -50,7 +47,7 @@ class OAuthUserProvider extends UserProvider implements AccountConnectorInterfac
 
         if (null !== $previousConnect) {
             $previousConnect->setAccessToken($response->getAccessToken());
-            $previousConnect->setExpiresAt($expiresAt);
+            $previousConnect->setExpiresAt($this->getExpiresAt($response));
 
             $this->connectManager->updateConnect($previousConnect);
         } else {
@@ -58,7 +55,7 @@ class OAuthUserProvider extends UserProvider implements AccountConnectorInterfac
             $connect->setProvider($resourceOwnerName);
             $connect->setIdentification($username);
             $connect->setAccessToken($response->getAccessToken());
-            $connect->setExpiresAt($expiresAt);
+            $connect->setExpiresAt($this->getExpiresAt($response));
 
             $this->userManager->updateUser($user);
             $this->connectManager->updateConnect($connect);
@@ -82,8 +79,19 @@ class OAuthUserProvider extends UserProvider implements AccountConnectorInterfac
             throw new AccountNotLinkedException(sprintf("User '%s' not found.", $username));
         }
 
-        // $this->connectManager->updateConnect($connect);
+        $connect->setAccessToken($response->getAccessToken());
+        $connect->setExpiresAt($this->getExpiresAt($response));
+
+        $this->connectManager->updateConnect($connect);
 
         return $connect->getUser();
+    }
+
+    protected function getExpiresAt(UserResponseInterface $response)
+    {
+        $expiresAt = new \Datetime();
+        $expiresAt->setTimestamp(time() + $response->getExpiresIn());
+
+        return $expiresAt;
     }
 }
