@@ -77,13 +77,6 @@
 
 {% endblock %}
 
-{% block meta %}
-    <meta property="og:type" content="webpage"/>
-    <meta property="og:url" content="{{ url('job_show', {'jobId': job.id}) }}"/>
-    <meta property="og:title" content="【招聘】{{ job.companyName ~ ': '~ job.position }}"/>
-    <meta property="og:description" content="xsss"/>
-{% endblock %}
-
 {% block javascripts %}
     {{ parent() }}
     <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
