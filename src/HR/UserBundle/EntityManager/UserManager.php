@@ -65,6 +65,14 @@ class UserManager extends BaseUserManager
     /**
      * {@inheritdoc}
      */
+    public function isNewUser(UserInterface $user)
+    {
+        return !$this->em->getUnitOfWork()->isInIdentityMap($user);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getClass()
     {
         return $this->class;

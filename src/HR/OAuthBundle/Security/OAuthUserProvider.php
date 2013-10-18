@@ -57,7 +57,10 @@ class OAuthUserProvider extends UserProvider implements AccountConnectorInterfac
             $connect->setAccessToken($response->getAccessToken());
             $connect->setExpiresAt($this->getExpiresAt($response));
 
-            $this->userManager->updateUser($user);
+            if ($this->userManager->isNewUser($user)) {
+                $this->userManager->updateUser($user);
+            }
+
             $this->connectManager->updateConnect($connect);
         }
     }

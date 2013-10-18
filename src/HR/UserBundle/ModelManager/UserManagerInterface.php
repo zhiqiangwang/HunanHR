@@ -76,6 +76,13 @@ interface UserManagerInterface
     public function updatePassword(UserInterface $user);
 
     /**
+     * @param UserInterface $user
+     *
+     * @return bool
+     */
+    public function isNewUser(UserInterface $user);
+
+    /**
      * @return string
      */
     public function getClass();
