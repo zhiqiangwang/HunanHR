@@ -1,5 +1,8 @@
 {% extends '::base.html.twig' %}
 
+{% set description = job.companyName ~ '招聘' ~ job.position ~ '，工作地点：' ~ job.location %}
+
+
 {% block content %}
     <div class="module">
         <div class="flex-module view">
