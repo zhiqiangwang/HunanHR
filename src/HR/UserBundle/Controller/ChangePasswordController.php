@@ -6,16 +6,12 @@ use HR\UserBundle\UserEvents;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
  * @author Wenming Tang <tang@babyfamily.com>
  */
 class ChangePasswordController extends Controller
 {
-    /**
-     * @Template()
-     */
     public function editAction(Request $request)
     {
         if (null == $user = $this->getUser()) {
@@ -49,8 +45,8 @@ class ChangePasswordController extends Controller
             return $response;
         }
 
-        return array(
+        return $this->render('HRUserBundle:ChangePassword:edit.html.twig', array(
             'form' => $form->createView()
-        );
+        ));
     }
 }

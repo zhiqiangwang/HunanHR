@@ -1,35 +1,26 @@
 oauth:
     resource: "@HROAuthBundle/Resources/config/routing.xml"
-    prefix:   /
 
 notification:
     resource: "@HRNotificationBundle/Resources/config/routing.xml"
-    prefix:   /
 
 page:
     resource: "@HRPageBundle/Resources/config/routing.xml"
-    prefix:   /
 
 location:
     resource: "@HRLocationBundle/Resources/config/routing.xml"
-    prefix:   /
-
-job:
-    resource: "@HRJobBundle/Resources/config/routing.xml"
-    prefix:   /
-
-skill:
-    resource: "@HRSkillBundle/Resources/config/routing.xml"
-    prefix:   /
-
-education:
-    resource: "@HREducationBundle/Resources/config/routing.xml"
-    prefix:   /
 
 position:
     resource: "@HRPositionBundle/Resources/config/routing.xml"
-    prefix:   /
+
+skill:
+    resource: "@HRSkillBundle/Resources/config/routing.xml"
+
+education:
+    resource: "@HREducationBundle/Resources/config/routing.xml"
+
+career:
+    resource: "@HRCareerBundle/Resources/config/routing.xml"
 
 user:
     resource: "@HRUserBundle/Resources/config/routing.xml"
-    prefix:   /

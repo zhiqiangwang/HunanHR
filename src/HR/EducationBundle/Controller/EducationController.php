@@ -5,16 +5,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
 /**
  * @author Wenming Tang <tang@babyfamily.com>
  */
 class EducationController extends Controller
 {
-    /**
-     * @Template()
-     */
     public function indexAction(Request $request)
     {
         if (null == $user = $this->getUser()) {
@@ -44,15 +39,12 @@ class EducationController extends Controller
             return $this->redirect($this->generateUrl('education_list'));
         }
 
-        return array(
+        return $this->render('HREducationBundle:Education:index.html.twig', array(
             'educations' => $educations,
             'form'       => $form->createView()
-        );
+        ));
     }
 
-    /**
-     * @Template()
-     */
     public function editAction(Request $request, $educationId)
     {
         if (null == $user = $this->getUser()) {
@@ -83,10 +75,10 @@ class EducationController extends Controller
             return $this->redirect($this->generateUrl('education_list'));
         }
 
-        return array(
-            'form'     => $form->createView(),
+        return $this->render('HREducationBundle:Education:edit.html.twig', array(
+            'form'      => $form->createView(),
             'education' => $education
-        );
+        ));
     }
 
     public function deleteAction($educationId)

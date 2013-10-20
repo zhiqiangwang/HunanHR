@@ -6,5 +6,5 @@ namespace HR\UserBundle\Util;
  */
 interface TokenGeneratorInterface
 {
-	public function generateToken();
+    public function generateToken();
 }

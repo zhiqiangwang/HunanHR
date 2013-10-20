@@ -1,25 +1,72 @@
 <?php
 namespace HR\PositionBundle\Model;
 
+use HR\LocationBundle\Entity\City;
 use HR\UserBundle\Model\UserInterface;
+
 /**
  * @author Wenming Tang <tang@babyfamily.com>
  */
 interface PositionInterface
 {
     /**
-     * @return int
+     * Get id
+     *
+     * @return integer
      */
     public function getId();
 
     /**
-     * @param string $title
+     * Set position
+     *
+     * @param string $position
+     *
+     * @return $this
+     */
+    public function setPosition($position);
+
+    /**
+     * Get position
      *
      * @return string
      */
-    public function setTitle($title);
+    public function getPosition();
 
     /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return $this
+     */
+    public function setDescription($description);
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription();
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     *
+     * @return $this
+     */
+    public function setType($type);
+
+    /**
+     * Get type
+     *
+     * @return integer
+     */
+    public function getType();
+
+    /**
+     * Set companyName
+     *
      * @param string $companyName
      *
      * @return $this
@@ -27,45 +74,115 @@ interface PositionInterface
     public function setCompanyName($companyName);
 
     /**
+     * Get companyName
+     *
      * @return string
      */
     public function getCompanyName();
 
     /**
-     * @param int $startDate
+     * Set companyDescription
+     *
+     * @param string $companyDescription
      *
      * @return $this
      */
-    public function setStartDate($startDate);
+    public function setCompanyDescription($companyDescription);
 
     /**
-     * @return int
+     * Get companyDescription
+     *
+     * @return string
      */
-    public function getStartDate();
+    public function getCompanyDescription();
 
     /**
-     * @param int $endDate
+     * Set contactEmail
+     *
+     * @param string $contactEmail
      *
      * @return $this
      */
-    public function setEndDate($endDate);
+    public function setContactEmail($contactEmail);
 
     /**
-     * @return int
+     * Get contactEmail
+     *
+     * @return string
      */
-    public function getEndDate();
+    public function getContactEmail();
 
     /**
-     * @param string $summary
+     * @param City $city
      *
      * @return $this
      */
-    public function setSummary($summary);
+    public function setCity(City $city);
+
+    /**
+     * @return City
+     */
+    public function getCity();
+
+    /**
+     * @param $location
+     *
+     * @return $this
+     */
+    public function setLocation($location);
 
     /**
      * @return string
      */
-    public function getSummary();
+    public function getLocation();
+
+    /**
+     * @param $by
+     *
+     * @return $this
+     */
+    public function incrementNumViews($by);
+
+    /**
+     * @return integer
+     */
+    public function getNumViews();
+
+    /**
+     * @param $by
+     *
+     * @return $this
+     */
+    public function incrementNumApplications($by);
+
+    /**
+     * @return integer
+     */
+    public function getNumApplications();
+
+    /**
+     * @param bool $boolean
+     *
+     * @return $this
+     */
+    public function setIsDeleted($boolean);
+
+    /**
+     * @return bool
+     */
+    public function isDeleted();
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt();
+
+    /**
+     * @return \Datetime
+     */
+    public function getUpdatedAt();
 
     /**
      * @param UserInterface $user
@@ -78,9 +195,4 @@ interface PositionInterface
      * @return UserInterface
      */
     public function getUser();
-
-    /**
-     * @return \Datetime
-     */
-    public function getCreatedAt();
 }

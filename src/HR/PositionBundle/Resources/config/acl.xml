@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="position.acl" class="HR\PositionBundle\Acl\PositionAcl">
+            <argument type="service" id="security.context" />
+            <argument type="service" id="security.acl.object_identity_retrieval_strategy" />
+            <argument type="service" id="security.acl.provider" />
+            <argument>%position.entity.class%</argument>
+        </service>
+
+        <service id="position.manager.acl" class="HR\PositionBundle\Acl\AclPositionManager">
+            <argument type="service" id="position.manager.default" />
+            <argument type="service" id="position.acl" />
+        </service>
+
+        <service id="twig.extension.acl" class="HR\PositionBundle\Twig\Extension\PositionAclExtension">
+            <argument type="service" id="position.acl" />
+            <tag name="twig.extension" />
+        </service>
+    </services>
+
+</container>

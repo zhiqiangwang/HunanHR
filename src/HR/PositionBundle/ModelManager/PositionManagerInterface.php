@@ -9,43 +9,23 @@ use HR\UserBundle\Model\UserInterface;
  */
 interface PositionManagerInterface
 {
-    /**
-     * @param UserInterface $user
-     *
-     * @return PositionInterface
-     */
     public function createPosition(UserInterface $user);
 
-    /**
-     * @param PositionInterface $position
-     *
-     * @return void
-     */
+    public function findPositionsPagerByUser(UserInterface $user, $page = 1);
+
+    public function findPositionsPagerByLatest($page = 1);
+
+    public function findPositionById($id);
+
+    public function findPositionByIds(array $idSet);
+
+    public function findAllPositions();
+
     public function updatePosition(PositionInterface $position);
 
-    /**
-     * @param UserInterface $user
-     *
-     * @return PositionInterface
-     */
-    public function findPositionsByUser(UserInterface $user);
+    public function softDeletePosition(PositionInterface $position);
 
-    /**
-     * @param int $positionId
-     *
-     * @return PositionInterface
-     */
-    public function findPositionById($positionId);
+    public function isNewPosition(PositionInterface $position);
 
-    /**
-     * @param PositionInterface $position
-     *
-     * @return void
-     */
-    public function deletePosition(PositionInterface $position);
-
-    /**
-     * @return string
-     */
     public function getClass();
 }

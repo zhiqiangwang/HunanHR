@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<routes xmlns="http://symfony.com/schema/routing"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+<routes xmlns="http://symfony.com/schema/routing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="education_list" pattern="/settings/education">
+    <route id="education_list" pattern="/setting/education">
         <default key="_controller">HREducationBundle:Education:index</default>
     </route>
 
-    <route id="education_edit" pattern="/settings/education/edit/{educationId}">
+    <route id="education_edit" pattern="/setting/education/edit/{educationId}">
         <default key="_controller">HREducationBundle:Education:edit</default>
         <requirement key="educationId">\d+</requirement>
     </route>
 
-    <route id="education_delete" pattern="/settings/education/delete/{educationId}">
+    <route id="education_delete" pattern="/setting/education/delete/{educationId}">
         <default key="_controller">HREducationBundle:Education:delete</default>
         <requirement key="educationId">\d+</requirement>
     </route>

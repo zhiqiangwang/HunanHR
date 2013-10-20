@@ -1,6 +1,7 @@
 <?php
 namespace HR\PositionBundle\Model;
 
+use HR\LocationBundle\Entity\City;
 use HR\UserBundle\Model\UserInterface;
 
 /**
@@ -8,25 +9,88 @@ use HR\UserBundle\Model\UserInterface;
  */
 class Position implements PositionInterface
 {
+    /**
+     * @var integer
+     *
+     */
     protected $id;
 
-    protected $title;
+    /**
+     * @var string
+     */
+    protected $position;
 
+    /**
+     * @var string
+     */
+    protected $description;
+
+    /**
+     * @var integer
+     */
+    protected $type;
+
+    /**
+     * @var string
+     */
     protected $companyName;
 
-    protected $startDate;
+    /**
+     * @var string
+     */
+    protected $companyDescription;
 
-    protected $endDate;
+    /**
+     * @var City
+     */
+    protected $city;
 
-    protected $summary;
+    /**
+     * @var string
+     */
+    protected $location;
 
-    protected $user;
+    /**
+     * @var string
+     */
+    protected $contactEmail;
 
+    /**
+     * @var integer
+     */
+    protected $numViews;
+
+    /**
+     * @var integer
+     */
+    protected $numApplications;
+
+    /**
+     * @var bool
+     */
+    protected $isDeleted;
+
+    /**
+     * @var \DateTime
+     */
     protected $createdAt;
+
+    /**
+     * @var \DateTime
+     */
+    protected $updatedAt;
+
+    /**
+     * @var UserInterface
+     */
+    protected $user;
 
     public function __construct()
     {
-        $this->createdAt = new \Datetime();
+        $this->createdAt       = new \Datetime();
+        $this->isDeleted       = false;
+        $this->numViews        = 0;
+        $this->numApplications = 0;
     }
 
     /**
@@ -40,9 +104,9 @@ class Position implements PositionInterface
     /**
      * {@inheritdoc}
      */
-    public function setTitle($title)
+    public function setPosition($position)
     {
-        $this->title = $title;
+        $this->position = $position;
 
         return $this;
     }
@@ -50,9 +114,45 @@ class Position implements PositionInterface
     /**
      * {@inheritdoc}
      */
-    public function getTitle()
+    public function getPosition()
     {
-        return $this->title;
+        return $this->position;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**
@@ -76,9 +176,9 @@ class Position implements PositionInterface
     /**
      * {@inheritdoc}
      */
-    public function setStartDate($startDate)
+    public function setCompanyDescription($companyDescription)
     {
-        $this->startDate = $startDate;
+        $this->companyDescription = $companyDescription;
 
         return $this;
     }
@@ -86,17 +186,33 @@ class Position implements PositionInterface
     /**
      * {@inheritdoc}
      */
-    public function getStartDate()
+    public function getCompanyDescription()
     {
-        return $this->startDate;
+        return $this->companyDescription;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setEndDate($endDate)
+    public function setCity(City $city)
     {
-        $this->endDate = $endDate;
+        $this->city = $city;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
 
         return $this;
     }
@@ -104,17 +220,17 @@ class Position implements PositionInterface
     /**
      * {@inheritdoc}
      */
-    public function getEndDate()
+    public function getLocation()
     {
-        return $this->endDate;
+        return $this->location;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setSummary($summary)
+    public function setContactEmail($contactEmail)
     {
-        $this->summary = $summary;
+        $this->contactEmail = $contactEmail;
 
         return $this;
     }
@@ -122,9 +238,63 @@ class Position implements PositionInterface
     /**
      * {@inheritdoc}
      */
-    public function getSummary()
+    public function getContactEmail()
     {
-        return $this->summary;
+        return $this->contactEmail;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function incrementNumViews($by)
+    {
+        $this->numViews += intval($by);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getNumViews()
+    {
+        return $this->numViews;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function incrementNumApplications($by)
+    {
+        $this->numApplications += intval($by);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getNumApplications()
+    {
+        return $this->numApplications;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setIsDeleted($isDeleted)
+    {
+        $this->isDeleted = $isDeleted;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isDeleted()
+    {
+        return $this->isDeleted;
     }
 
     /**
@@ -151,5 +321,13 @@ class Position implements PositionInterface
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }

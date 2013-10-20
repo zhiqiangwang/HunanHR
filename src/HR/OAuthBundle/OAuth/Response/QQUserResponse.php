@@ -10,7 +10,7 @@ class QQUserResponse extends PathUserResponse
 {
     public function getGender()
     {
-        return $this->getValueForPath('gender') == '男' ? 'male': 'female';
+        return $this->getValueForPath('gender') == '男' ? 'male' : 'female';
     }
 
     public function getScreenName()

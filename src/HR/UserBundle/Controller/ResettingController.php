@@ -6,21 +6,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
 /**
  * @author Wenming Tang <tang@babyfamily.com>
  */
 class ResettingController extends Controller
 {
-    /**
-     * @Template()
-     */
     public function requestAction()
     {
         $this->get('breadcrumb')->add('找回密码');
 
-        return array();
+        return $this->render('HRUserBundle:Resetting:request.html.twig');
     }
 
     public function sendEmailAction(Request $request)
@@ -54,9 +49,6 @@ class ResettingController extends Controller
         return $this->redirect($this->generateUrl('user_resetting_check_email'));
     }
 
-    /**
-     * @Template()
-     */
     public function checkEmailAction()
     {
         $this->get('breadcrumb')->add('找回密码');
@@ -70,12 +62,9 @@ class ResettingController extends Controller
             return $this->redirect($this->generateUrl('user_resetting_request'));
         }
 
-        return array('email' => $email);
+        return $this->render('HRUserBundle:Resetting:checkEmail.html.twig', array('email' => $email));
     }
 
-    /**
-     * @Template()
-     */
     public function resetAction(Request $request, $token)
     {
         /** @var \Symfony\Component\Form\FormInterface $form */
@@ -106,10 +95,10 @@ class ResettingController extends Controller
             return $this->redirect($this->generateUrl('login'));
         }
 
-        return array(
+        return $this->render('HRUserBundle:Resetting:reset.html.twig', array(
             'token' => $token,
             'form'  => $form->createView()
-        );
+        ));
     }
 
     private function getObfuscatedEmail(UserInterface $user)

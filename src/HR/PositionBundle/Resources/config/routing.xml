@@ -1,20 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<routes xmlns="http://symfony.com/schema/routing"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+<routes xmlns="http://symfony.com/schema/routing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="position_list" pattern="/settings/position">
-        <default key="_controller">HRPositionBundle:Position:index</default>
+    <route id="position_new" pattern="/job/new">
+        <default key="_controller">HRPositionBundle:Position:new</default>
     </route>
 
-    <route id="position_edit" pattern="/settings/position/edit/{positionId}">
+    <route id="position_show" pattern="/job/{positionId}">
+        <default key="_controller">HRPositionBundle:Position:show</default>
+        <requirement key="positionId">\d+</requirement>
+    </route>
+
+    <route id="position_edit" pattern="/job/{positionId}/edit">
         <default key="_controller">HRPositionBundle:Position:edit</default>
         <requirement key="positionId">\d+</requirement>
     </route>
 
-    <route id="position_delete" pattern="/settings/position/delete/{positionId}">
+    <route id="position_search" pattern="/search">
+        <default key="_controller">HRPositionBundle:Search:query</default>
+    </route>
+
+    <route id="position_delete" pattern="/job/{positionId}/delete">
         <default key="_controller">HRPositionBundle:Position:delete</default>
         <requirement key="positionId">\d+</requirement>
+    </route>
+
+    <route id="application_new" pattern="/job/{positionId}/application">
+        <default key="_controller">HRPositionBundle:Application:new</default>
+        <requirement key="positionId">\d+</requirement>
+    </route>
+
+    <route id="application_sent" pattern="/application/sent">
+        <default key="_controller">HRPositionBundle:Application:sent</default>
+    </route>
+
+    <route id="application_received" pattern="/application/received">
+        <default key="_controller">HRPositionBundle:Application:received</default>
     </route>
 </routes>

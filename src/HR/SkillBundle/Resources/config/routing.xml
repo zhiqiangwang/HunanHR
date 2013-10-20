@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<routes xmlns="http://symfony.com/schema/routing"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+<routes xmlns="http://symfony.com/schema/routing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="skill_list" pattern="/settings/skill">
+    <route id="skill_list" pattern="/setting/skill">
         <default key="_controller">HRSkillBundle:Skill:index</default>
     </route>
 
-    <route id="skill_edit" pattern="/settings/skill/edit/{skillId}">
+    <route id="skill_edit" pattern="/setting/skill/edit/{skillId}">
         <default key="_controller">HRSkillBundle:Skill:edit</default>
         <requirement key="skillId">\d+</requirement>
     </route>
 
-    <route id="skill_delete" pattern="/settings/skill/delete/{skillId}">
+    <route id="skill_delete" pattern="/setting/skill/delete/{skillId}">
         <default key="_controller">HRSkillBundle:Skill:delete</default>
         <requirement key="skillId">\d+</requirement>
     </route>

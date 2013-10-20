@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
-                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
     <entity name="HR\UserBundle\Entity\User" table="user">
 
         <indexes>
@@ -19,7 +17,7 @@
         <field name="realName" type="string" column="real_name" length="20" nullable="true" />
         <field name="gender" type="string" column="gender" length="6" nullable="true" />
         <field name="birthday" type="date" column="birthday" nullable="true" />
-        <field name="jobTitle" type="text" column="job_title" length="100" nullable="true" />
+        <field name="positionTitle" type="text" column="position_title" length="100" nullable="true" />
         <field name="companyName" type="text" column="company_name" length="200" nullable="true" />
         <field name="degree" type="smallint" column="degree" nullable="true" />
         <field name="phoneNumber" type="string" column="phone_number" length="11" nullable="true" />
@@ -27,7 +25,7 @@
         <field name="bio" type="text" column="bio" nullable="true" />
         <field name="avatarBigUrl" type="string" column="avatar_big_url" length="255" nullable="true" />
         <field name="avatarSmallUrl" type="string" column="avatar_small_url" length="255" nullable="true" />
-        <field name="numJobs" type="integer" column="num_jobs" />
+        <field name="numPositions" type="integer" column="num_positions" />
         <field name="emailConfirmed" column="email_confirmed" type="boolean" />
         <field name="confirmationToken" column="confirmation_token" type="string" nullable="true" />
         <field name="passwordRequestedAt" column="password_requested_at" type="datetime" nullable="true" />
@@ -48,7 +46,7 @@
             </cascade>
         </one-to-many>
 
-        <one-to-many target-entity="HR\PositionBundle\Entity\Position" mapped-by="user" field="positions">
+        <one-to-many target-entity="HR\CareerBundle\Entity\Career" mapped-by="user" field="careers">
             <cascade>
                 <cascade-remove />
             </cascade>
@@ -75,7 +73,7 @@
             </order-by>
         </one-to-many>
 
-        <one-to-many target-entity="HR\JobBundle\Entity\Job" mapped-by="user" field="jobs">
+        <one-to-many target-entity="HR\PositionBundle\Entity\Position" mapped-by="user" field="positions">
             <cascade>
                 <cascade-remove />
             </cascade>

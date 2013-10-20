@@ -37,8 +37,8 @@ class EducationFormType extends AbstractType
                 'label'    => '描述',
                 'required' => false,
                 'attr'     => array(
-                    'rows' => 8,
-                    'cols' => 60,
+                    'rows'        => 8,
+                    'cols'        => 60,
                     'placeholder' => '参加过的活动或获得过的荣誉等'
                 )
             ))
@@ -48,7 +48,7 @@ class EducationFormType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class'        => 'HR\EducationBundle\Entity\Education'
+            'data_class' => 'HR\EducationBundle\Entity\Education'
         ));
     }
 

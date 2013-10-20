@@ -25,38 +25,42 @@
 
 {% block content %}
 
+    {% include 'HRPositionBundle:Search:search-box.html.twig' %}
+
     <div class="module">
         <div class="flex-module">
             <ul class="item-list">
-                {% for job in pager.getResults %}
+                {% for position in pager %}
                     <li class="item">
                         <div class="item-header">
-                            <a href="{{ path('profile_show', {'username': job.user.username}) }}" target="_blank"><img src="{{ asset(job.user.avatarSmallUrl) }}" class="avatar" title="{{ job.user.screenName }}"/></a>
+                            <a href="{{ path('profile_show', {'username': position.user.username}) }}" target="_blank"><img src="{{ asset(position.user.avatarSmallUrl) }}" class="avatar" title="{{ position.user.screenName }}"/></a>
 
                             <div class="meta">
-                                <a href="{{ path('profile_show', {'username': job.user.username}) }}" target="_blank">{{ job.user.screenName }}</a> 在 {{ job.createdAt|date('Y-m-d') }} 发布的职位
+                                <a href="{{ path('profile_show', {'username': position.user.username}) }}" target="_blank">{{ position.user.screenName }}</a> 在 {{ position.createdAt|date('Y-m-d') }} 发布的职位
                             </div>
 
                             <div class="title">
-                                <a href="{{ path('job_show', {'jobId': job.id}) }}" target="_blank">{{ job.position|substring(15) }}</a>
+                                <a href="{{ path('position_show', {'positionId': position.id}) }}" target="_blank">{{ position.position|substring(15) }}</a>
                                 <span class="divider">•</span>
-                                <span class="company">{{ job.companyName|substring(15) }}</span>
-                                <span class="divider">•</span> <span class="region">{{ job.city }}</span>
+                                <span class="company">{{ position.companyName|substring(15) }}</span>
+                                <span class="divider">•</span> <span class="region">{{ position.city }}</span>
                             </div>
 
                         </div>
 
                         <div class="item-body">
-                            <a href="{{ path('job_show', {'jobId': job.id}) }}" target="_blank">
-                                {{ job.description|substring(300)|markup }}
+                            <a href="{{ path('position_show', {'positionId': position.id}) }}" target="_blank">
+                                {{ position.description|substring(300)|markup }}
                             </a>
                         </div>
                     </li>
                 {% endfor %}
             </ul>
 
-            {% if pager.isPaginable %}
-                {{ paginate(pager, 'home') }}
+            {% if pager.haveToPaginate %}
+                <div class="page">
+                    {{ pagerfanta(pager, null, {'routeName': 'home'}) }}
+                </div>
             {% endif %}
 
         </div>

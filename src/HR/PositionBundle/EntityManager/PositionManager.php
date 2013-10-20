@@ -2,11 +2,12 @@
 namespace HR\PositionBundle\EntityManager;
 
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\NoResultException;
 use HR\PositionBundle\Model\PositionInterface;
-use HR\UserBundle\Model\UserInterface;
 use HR\PositionBundle\ModelManager\PositionManager as BasePositionManager;
-
-use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
+use HR\UserBundle\Model\UserInterface;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
 
 /**
  * @author Wenming Tang <tang@babyfamily.com>
@@ -35,51 +36,97 @@ class PositionManager extends BasePositionManager
         $this->class      = $this->em->getClassMetadata($class)->getName();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function findPositionsByUser(UserInterface $user)
+    public function findPositionsPagerByUser(UserInterface $user, $page = 1)
     {
-        $q = $this->repository->createQueryBuilder('p')
-            ->select('p, u')
-            ->join('p.user', 'u')
+        $qb = $this->repository->createQueryBuilder('j')
+            ->select('j, u, c')
+            ->join('j.user', 'u')
+            ->join('j.city', 'c')
             ->where('u.id = :user')
-            ->addOrderBy('p.endDate', 'DESC')
-            ->setParameter('user', $user->getId())
+            ->andWhere('j.isDeleted = false')
+            ->addOrderBy('j.createdAt', 'DESC')
+            ->setParameter('user', $user->getId());
+
+        $pager = new Pagerfanta(new DoctrineORMAdapter($qb));
+        $pager->setCurrentPage($page);
+
+        return $pager;
+    }
+
+    public function findPositionsPagerByLatest($page = 1)
+    {
+        $qb = $this->repository->createQueryBuilder('j')
+            ->select('j, u, c')
+            ->join('j.user', 'u')
+            ->join('j.city', 'c')
+            ->andWhere('j.isDeleted = false')
+            ->addOrderBy('j.createdAt', 'DESC');
+
+        $pager = new Pagerfanta(new DoctrineORMAdapter($qb));
+        $pager->setCurrentPage($page);
+
+        return $pager;
+    }
+
+    public function findPositionByIds(array $idSet)
+    {
+        $qb = $this->repository->createQueryBuilder('j');
+        $qb
+            ->select('j, u, c')
+            ->join('j.user', 'u')
+            ->join('j.city', 'c')
+            ->where($qb->expr()->in('j.id', $idSet))
+            ->andWhere('j.isDeleted = false')
+            ->addOrderBy('j.createdAt', 'DESC');
+
+        return $qb->getQuery()->getResult();
+    }
+
+
+    public function findPositionById($id)
+    {
+        $q = $this->repository->createQueryBuilder('j')
+            ->select('j, u, c')
+            ->join('j.user', 'u')
+            ->join('j.city', 'c')
+            ->where('j.id = :id')
+            ->andWhere('j.isDeleted = false')
+            ->setParameter('id', $id)
             ->getQuery();
 
-        return $q->getResult();
+        try {
+            $position = $q->getSingleResult();
+        } catch (NoResultException $e) {
+            $position = null;
+        }
+
+        return $position;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function findPositionById($positionId)
+    public function findAllPositions()
     {
-        return $this->repository->findOneBy(array('id' => $positionId));
+        return $this->repository->findAll();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function deletePosition(PositionInterface $position)
-    {
-        $this->em->remove($position);
-        $this->em->flush();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function doUpdatePosition(PositionInterface $position)
+    protected function doUpdateEducation($position)
     {
         $this->em->persist($position);
         $this->em->flush();
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    public function softDeletePosition(PositionInterface $position)
+    {
+        $position->setIsDeleted(true);
+
+        $this->em->persist($position);
+        $this->em->flush();
+    }
+
+    public function isNewPosition(PositionInterface $position)
+    {
+        return !$this->em->getUnitOfWork()->isInIdentityMap($position);
+    }
+
     public function getClass()
     {
         return $this->class;

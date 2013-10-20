@@ -25,7 +25,7 @@
         </tr>
         <tr>
             <th>当前职位</th>
-            <td>{{ user.jobTitle|default('*未填写*') }}</td>
+            <td>{{ user.positionTitle|default('*未填写*') }}</td>
         </tr>
         <tr>
             <th>所在公司或机构</th>
@@ -58,24 +58,24 @@
 
     <h5>职业经历</h5>
 
-    {% for position in user.positions %}
+    {% for career in user.careers %}
         <table>
             <tr>
                 <th>公司或机构</th>
-                <td>{{ position.companyName }}</td>
+                <td>{{ career.companyName }}</td>
             </tr>
             <tr>
                 <th>职位或头衔</th>
-                <td>{{ position.title }}</td>
+                <td>{{ career.title }}</td>
             </tr>
             <tr>
                 <th>起止时间</th>
-                <td>{{ position.startDate }} ~ {{ position.endDate }}</td>
+                <td>{{ career.startDate }} ~ {{ career.endDate }}</td>
             </tr>
-            {% if position.summary %}
+            {% if career.summary %}
                 <tr>
                     <th>简介</th>
-                    <td>{{ position.summary }}</td>
+                    <td>{{ career.summary }}</td>
                 </tr>
             {% endif %}
         </table>

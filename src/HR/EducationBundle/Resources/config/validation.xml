@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
-                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
         http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
 
     <class name="HR\EducationBundle\Entity\Education">
@@ -50,6 +48,6 @@
                 <option name="maxMessage">描述长度不能超过 {{ limit }} 个字符</option>
             </constraint>
         </property>
-        <constraint name="HR\PositionBundle\Validator\DateRange" />
+        <constraint name="HR\CareerBundle\Validator\DateRange" />
     </class>
 </constraint-mapping>

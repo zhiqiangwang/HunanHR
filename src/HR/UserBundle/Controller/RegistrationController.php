@@ -7,14 +7,8 @@ use HR\UserBundle\UserEvents;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-
 class RegistrationController extends Controller
 {
-    /**
-     * @Template()
-     */
     public function registerAction(Request $request)
     {
         if (null != $this->getUser()) {
@@ -48,12 +42,12 @@ class RegistrationController extends Controller
             return $response;
         }
 
-        return array(
+        return $this->render('HRUserBundle:Registration:register.html.twig', array(
             'form' => $form->createView()
-        );
+        ));
     }
 
-    public function confirmAction(Request $request, $token)
+    public function confirmAction($token)
     {
         $user = $this->getUserManager()->findUserByConfirmationToken($token);
 

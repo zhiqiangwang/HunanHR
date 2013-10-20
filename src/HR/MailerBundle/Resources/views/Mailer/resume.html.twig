@@ -1,4 +1,4 @@
-{% block subject %}【湖南英才网】{{ delivery.title }}{% endblock %}
+{% block subject %}【湖南英才网】{{ application.title }}{% endblock %}
 
 {% block body %}
     <!DOCTYPE html>
@@ -203,14 +203,14 @@
             </div>
             <div class="body">
                 <div class="user">
-                    <a href="{{ url('profile_show', {'username': delivery.sender.username }) }}" target="_blank"><img src="{{ asset(delivery.sender.avatarBigUrl) }}"/></a>
+                    <a href="{{ url('profile_show', {'username': application.sender.username }) }}" target="_blank"><img src="{{ asset(application.sender.avatarBigUrl) }}"/></a>
 
                     <h2>
-                        <a href="{{ url('profile_show', {'username': delivery.sender.username }) }}" target="_blank" style="color: #666; text-decoration: none">{{ delivery.sender.screenName }}</a>
+                        <a href="{{ url('profile_show', {'username': application.sender.username }) }}" target="_blank" style="color: #666; text-decoration: none">{{ application.sender.screenName }}</a>
                     </h2>
 
-                    {% if delivery.sender.jobTitle and delivery.sender.companyName %}
-                        <p>{{ delivery.sender.jobTitle }}，{{ delivery.sender.companyName }}</p>
+                    {% if application.sender.positionTitle and application.sender.companyName %}
+                        <p>{{ application.sender.positionTitle }}，{{ application.sender.companyName }}</p>
                     {% endif %}
                 </div>
                 <h3>在湖南英才网向您投递了简历</h3>
@@ -218,13 +218,13 @@
                 <div class="quote">
                     <div class="arrow"><img src="{{ asset('img/resume-arrow.png') }}"/></div>
                     <div class="quote-body">
-                        {{ delivery.body }}
+                        {{ application.body }}
                     </div>
                 </div>
 
                 <h4>简历</h4>
 
-                {% include 'HRUserBundle:Resume:profile.html.twig' with {'user': delivery.sender} %}
+                {% include 'HRUserBundle:Resume:profile.html.twig' with {'user': application.sender} %}
 
                 <hr/>
                 <p>湖南地区找工作、找人才，登录湖南英才网：<a href="http://www.hunanhr.com" target="_blank">http://www.hunanhr.com</a></p>

@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="career.form.type" class="HR\CareerBundle\FormType\CareerFormType">
+            <tag name="form.type" />
+        </service>
+
+        <service id="career.form" class="Symfony\Component\Form\FormFactory" factory-service="form.factory" factory-method="create">
+            <argument type="service" id="career.form.type" />
+        </service>
+    </services>
+</container>

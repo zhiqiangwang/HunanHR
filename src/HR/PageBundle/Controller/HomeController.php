@@ -3,24 +3,20 @@ namespace HR\PageBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
  * @author Wenming Tang <tang@babyfamily.com>
  */
 class HomeController extends Controller
 {
-    /**
-     * @Template()
-     */
     public function indexAction(Request $request)
     {
-        /** @var \HR\JobBundle\EntityManager\JobManager $jobManager */
-        $jobManager = $this->get('job.manager.default');
-        $pager      = $jobManager->findJobsPagerByLatest($request->get('page'));
+        /** @var \HR\PositionBundle\EntityManager\PositionManager $positionManager */
+        $positionManager = $this->get('position.manager.default');
+        $pager           = $positionManager->findPositionsPagerByLatest($request->get('page', 1));
 
-        return array(
+        return $this->render('HRPageBundle:Home:index.html.twig', array(
             'pager' => $pager
-        );
+        ));
     }
 }

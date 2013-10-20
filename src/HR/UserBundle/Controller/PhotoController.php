@@ -6,16 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
 /**
  * @author Wenming Tang <tang@babyfamily.com>
  */
 class PhotoController extends Controller
 {
-    /**
-     * @Template()
-     */
     public function uploadAction(Request $request)
     {
         if (null == $user = $this->getUser()) {
@@ -48,8 +43,8 @@ class PhotoController extends Controller
             }
         }
 
-        return array(
+        return $this->render('HRUserBundle:Photo:upload.html.twig', array(
             'form' => $form->createView()
-        );
+        ));
     }
 }

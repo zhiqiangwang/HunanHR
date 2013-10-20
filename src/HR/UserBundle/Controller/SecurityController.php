@@ -2,16 +2,12 @@
 
 namespace HR\UserBundle\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class SecurityController extends Controller
 {
-    /**
-     * @Template()
-     */
     public function loginAction(Request $request)
     {
         if (null != $this->getUser()) {
@@ -32,10 +28,10 @@ class SecurityController extends Controller
             $error = $error->getMessage();
         }
 
-        return array(
+        return $this->render('HRUserBundle:Security:login.html.twig', array(
             'last_username' => $request->getSession()->get(SecurityContext::LAST_USERNAME),
             'error'         => $error,
-        );
+        ));
     }
 
     public function loginCheckAction()

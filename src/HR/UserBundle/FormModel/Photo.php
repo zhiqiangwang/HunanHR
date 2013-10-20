@@ -2,10 +2,10 @@
 namespace HR\UserBundle\FormModel;
 
 use HR\UserBundle\Model\UserInterface;
+use Imagine\Gd\Imagine;
 use Imagine\Image\Box;
 use Imagine\Image\ImageInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Imagine\Gd\Imagine;
 
 /**
  * @author Wenming Tang <tang@babyfamily.com>

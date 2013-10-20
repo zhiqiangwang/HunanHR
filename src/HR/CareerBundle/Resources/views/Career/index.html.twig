@@ -1,0 +1,68 @@
+{% extends 'HRUserBundle::layout.html.twig' %}
+
+{% block user_content %}
+
+    <ul class="nav nav-tabs">
+        <li><a href="{{ path('profile_edit') }}">基本资料</a></li>
+        <li class="active"><a href="{{ path('career_list') }}">职业经历</a></li>
+        <li><a href="{{ path('education_list') }}">教育经历</a></li>
+        <li><a href="{{ path('skill_list') }}">技能信息</a></li>
+    </ul>
+
+    {% if careers|length > 0 %}
+        <table class="table table-bordered">
+            <tr>
+                <th class="text-center">公司或机构</th>
+                <th class="text-center">职位或头衔</th>
+                <th width="120" class="text-center">起止时间</th>
+                <th width="120" class="text-center">-</th>
+            </tr>
+            {% for career in careers %}
+                <tr>
+                    <td class="text-center">{{ career.companyName }}</td>
+                    <td class="text-center">{{ career.title }}</td>
+                    <td class="text-center">{{ career.startDate }} ~ {{ career.endDate }}</td>
+                    <td class="text-center">
+                        <a href="{{ path('career_edit', {'careerId': career.id}) }}">编辑</a>
+                        <a href="{{ path('career_delete', {'careerId': career.id}) }}" onclick="return confirm('确认删除该职业经历？')">删除</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p class="text-muted">您没有设置职业经历</p>
+    {% endif %}
+{% endblock %}
+
+{% block ext_content %}
+
+    {% if careers|length <= 10 %}
+        <div class="module">
+            <div class="flex-module">
+                <div class="module-header">
+                    <h2>添加职业经历</h2>
+                </div>
+
+                {{ form_start(form, {'action': path('career_list'), 'attr': {'class': 'form-horizontal' }}) }}
+
+                {{ form_row(form.companyName) }}
+                {{ form_row(form.title) }}
+
+                <div class="form-group">
+                    <div class="col-sm-2 control-label">
+                        <span class="required">*</span> <label>起止时间</label>
+                    </div>
+                    <div class="col-sm-10 embed">
+                        {{ form_widget(form.startDate) }} 至 {{ form_widget(form.endDate) }}
+                        <div class="has-error">
+                            {{ form_errors(form.startDate) }}
+                            {{ form_errors(form.endDate) }}
+                        </div>
+                    </div>
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

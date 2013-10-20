@@ -4,16 +4,12 @@ namespace HR\SkillBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
  * @author Wenming Tang <tang@babyfamily.com>
  */
 class SkillController extends Controller
 {
-    /**
-     * @Template()
-     */
     public function indexAction(Request $request)
     {
         if (null == $user = $this->getUser()) {
@@ -43,10 +39,10 @@ class SkillController extends Controller
             return $this->redirect($this->generateUrl('skill_list'));
         }
 
-        return array(
+        return $this->render('HRSkillBundle:Skill:index.html.twig', array(
             'skills' => $skills,
             'form'   => $form->createView()
-        );
+        ));
     }
 
     /**
@@ -82,10 +78,10 @@ class SkillController extends Controller
             return $this->redirect($this->generateUrl('skill_list'));
         }
 
-        return array(
+        return $this->render('HRSkillBundle:Skill:edit.html.twig', array(
             'form'  => $form->createView(),
             'skill' => $skill
-        );
+        ));
     }
 
     public function deleteAction($skillId)

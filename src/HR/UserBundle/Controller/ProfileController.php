@@ -8,16 +8,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
 /**
  * @author Wenming Tang <tang@babyfamily.com>
  */
 class ProfileController extends Controller
 {
-    /**
-     * @Template()
-     */
     public function editAction(Request $request)
     {
         if (null == $user = $this->getUser()) {
@@ -60,14 +55,11 @@ class ProfileController extends Controller
             return $response;
         }
 
-        return array(
+        return $this->render('HRUserBundle:Profile:edit.html.twig', array(
             'form' => $form->createView()
-        );
+        ));
     }
 
-    /**
-     * @Template()
-     */
     public function showAction($username)
     {
         $user = $this->getUserManager()->findUserByUsername($username);
@@ -79,22 +71,19 @@ class ProfileController extends Controller
         $this->get('breadcrumb')
             ->add($user->getScreenName(), $this->generateUrl('profile_show', array('username' => $username)));
 
-        $pager = $this->getJobManager()->findJobsPagerByUser($user);
+        $pager = $this->getPositionManager()->findPositionsPagerByUser($user);
 
         if (!$user) {
             throw $this->createNotFoundException();
         }
 
-        return array(
+        return $this->render('HRUserBundle:Profile:show.html.twig', array(
             'user'  => $user,
             'pager' => $pager,
-        );
+        ));
     }
 
-    /**
-     * @Template()
-     */
-    public function jobsAction(Request $request, $username)
+    public function positionsAction(Request $request, $username)
     {
         $user = $this->getUserManager()->findUserByUsername($username);
 
@@ -106,16 +95,16 @@ class ProfileController extends Controller
             ->add($user->getScreenName(), $this->generateUrl('profile_show', array('username' => $username)))
             ->add('全部职位');
 
-        $pager = $this->getJobManager()->findJobsPagerByUser($user, $request->get('page'));
+        $pager = $this->getPositionManager()->findPositionsPagerByUser($user, $request->get('page', 1));
 
         if (!$user) {
             throw $this->createNotFoundException();
         }
 
-        return array(
+        return $this->render('HRUserBundle:Profile:positions.html.twig', array(
             'user'  => $user,
             'pager' => $pager,
-        );
+        ));
     }
 
     public function resendConfirmEmailAction(Request $request)
@@ -149,10 +138,10 @@ class ProfileController extends Controller
     }
 
     /**
-     * @return \HR\JobBundle\EntityManager\JobManager
+     * @return \HR\PositionBundle\EntityManager\PositionManager
      */
-    private function getJobManager()
+    private function getPositionManager()
     {
-        return $this->get('job.manager.default');
+        return $this->get('position.manager.default');
     }
 }

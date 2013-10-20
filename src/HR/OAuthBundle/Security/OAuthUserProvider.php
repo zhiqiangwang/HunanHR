@@ -4,11 +4,11 @@ namespace HR\OAuthBundle\Security;
 use HR\OAuthBundle\ModelManager\ConnectManagerInterface;
 use HR\UserBundle\ModelManager\UserManagerInterface;
 use HR\UserBundle\Security\UserProvider;
-use Symfony\Component\Security\Core\User\UserInterface;
 use HWI\Bundle\OAuthBundle\Connect\AccountConnectorInterface;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\Exception\AccountNotLinkedException;
 use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthAwareUserProviderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @author Wenming Tang <tang@babyfamily.com>

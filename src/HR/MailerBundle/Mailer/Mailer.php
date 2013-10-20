@@ -1,7 +1,7 @@
 <?php
 namespace HR\MailerBundle\Mailer;
 
-use HR\JobBundle\Model\DeliveryInterface;
+use HR\PositionBundle\Model\ApplicationInterface;
 use HR\UserBundle\Model\UserInterface;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -46,14 +46,14 @@ class Mailer implements MailerInterface
         $this->sendMessage($template, $context, $this->parameters['from_email'], $user->getEmail());
     }
 
-    public function sendResumeEmailMessage(DeliveryInterface $delivery)
+    public function sendResumeEmailMessage(ApplicationInterface $application)
     {
         $template = $this->parameters['template']['resume'];
 
         $context = array(
-            'delivery' => $delivery
+            'application' => $application
         );
-        $this->sendMessage($template, $context, $this->parameters['from_email'], $delivery->getJob()->getContactEmail(), 'text/html');
+        $this->sendMessage($template, $context, $this->parameters['from_email'], $application->getPosition()->getContactEmail(), 'text/html');
     }
 
     /**

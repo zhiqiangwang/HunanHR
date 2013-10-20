@@ -16,13 +16,17 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
+            new FOS\ElasticaBundle\FOSElasticaBundle(),
+            new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+
             new HR\UserBundle\HRUserBundle(),
             new HR\BreadcrumbBundle\HRBreadcrumbBundle(),
             new HR\PositionBundle\HRPositionBundle(),
             new HR\EducationBundle\HREducationBundle(),
             new HR\SkillBundle\HRSkillBundle(),
-            new HR\JobBundle\HRJobBundle(),
+            new HR\CareerBundle\HRCareerBundle(),
             new HR\LocationBundle\HRLocationBundle(),
             new HR\PageBundle\HRPageBundle(),
             new HR\MailerBundle\HRMailerBundle(),

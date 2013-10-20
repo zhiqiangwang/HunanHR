@@ -1,7 +1,7 @@
 <?php
 namespace HR\MailerBundle\Mailer;
 
-use HR\JobBundle\Model\DeliveryInterface;
+use HR\PositionBundle\Model\ApplicationInterface;
 use HR\UserBundle\Model\UserInterface;
 
 /**
@@ -28,9 +28,9 @@ interface MailerInterface
     public function sendResettingEmailMessage(UserInterface $user);
 
     /**
-     * @param DeliveryInterface $delivery
+     * @param ApplicationInterface $application
      *
      * @return void
      */
-    public function sendResumeEmailMessage(DeliveryInterface $delivery);
+    public function sendResumeEmailMessage(ApplicationInterface $application);
 }

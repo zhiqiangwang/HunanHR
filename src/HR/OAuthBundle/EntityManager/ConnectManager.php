@@ -2,7 +2,6 @@
 namespace HR\OAuthBundle\EntityManager;
 
 use Doctrine\ORM\EntityManager;
-
 use HR\OAuthBundle\Model\ConnectInterface;
 use HR\OAuthBundle\ModelManager\ConnectManager as BaseConnectManager;
 

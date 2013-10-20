@@ -1,8 +1,8 @@
 <?php
 namespace HR\UserBundle\Model;
 
-use HR\JobBundle\Model\JobInterface;
 use HR\OAuthBundle\Model\ConnectInterface;
+use HR\PositionBundle\Model\PositionInterface;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
@@ -130,16 +130,16 @@ interface UserInterface extends AdvancedUserInterface, \Serializable
     public function getDegreeName();
 
     /**
-     * @param string $jobTitle
+     * @param string $positionTitle
      *
      * @return $this
      */
-    public function setJobTitle($jobTitle);
+    public function setPositionTitle($positionTitle);
 
     /**
      * @return string
      */
-    public function getJobTitle();
+    public function getPositionTitle();
 
     /**
      * @param string $companyName
@@ -218,19 +218,19 @@ interface UserInterface extends AdvancedUserInterface, \Serializable
      *
      * @return $this
      */
-    public function incrementNumJobs($by);
+    public function incrementNumPositions($by);
 
     /**
      * @param int $by
      *
      * @return $this
      */
-    public function subtractNumJobs($by);
+    public function subtractNumPositions($by);
 
     /**
      * @return int
      */
-    public function getNumJobs();
+    public function getNumPositions();
 
     /**
      * @param bool $boolean
@@ -290,9 +290,9 @@ interface UserInterface extends AdvancedUserInterface, \Serializable
     public function getConnects();
 
     /**
-     * @return array of Position
+     * @return CareerInterface[]
      */
-    public function getPositions();
+    public function getCareers();
 
     /**
      * @return array of education
@@ -305,23 +305,23 @@ interface UserInterface extends AdvancedUserInterface, \Serializable
     public function getSkills();
 
     /**
-     * @param JobInterface $job
+     * @param PositionInterface $position
      *
      * @return $this
      */
-    public function addJob(JobInterface $job);
+    public function addPosition(PositionInterface $position);
 
     /**
-     * @param JobInterface $job
+     * @param PositionInterface $position
      *
      * @return void
      */
-    public function removeJob(JobInterface $job);
+    public function removePosition(PositionInterface $position);
 
     /**
      * @return array
      */
-    public function getJobs();
+    public function getPositions();
 
     /**
      * @return boolean

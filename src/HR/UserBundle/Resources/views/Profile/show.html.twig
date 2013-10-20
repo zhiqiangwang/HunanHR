@@ -11,9 +11,10 @@
             <h1>{{ user.screenName }}</h1>
 
             {% if user.bio %}
-            <p class="metadata">{{ user.bio|substring(100) }}</p>
+                <p class="metadata">{{ user.bio|substring(100) }}</p>
             {% endif %}
-            <p class="metadata">发布 {{ user.numJobs }} 个职位</p>
+            <p class="metadata">发布 {{ user.numPositions }} 个职位</p>
+
             <p class="metadata">注册于 {{ user.createdAt|date('Y-m-d') }}</p>
         </div>
     </div>
@@ -26,17 +27,18 @@
                 <h2>{{ user.screenName }}发布的最新职位</h2>
             </div>
 
-            {% if pager.hasResults %}
+            {% if pager|length > 0 %}
                 <ul class="item-list">
-                    {% for job in pager.getResults %}
+                    {% for position in pager %}
                         <li class="item hidden-avatar">
                             <div class="item-header">
-                                <div class="meta">在 {{ job.createdAt|date('Y-m-d') }} 发布的职位</div>
+                                <div class="meta">在 {{ position.createdAt|date('Y-m-d') }} 发布的职位</div>
 
                                 <div class="title">
-                                    <a href="{{ path('job_show', {'jobId': job.id}) }}" target="_blank">{{ job.position }}</a>
-                                    <span class="divider">•</span> <span class="company">{{ job.companyName }}</span>
-                                    <span class="divider">•</span> <span class="region">{{ job.city }}</span>
+                                    <a href="{{ path('position_show', {'positionId': position.id}) }}" target="_blank">{{ position.position }}</a>
+                                    <span class="divider">•</span>
+                                    <span class="company">{{ position.companyName }}</span>
+                                    <span class="divider">•</span> <span class="region">{{ position.city }}</span>
                                 </div>
                             </div>
                         </li>
@@ -46,9 +48,9 @@
                 <p class="text-muted">没有发布任何职位</p>
             {% endif %}
 
-            {% if pager.isPaginable %}
+            {% if pager.haveToPaginate %}
                 <p class="text-right text-muted">
-                    <a href="{{ path('profile_jobs', {'username': user.username}) }}">更多职位 &gt;&gt;</a></p>
+                    <a href="{{ path('profile_positions', {'username': user.username}) }}">更多职位 &gt;&gt;</a></p>
             {% endif %}
         </div>
     </div>

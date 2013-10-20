@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
-                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
         http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
 
     <class name="HR\UserBundle\Entity\User">
@@ -151,7 +149,7 @@
                 </option>
             </constraint>
         </property>
-        <property name="jobTitle">
+        <property name="positionTitle">
             <constraint name="Length">
                 <option name="max">100</option>
                 <option name="maxMessage">职位或头衔长度不能超过{{ limit }}个字符</option>

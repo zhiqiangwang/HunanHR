@@ -104,3 +104,37 @@ hwi_oauth:
 
     connect:
         account_connector: user.oauth_provider
+
+# fos_elastica
+fos_elastica:
+    clients:
+        default:
+            host: localhost
+            port: 9200
+        serializer: ~
+    indexes:
+        website:
+            client: default
+            index_name: position
+            types:
+                position:
+                    mappings:
+                        position: { boost: 5 }
+                        description: ~
+                        companyName: { boost: 5}
+                        companyDescription: ~
+                        location: { boost: 5 }
+                        city: { boost: 5 }
+                    persistence:
+                        driver: orm
+                        model: HR\PositionBundle\Entity\Position
+                        provider: ~
+                        finder: ~
+                        listener:
+                            is_indexable_callback: "isDeleted"
+                        elastica_to_model_transformer:
+                            ignore_missing: true
+
+# white_october_pagerfanta
+white_october_pagerfanta:
+    default_view: twitter_bootstrap3

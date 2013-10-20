@@ -21,7 +21,9 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "imagine/imagine": "dev-master",
         "hwi/oauth-bundle": "dev-master",
-        "mobiledetect/mobiledetectlib": "dev-master"
+        "mobiledetect/mobiledetectlib": "dev-master",
+        "friendsofsymfony/elastica-bundle": "3.0.*@dev",
+        "white-october/pagerfanta-bundle": "1.0.*@dev"
     },
     "scripts": {
         "post-install-cmd": [

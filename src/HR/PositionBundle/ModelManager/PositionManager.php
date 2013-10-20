@@ -1,6 +1,5 @@
 <?php
 namespace HR\PositionBundle\ModelManager;
-
 use HR\PositionBundle\Model\PositionInterface;
 use HR\UserBundle\Model\UserInterface;
 
@@ -16,7 +15,7 @@ abstract class PositionManager implements PositionManagerInterface
     {
         $class = $this->getClass();
 
-        /** @var \HR\PositionBundle\Model\PositionInterface $position */
+        /** @var PositionInterface $position */
         $position = new $class();
         $position->setUser($user);
 
@@ -32,8 +31,8 @@ abstract class PositionManager implements PositionManagerInterface
             throw new \InvalidArgumentException('The position must have a user');
         }
 
-        $this->doUpdatePosition($position);
+        $this->doUpdateEducation($position);
     }
 
-    protected abstract function doUpdatePosition(PositionInterface $position);
+    protected abstract function doUpdateEducation($position);
 }

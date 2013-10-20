@@ -1,18 +1,25 @@
 <?xml version="1.0" ?>
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
         <parameter key="position.entity.class">HR\PositionBundle\Entity\Position</parameter>
-        <parameter key="position.manager.class">HR\PositionBundle\EntityManager\PositionManager</parameter>
+        <parameter key="position.manager.default.class">HR\PositionBundle\EntityManager\PositionManager</parameter>
+
+        <parameter key="application.entity.class">HRPositionBundle:Application</parameter>
+        <parameter key="application.manager.class">HR\PositionBundle\EntityManager\ApplicationManager</parameter>
     </parameters>
 
     <services>
-        <service id="position.manager" class="%position.manager.class%">
+        <service id="position.manager.default" class="%position.manager.default.class%">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument>%position.entity.class%</argument>
         </service>
+
+        <service id="application.manager" class="%application.manager.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument>%application.entity.class%</argument>
+        </service>
     </services>
+
 </container>

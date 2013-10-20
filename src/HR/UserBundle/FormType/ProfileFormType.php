@@ -2,10 +2,10 @@
 namespace HR\UserBundle\FormType;
 
 use HR\EducationBundle\Entity\Education;
+use HR\UserBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use HR\UserBundle\Entity\User;
 
 /**
  * @author Wenming Tang <tang@babyfamily.com>
@@ -48,7 +48,7 @@ class ProfileFormType extends AbstractType
                     'class' => 'embed-element'
                 )
             ))
-            ->add('jobTitle', 'text', array(
+            ->add('positionTitle', 'text', array(
                 'label'    => '当前职位或头衔',
                 'required' => false
             ))

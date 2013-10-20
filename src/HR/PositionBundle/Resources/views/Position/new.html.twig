@@ -1,0 +1,5 @@
+{% extends 'HRUserBundle::layout.html.twig' %}
+
+{% block user_content %}
+    {{ form(form, {'action': path('position_new'), 'attr': {'class': 'form-horizontal' }}) }}
+{% endblock %}

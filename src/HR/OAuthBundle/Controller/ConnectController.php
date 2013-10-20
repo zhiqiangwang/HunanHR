@@ -1,10 +1,10 @@
 <?php
 namespace HR\OAuthBundle\Controller;
 
+use Detection\MobileDetect;
 use HR\UserBundle\Event\FilterUserResponseEvent;
 use HR\UserBundle\Event\UserEvent;
 use HR\UserBundle\UserEvents;
-use Detection\MobileDetect;
 use HWI\Bundle\OAuthBundle\OAuth\ResourceOwnerInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\Exception\AccountNotLinkedException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -12,8 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\SecurityContext;
-
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
  * @author Wenming Tang <tang@babyfamily.com>
@@ -105,8 +103,6 @@ class ConnectController extends Controller
 
     /**
      * With OAuth registration
-     *
-     * @Template()
      */
     public function registrationAction(Request $request, $key = null)
     {
@@ -170,10 +166,10 @@ class ConnectController extends Controller
             return $response;
         }
 
-        return array(
+        return $this->render('HROAuthBundle:Connect:registration.html.twig', array(
             'form'            => $form->createView(),
             'userInformation' => $userInformation
-        );
+        ));
     }
 
     /**

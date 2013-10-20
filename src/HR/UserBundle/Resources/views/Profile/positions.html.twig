@@ -1,0 +1,30 @@
+{% extends 'HRUserBundle::layout.html.twig' %}
+
+{% block user_content %}
+    {% if pager|length > 0 %}
+        <ul class="item-list">
+            {% for position in pager %}
+                <li class="item hidden-avatar">
+                    <div class="item-header">
+                        <div class="meta">在 {{ position.createdAt|date('Y-m-d') }} 发布的职位</div>
+
+                        <div class="title">
+                            <a href="{{ path('position_show', {'positionId': position.id}) }}" target="_blank">{{ position.position }}</a>
+                            <span class="divider">•</span> <span class="company">{{ position.companyName }}</span>
+                            <span class="divider">•</span> <span class="region">{{ position.city }}</span>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-muted">没有发布任何职位</p>
+    {% endif %}
+
+    {% if pager.haveToPaginate %}
+        <div class="page">
+            {{ pagerfanta(pager, null, {'routeName': 'profile_positions', 'routeParams': {'username': user.username }}) }}
+        </div>
+    {% endif %}
+
+{% endblock %}

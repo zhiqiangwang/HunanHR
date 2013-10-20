@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
+        http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="HR\CareerBundle\Entity\Career">
+        <property name="title">
+            <constraint name="NotBlank">
+                <option name="message">职位或头衔不能为空</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="max">100</option>
+                <option name="maxMessage">职位或头衔长度不能超过 {{ limit }} 个字符</option>
+            </constraint>
+        </property>
+        <property name="companyName">
+            <constraint name="NotBlank">
+                <option name="message">公司或机构名称不能为空</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="max">200</option>
+                <option name="maxMessage">公司或机构名称长度不能超过 {{ limit }} 个字符</option>
+            </constraint>
+        </property>
+        <property name="startDate">
+            <constraint name="NotBlank">
+                <option name="message">开始时间不能为空</option>
+            </constraint>
+            <constraint name="Regex">
+                <option name="pattern">/^\d{4}$/</option>
+                <option name="message">开始时间格式不正确</option>
+            </constraint>
+        </property>
+        <property name="endDate">
+            <constraint name="NotBlank">
+                <option name="message">结束时间不能为空</option>
+            </constraint>
+            <constraint name="Regex">
+                <option name="pattern">/^\d{4}$/</option>
+                <option name="message">结束时间格式不正确</option>
+            </constraint>
+        </property>
+        <property name="summary">
+            <constraint name="Length">
+                <option name="max">1000</option>
+                <option name="maxMessage">职位描述长度不能超过 {{ limit }} 个字符</option>
+            </constraint>
+        </property>
+        <constraint name="HR\CareerBundle\Validator\DateRange" />
+    </class>
+</constraint-mapping>

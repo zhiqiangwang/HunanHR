@@ -2,8 +2,8 @@
 namespace HR\UserBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use HR\JobBundle\Model\JobInterface;
 use HR\OAuthBundle\Model\ConnectInterface;
+use HR\PositionBundle\Model\PositionInterface;
 
 /**
  * User Model
@@ -70,7 +70,7 @@ abstract class User implements UserInterface, GroupableInterface
     /**
      * @var string
      */
-    protected $jobTitle;
+    protected $positionTitle;
 
     /**
      * @var string
@@ -105,7 +105,7 @@ abstract class User implements UserInterface, GroupableInterface
     /**
      * @var int
      */
-    protected $numJobs;
+    protected $numPositions;
 
     /**
      * @var boolean
@@ -130,7 +130,7 @@ abstract class User implements UserInterface, GroupableInterface
     /**
      * @var ArrayCollection
      */
-    protected $positions;
+    protected $careers;
 
     /**
      * @var ArrayCollection
@@ -145,7 +145,7 @@ abstract class User implements UserInterface, GroupableInterface
     /**
      * @var ArrayCollection
      */
-    protected $jobs;
+    protected $positions;
 
     /**
      * @var ArrayCollection
@@ -211,14 +211,14 @@ abstract class User implements UserInterface, GroupableInterface
         $this->emailConfirmed     = false;
         $this->roles              = array();
         $this->salt               = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
-        $this->numJobs            = 0;
+        $this->numPositions       = 0;
         $this->createdAt          = new \Datetime();
         $this->groups             = new ArrayCollection();
         $this->connects           = new ArrayCollection();
-        $this->positions          = new ArrayCollection();
+        $this->careers            = new ArrayCollection();
         $this->educations         = new ArrayCollection();
         $this->skills             = new ArrayCollection();
-        $this->jobs               = new ArrayCollection();
+        $this->positions          = new ArrayCollection();
     }
 
     /**
@@ -410,9 +410,9 @@ abstract class User implements UserInterface, GroupableInterface
     /**
      * {@inheritdoc}
      */
-    public function setJobTitle($jobTitle)
+    public function setPositionTitle($positionTitle)
     {
-        $this->jobTitle = $jobTitle;
+        $this->positionTitle = $positionTitle;
 
         return $this;
     }
@@ -420,9 +420,9 @@ abstract class User implements UserInterface, GroupableInterface
     /**
      * {@inheritdoc}
      */
-    public function getJobTitle()
+    public function getPositionTitle()
     {
-        return $this->jobTitle;
+        return $this->positionTitle;
     }
 
     /**
@@ -536,9 +536,9 @@ abstract class User implements UserInterface, GroupableInterface
     /**
      * {@inheritdoc}
      */
-    public function incrementNumJobs($by)
+    public function incrementNumPositions($by)
     {
-        $this->numJobs += intval($by);
+        $this->numPositions += intval($by);
 
         return $this;
     }
@@ -546,10 +546,10 @@ abstract class User implements UserInterface, GroupableInterface
     /**
      * {@inheritdoc}
      */
-    public function subtractNumJobs($by)
+    public function subtractNumPositions($by)
     {
-        if ($this->numJobs > 0) {
-            $this->numJobs -= intval($by);
+        if ($this->numPositions > 0) {
+            $this->numPositions -= intval($by);
         }
 
         return $this;
@@ -558,9 +558,9 @@ abstract class User implements UserInterface, GroupableInterface
     /**
      * {@inheritdoc}
      */
-    public function getNumJobs()
+    public function getNumPositions()
     {
-        return $this->numJobs;
+        return $this->numPositions;
     }
 
     /**
@@ -652,9 +652,9 @@ abstract class User implements UserInterface, GroupableInterface
     /**
      * {@inheritdoc}
      */
-    public function getPositions()
+    public function getCareers()
     {
-        return $this->positions;
+        return $this->careers;
     }
 
     /**
@@ -676,9 +676,9 @@ abstract class User implements UserInterface, GroupableInterface
     /**
      * {@inheritdoc}
      */
-    public function addJob(JobInterface $job)
+    public function addPosition(PositionInterface $position)
     {
-        $this->jobs->add($job);
+        $this->positions->add($position);
 
         return $this;
     }
@@ -686,9 +686,9 @@ abstract class User implements UserInterface, GroupableInterface
     /**
      * {@inheritdoc}
      */
-    public function removeJob(JobInterface $job)
+    public function removePosition(PositionInterface $position)
     {
-        $this->jobs->removeElement($job);
+        $this->positions->removeElement($position);
 
         return $this;
     }
@@ -696,9 +696,9 @@ abstract class User implements UserInterface, GroupableInterface
     /**
      * {@inheritdoc}
      */
-    public function getJobs()
+    public function getPositions()
     {
-        return $this->jobs;
+        return $this->positions;
     }
 
     /**

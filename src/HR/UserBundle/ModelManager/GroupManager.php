@@ -15,6 +15,7 @@ abstract class GroupManager implements GroupManagerInterface
 
         return new $class($name);
     }
+
     /**
      * {@inheritDoc}
      */

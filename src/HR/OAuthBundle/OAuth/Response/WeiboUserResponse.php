@@ -10,7 +10,7 @@ class WeiboUserResponse extends PathUserResponse
 {
     public function getGender()
     {
-        return $this->getValueForPath('gender') == 'm' ? 'male': 'female';
+        return $this->getValueForPath('gender') == 'm' ? 'male' : 'female';
     }
 
     public function getScreenName()

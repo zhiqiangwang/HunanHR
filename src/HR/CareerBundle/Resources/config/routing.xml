@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="career_list" pattern="/setting/career">
+        <default key="_controller">HRCareerBundle:Career:index</default>
+    </route>
+
+    <route id="career_edit" pattern="/setting/career/edit/{careerId}">
+        <default key="_controller">HRCareerBundle:Career:edit</default>
+        <requirement key="careerId">\d+</requirement>
+    </route>
+
+    <route id="career_delete" pattern="/setting/career/delete/{careerId}">
+        <default key="_controller">HRCareerBundle:Career:delete</default>
+        <requirement key="careerId">\d+</requirement>
+    </route>
+</routes>
