@@ -18,5 +18,5 @@ parameters:
     domain:                   http://www.hunanhr.com
     cookie_domain:            .hunanhr.com
 
-    elastic_host: localhost
+    elastic_host: 127.0.0.1
     elastic_port: 9200

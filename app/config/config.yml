@@ -108,8 +108,7 @@ hwi_oauth:
 # fos_elastica
 fos_elastica:
     clients:
-        default: { host: %elastic_host%, port: %elastic_port% }
-        serializer: ~
+        default:  { host: %elastic_host%, port: %elastic_port% }
     indexes:
         website:
             client: default
@@ -130,8 +129,6 @@ fos_elastica:
                         finder: ~
                         listener:
                             is_indexable_callback: "isDeleted"
-                        elastica_to_model_transformer:
-                            ignore_missing: true
 
 # white_october_pagerfanta
 white_october_pagerfanta:

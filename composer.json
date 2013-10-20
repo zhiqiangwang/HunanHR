@@ -22,7 +22,7 @@
         "imagine/imagine": "dev-master",
         "hwi/oauth-bundle": "dev-master",
         "mobiledetect/mobiledetectlib": "dev-master",
-        "friendsofsymfony/elastica-bundle": "3.0.*@dev",
+        "friendsofsymfony/elastica-bundle": "dev-master",
         "white-october/pagerfanta-bundle": "1.0.*@dev"
     },
     "scripts": {
