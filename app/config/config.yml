@@ -109,8 +109,8 @@ hwi_oauth:
 fos_elastica:
     clients:
         default:
-            host: localhost
-            port: 9200
+            host: %elastic_host%
+            port: %elastic_port%
         serializer: ~
     indexes:
         website:

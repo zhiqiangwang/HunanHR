@@ -17,3 +17,6 @@ parameters:
     user_resetting_token_ttl: 86400
     domain:                   http://www.hunanhr.com
     cookie_domain:            .hunanhr.com
+
+    elastic_host: localhost
+    elastic_port: 9200
