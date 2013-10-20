@@ -53,7 +53,7 @@ class PositionController extends Controller
         }
 
         $position->incrementNumViews(1);
-        $this->getPositionManager()->updatePosition($position);
+        $this->get('position.manager.default')->updatePosition($position);
 
         $this->get('breadcrumb')->add($position->getPosition());
 
