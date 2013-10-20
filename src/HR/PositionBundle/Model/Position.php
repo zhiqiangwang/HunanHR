@@ -282,6 +282,14 @@ class Position implements PositionInterface
     /**
      * {@inheritdoc}
      */
+    public function isIndexable()
+    {
+        return !$this->isDeleted();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function setIsDeleted($isDeleted)
     {
         $this->isDeleted = $isDeleted;

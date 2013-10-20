@@ -128,7 +128,10 @@ fos_elastica:
                         provider: ~
                         finder: ~
                         listener:
-                            is_indexable_callback: "isDeleted"
+                            insert: true
+                            update: true
+                            delete: true
+                            is_indexable_callback: "isIndexable"
 
 # white_october_pagerfanta
 white_october_pagerfanta:

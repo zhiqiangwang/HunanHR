@@ -161,6 +161,11 @@ interface PositionInterface
     public function getNumApplications();
 
     /**
+     * @return bool
+     */
+    public function isIndexable();
+
+    /**
      * @param bool $boolean
      *
      * @return $this
