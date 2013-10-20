@@ -116,7 +116,7 @@ fos_elastica:
             types:
                 position:
                     mappings:
-                        position: { boost: 10 }
+                        position: { boost: 20 }
                         description: { boost: 5 }
                         companyName: { boost: 10}
                         companyDescription: { boost: 5 }
