@@ -117,7 +117,7 @@ fos_elastica:
                 position:
                     mappings:
                         position: { boost: 10 }
-                        description: { boost: 10 }
+                        description: { boost: 5 }
                         companyName: { boost: 10}
                         companyDescription: { boost: 5 }
                         location: { boost: 5 }
