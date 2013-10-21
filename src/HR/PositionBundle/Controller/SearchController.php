@@ -17,6 +17,10 @@ class SearchController extends Controller
             return $this->redirect($this->generateUrl('home'));
         }
 
+        if (false !== mb_stripos($queryString, '*')) {
+            return $this->redirect($this->generateUrl('home'));
+        }
+
         /** @var \FOS\ElasticaBundle\Finder\TransformedFinder $finder */
         $finder = $this->get('fos_elastica.finder.website.position');
 
