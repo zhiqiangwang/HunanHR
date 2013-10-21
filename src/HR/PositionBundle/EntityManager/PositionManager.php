@@ -117,6 +117,7 @@ class PositionManager extends BasePositionManager
     public function softDeletePosition(PositionInterface $position)
     {
         $position->setIsDeleted(true);
+        $position->setDeletedAt(new \Datetime());
 
         $this->em->persist($position);
         $this->em->flush();

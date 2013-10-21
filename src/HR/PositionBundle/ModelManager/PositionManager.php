@@ -31,6 +31,7 @@ abstract class PositionManager implements PositionManagerInterface
             throw new \InvalidArgumentException('The position must have a user');
         }
 
+        $position->setUpdatedAt(new \DateTime());
         $this->doUpdateEducation($position);
     }
 

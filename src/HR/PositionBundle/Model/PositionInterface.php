@@ -185,9 +185,28 @@ interface PositionInterface
     public function getCreatedAt();
 
     /**
+     * @param \Datetime $datetime
+     *
+     * @return $this
+     */
+    public function setUpdatedAt(\Datetime $datetime);
+
+    /**
      * @return \Datetime
      */
     public function getUpdatedAt();
+
+    /**
+     * @param \Datetime $datetime
+     *
+     * @return $this
+     */
+    public function setDeletedAt(\Datetime $datetime);
+
+    /**
+     * @return \Datetime
+     */
+    public function getDeletedAt();
 
     /**
      * @param UserInterface $user

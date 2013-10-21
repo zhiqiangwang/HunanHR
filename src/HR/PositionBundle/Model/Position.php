@@ -81,6 +81,11 @@ class Position implements PositionInterface
     protected $updatedAt;
 
     /**
+     * @var \DateTime
+     */
+    protected $deletedAt;
+
+    /**
      * @var UserInterface
      */
     protected $user;
@@ -88,6 +93,7 @@ class Position implements PositionInterface
     public function __construct()
     {
         $this->createdAt       = new \Datetime();
+        $this->updatedAt       = new \Datetime();
         $this->isDeleted       = false;
         $this->numViews        = 0;
         $this->numApplications = 0;
@@ -334,8 +340,34 @@ class Position implements PositionInterface
     /**
      * {@inheritdoc}
      */
+    public function setUpdatedAt(\Datetime $datetime)
+    {
+        $this->updatedAt = $datetime;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setDeletedAt(\Datetime $deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
     }
 }
