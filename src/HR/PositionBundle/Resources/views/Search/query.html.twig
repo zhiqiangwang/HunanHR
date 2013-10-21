@@ -23,9 +23,9 @@
                                 </div>
 
                                 <div class="title">
-                                    <a href="{{ path('position_show', {'positionId': position.id}) }}" target="_blank">{{ position.position|highlight }}</a>
+                                    <a href="{{ path('position_show', {'positionId': position.id}) }}" target="_blank">{{ position.position|substring(15)|highlight }}</a>
                                     <span class="divider">•</span>
-                                    <span class="company">{{ position.companyName|highlight }}</span>
+                                    <span class="company">{{ position.companyName|substring(15)|highlight }}</span>
                                     <span class="divider">•</span>
                                     <span class="region">{{ position.city|highlight }}</span>
                                 </div>
