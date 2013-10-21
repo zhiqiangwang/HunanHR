@@ -23,9 +23,9 @@
                                 </div>
 
                                 <div class="title">
-                                    <a href="{{ path('position_show', {'positionId': position.id}) }}" target="_blank">{{ position.position|substring(15) }}</a>
+                                    <a href="{{ path('position_show', {'positionId': position.id}) }}" target="_blank">{{ position.position|highlight }}</a>
                                     <span class="divider">•</span>
-                                    <span class="company">{{ position.companyName|substring(15) }}</span>
+                                    <span class="company">{{ position.companyName|highlight }}</span>
                                     <span class="divider">•</span> <span class="region">{{ position.city }}</span>
                                 </div>
 
@@ -33,7 +33,7 @@
 
                             <div class="item-body">
                                 <a href="{{ path('position_show', {'positionId': position.id}) }}" target="_blank">
-                                    {{ position.description|substring(300)|markup }}
+                                    {{ position.description|substring(300)|highlight|markup }}
                                 </a>
                             </div>
                         </li>
@@ -41,8 +41,8 @@
                 </ul>
             {% else %}
                 <p class="text-muted">暂时没有搜到你想要的职位，请尝试更换一个搜索词再试一次。</p>
-                <br />
-                <p><a href="/">查看全部职位</a> </p>
+                <br/>
+                <p><a href="/">查看全部职位</a></p>
             {% endif %}
 
             {% if pager.haveToPaginate %}

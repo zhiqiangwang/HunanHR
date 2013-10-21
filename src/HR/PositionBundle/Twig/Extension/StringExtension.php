@@ -8,8 +8,8 @@ class StringExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            'substring'       => new \Twig_Filter_Method($this, 'substring', array("is_safe" => array("html"))),
-            'obfuscate_email' => new \Twig_Filter_Method($this, 'obfuscateEmail', array("is_safe" => array("html"))),
+            'substring'       => new \Twig_Filter_Method($this, 'substring'),
+            'obfuscate_email' => new \Twig_Filter_Method($this, 'obfuscateEmail')
         );
     }
 
