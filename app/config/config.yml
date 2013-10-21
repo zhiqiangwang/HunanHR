@@ -120,7 +120,7 @@ fos_elastica:
                         description: { boost: 5 }
                         companyName: { boost: 10}
                         companyDescription: { boost: 5 }
-                        location: { boost: 5 }
+                        location: { boost: 10 }
                         city: { boost: 5 }
                     persistence:
                         driver: orm
