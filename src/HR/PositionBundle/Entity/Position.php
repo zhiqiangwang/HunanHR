@@ -2,6 +2,7 @@
 namespace HR\PositionBundle\Entity;
 
 use FOS\ElasticaBundle\Transformer\HighlightableModelInterface;
+use HR\LocationBundle\Entity\City;
 use HR\PositionBundle\Model\Position as BasePosition;
 
 /**
@@ -44,6 +45,16 @@ class Position extends BasePosition implements HighlightableModelInterface
 
         if (isset($highlights['companyName'])) {
             $this->setCompanyName(implode('', $highlights['companyName']));
+        }
+
+        if (isset($highlights['city'])) {
+            $city = new City();
+            $city->setName(implode('', $highlights['city']));
+            $this->setCity($city);
+        }
+
+        if (isset($highlights['location'])) {
+            $this->setLocation(implode('', $highlights['location']));
         }
     }
 }

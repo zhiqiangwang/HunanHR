@@ -30,10 +30,16 @@ class SearchController extends Controller
                     'fragment_size' => 2000,
                 ),
                 'position'    => array(
-                    'fragment_size' => 1000,
+                    'fragment_size' => 100,
                 ),
                 'companyName' => array(
-                    'fragment_size' => 2000,
+                    'fragment_size' => 100,
+                ),
+                'city'        => array(
+                    'fragment_size' => 100,
+                ),
+                'location'    => array(
+                    'fragment_size' => 100,
                 )
             ),
             'pre_tags'  => array('[tag]'),
