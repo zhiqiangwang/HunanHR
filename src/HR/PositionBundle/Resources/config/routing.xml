@@ -25,7 +25,7 @@
         <requirement key="positionId">\d+</requirement>
     </route>
 
-    <route id="application_new" pattern="/job/{positionId}/application">
+    <route id="application_new" pattern="/job/{positionId}/apply">
         <default key="_controller">HRPositionBundle:Application:new</default>
         <requirement key="positionId">\d+</requirement>
     </route>
