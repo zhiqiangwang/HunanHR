@@ -12,10 +12,10 @@
     {{ form_start(form, {'action': path('profile_edit', {'from': app.request.get('from') }), 'attr': {'class': 'form-horizontal' }}) }}
 
     <div class="form-group">
-        <div class="col-lg-2 control-label">
+        <div class="col-md-2 control-label">
             <label>头像</label>
         </div>
-        <div class="col-lg-10">
+        <div class="col-md-10">
             <div class="upload-face">
                 <img src="{{ asset(app.user.avatarBigUrl) }}" class="avatar"/>
                 <a class="upload-action" href="{{ path('upload_face') }}">修改头像</a>
@@ -24,10 +24,10 @@
     </div>
 
     <div class="form-group">
-        <div class="col-lg-2 control-label">
+        <div class="col-md-2 control-label">
             <label>用户名</label>
         </div>
-        <div class="col-lg-10 form-control-static">
+        <div class="col-md-10 form-control-static">
             <strong class="text-muted">{{ app.user.username }}</strong>
         </div>
     </div>
@@ -35,7 +35,7 @@
     {{ form_widget(form) }}
 
     <div class="form-group">
-        <div class="col-lg-offset-2 col-lg-10">
+        <div class="col-md-offset-2 col-md-10">
             <button type="submit" class="btn btn-primary">保存</button>
         </div>
     </div>
