@@ -75,7 +75,7 @@ class SearchController extends Controller
         $finder = $this->get('fos_elastica.finder.website.position');
 
         $mltQuery = new MoreLikeThis();
-        $mltQuery->setLikeText($position->getPosition());
+        $mltQuery->setLikeText(sprintf('%s %s', $position->getPosition(), $position->getCompanyName()));
         $mltQuery->setFields(array('position', 'description', 'companyName'));
         $mltQuery->setMaxQueryTerms(5);
         $mltQuery->setMinDocFrequency(1.5);
