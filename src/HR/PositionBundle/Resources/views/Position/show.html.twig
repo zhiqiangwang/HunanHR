@@ -79,9 +79,27 @@
     </div>
     <!-- /module -->
 
+    <div class="module">
+        <div class="flex-module">
+            <div class="module-header">
+                <h2>相似职位</h2>
+            </div>
+
+            <div id="smilar_jobs">
+                <p class="text-muted">载入相似职位...</p>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+
+    <script>
+        $(function () {
+            $('#smilar_jobs').load('/search/similar', {'positionId': {{ position.id }} }, function (data) {
+            });
+        });
+    </script>
 {% endblock %}

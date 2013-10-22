@@ -20,6 +20,10 @@
         <default key="_controller">HRPositionBundle:Search:query</default>
     </route>
 
+    <route id="position_search_similar" pattern="/search/similar">
+        <default key="_controller">HRPositionBundle:Search:similar</default>
+    </route>
+
     <route id="position_delete" pattern="/job/{positionId}/delete">
         <default key="_controller">HRPositionBundle:Position:delete</default>
         <requirement key="positionId">\d+</requirement>

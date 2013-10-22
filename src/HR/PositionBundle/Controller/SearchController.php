@@ -1,10 +1,14 @@
 <?php
 namespace HR\PositionBundle\Controller;
 
+use Elastica\Filter\BoolNot;
+use Elastica\Filter\Ids;
+use Elastica\Query\MoreLikeThis;
 use Elastica\Query\QueryString;
 use Elastica\Query;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @author Wenming Tang <tang@babyfamily.com>
@@ -56,5 +60,40 @@ class SearchController extends Controller
         return $this->render('HRPositionBundle:Search:query.html.twig', array(
             'pager' => $paginator
         ));
+    }
+
+    public function similarAction(Request $request)
+    {
+        $positionId = $request->get('positionId');
+        $position   = $this->get('position.manager.default')->findPositionById($positionId);
+
+        if (!$position) {
+            throw $this->createNotFoundException();
+        }
+
+        /** @var \FOS\ElasticaBundle\Finder\TransformedFinder $finder */
+        $finder = $this->get('fos_elastica.finder.website.position');
+
+        $mltQuery = new MoreLikeThis();
+        $mltQuery->setLikeText($position->getPosition());
+        $mltQuery->setFields(array('position', 'description', 'companyName'));
+        $mltQuery->setMaxQueryTerms(5);
+        $mltQuery->setMinDocFrequency(1.5);
+        $mltQuery->setMinTermFrequency(1.5);
+
+        $idsFilter = new Ids();
+        $idsFilter->addId($positionId);
+
+        $query = new Query($mltQuery);
+        $query->setFilter(new BoolNot($idsFilter));
+        $query->setFrom(0);
+        $query->setSize(5);
+        $pager = $finder->findPaginated($query);
+
+        $view = $this->renderView('HRPositionBundle:Search:similar.html.twig', array(
+            'pager' => $pager
+        ));
+
+        return new Response($view);
     }
 }
