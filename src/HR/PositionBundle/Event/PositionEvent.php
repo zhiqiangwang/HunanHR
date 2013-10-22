@@ -1,5 +1,6 @@
 <?php
 namespace HR\PositionBundle\Event;
+
 use HR\PositionBundle\Model\PositionInterface;
 use Symfony\Component\EventDispatcher\Event;
 

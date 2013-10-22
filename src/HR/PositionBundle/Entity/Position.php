@@ -2,7 +2,6 @@
 namespace HR\PositionBundle\Entity;
 
 use FOS\ElasticaBundle\Transformer\HighlightableModelInterface;
-use HR\LocationBundle\Entity\City;
 use HR\PositionBundle\Model\Position as BasePosition;
 
 /**

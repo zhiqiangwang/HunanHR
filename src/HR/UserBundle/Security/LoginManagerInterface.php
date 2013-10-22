@@ -1,5 +1,6 @@
 <?php
 namespace HR\UserBundle\Security;
+
 use HR\UserBundle\Model\UserInterface;
 use Symfony\Component\HttpFoundation\Response;
 

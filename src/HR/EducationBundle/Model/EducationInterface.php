@@ -1,5 +1,6 @@
 <?php
 namespace HR\EducationBundle\Model;
+
 use HR\UserBundle\Model\UserInterface;
 
 /**

@@ -1,5 +1,6 @@
 <?php
 namespace HR\UserBundle\Tests\Model;
+
 use HR\UserBundle\Model\User;
 
 /**

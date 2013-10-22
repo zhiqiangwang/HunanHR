@@ -8,7 +8,6 @@ use Elastica\Query\QueryString;
 use Elastica\Query;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @author Wenming Tang <tang@babyfamily.com>
@@ -24,6 +23,8 @@ class SearchController extends Controller
         if (false !== mb_stripos($queryString, '*')) {
             return $this->redirect($this->generateUrl('home'));
         }
+
+        $this->get('breadcrumb')->add(sprintf('%s 职位搜索结果', $queryString));
 
         /** @var \FOS\ElasticaBundle\Finder\TransformedFinder $finder */
         $finder = $this->get('fos_elastica.finder.website.position');

@@ -2,7 +2,6 @@
 
 namespace HR\PositionBundle\Form;
 
-use HR\PositionBundle\Entity\Position;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;

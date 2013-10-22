@@ -1,7 +1,6 @@
 <?php
 namespace HR\SkillBundle\FormType;
 
-use HR\EducationBundle\Entity\Education;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;

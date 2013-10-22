@@ -2,9 +2,9 @@
 
 namespace HR\PositionBundle\EventSubscriber;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Knp\Component\Pager\Event\PaginationEvent;
 use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
+use Knp\Component\Pager\Event\PaginationEvent;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
@@ -27,7 +27,7 @@ class SlidingPaginationSubscriber implements EventSubscriberInterface
 
         $request = $event->getRequest();
 
-        $this->route = $request->attributes->get('_route');
+        $this->route  = $request->attributes->get('_route');
         $this->params = $request->attributes->all();
         foreach ($this->params as $key => $param) {
             if (substr($key, 0, 1) == '_') {

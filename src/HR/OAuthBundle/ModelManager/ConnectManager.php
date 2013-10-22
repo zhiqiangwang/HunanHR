@@ -1,5 +1,6 @@
 <?php
 namespace HR\OAuthBundle\ModelManager;
+
 use HR\UserBundle\Model\UserInterface;
 
 /**

@@ -1,5 +1,6 @@
 <?php
 namespace HR\UserBundle\ModelManager;
+
 use HR\UserBundle\Model\GroupInterface;
 
 /**

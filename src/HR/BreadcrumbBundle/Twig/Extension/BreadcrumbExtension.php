@@ -1,5 +1,6 @@
 <?php
 namespace HR\BreadcrumbBundle\Twig\Extension;
+
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**

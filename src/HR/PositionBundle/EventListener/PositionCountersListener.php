@@ -1,5 +1,6 @@
 <?php
 namespace HR\PositionBundle\EventListener;
+
 use HR\PositionBundle\Event\PositionEvent;
 use HR\PositionBundle\PositionEvents;
 use HR\UserBundle\ModelManager\UserManagerInterface;

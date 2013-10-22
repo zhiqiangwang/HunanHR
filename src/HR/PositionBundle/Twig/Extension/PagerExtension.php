@@ -1,5 +1,6 @@
 <?php
 namespace HR\PositionBundle\Twig\Extension;
+
 use HR\PositionBundle\Pagination\Pager;
 use Symfony\Component\DependencyInjection\Container;
 

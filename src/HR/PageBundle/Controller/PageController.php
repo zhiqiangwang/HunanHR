@@ -2,7 +2,6 @@
 namespace HR\PageBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @author Wenming Tang <tang@babyfamily.com>

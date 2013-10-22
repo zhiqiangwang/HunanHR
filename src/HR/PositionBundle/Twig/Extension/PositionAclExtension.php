@@ -1,5 +1,6 @@
 <?php
 namespace HR\PositionBundle\Twig\Extension;
+
 use HR\PositionBundle\Acl\PositionAclInterface;
 use HR\PositionBundle\Model\PositionInterface;
 

@@ -1,5 +1,6 @@
 <?php
 namespace HR\PositionBundle\Model;
+
 use HR\UserBundle\Model\UserInterface;
 
 /**

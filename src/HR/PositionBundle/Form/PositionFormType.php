@@ -19,7 +19,7 @@ class PositionFormType extends AbstractType
                 'label' => '招聘职位'
             ))
             ->add('location', null, array(
-                'label'    => '详细工作地点'
+                'label' => '详细工作地点'
             ))
             ->add('companyName', null, array(
                 'label' => '公司或机构'
