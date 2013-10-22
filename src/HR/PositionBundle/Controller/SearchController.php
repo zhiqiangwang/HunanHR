@@ -65,7 +65,9 @@ class SearchController extends Controller
     public function similarAction(Request $request)
     {
         $positionId = $request->get('positionId');
-        $position   = $this->get('position.manager.default')->findPositionById($positionId);
+
+        /** @var \HR\PositionBundle\Entity\Position $position */
+        $position = $this->get('position.manager.default')->findPositionById($positionId);
 
         if (!$position) {
             throw $this->createNotFoundException();
@@ -75,8 +77,8 @@ class SearchController extends Controller
         $finder = $this->get('fos_elastica.finder.website.position');
 
         $mltQuery = new MoreLikeThis();
-        $mltQuery->setLikeText(sprintf('%s %s', $position->getPosition(), $position->getCompanyName()));
-        $mltQuery->setFields(array('position', 'description', 'companyName'));
+        $mltQuery->setLikeText($position->getPosition());
+        $mltQuery->setFields(array('position', 'description'));
         $mltQuery->setMaxQueryTerms(5);
         $mltQuery->setMinDocFrequency(1.5);
         $mltQuery->setMinTermFrequency(1.5);
