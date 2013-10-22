@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     {% block meta %}{% endblock %}
     {% block stylesheets %}
-        <link href="{{ asset('css/hh.css?10221045') }}" rel="stylesheet" media="screen"/>
+        <link href="{{ asset('css/hh.css?10221645') }}" rel="stylesheet" media="screen"/>
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
     <!--[if lt IE 9]>
@@ -21,6 +21,12 @@
     <script src="{{ asset('js/respond.js') }}"></script><![endif]-->
 </head>
 <body>
+
+<!--[if lt IE 9]>
+<div class="browser-nonsupport-wrap">
+    <div class="browser-nonsupport">您的浏览器不被支持！试试其他的：<a href="http://www.google.com/chrome">Google 浏览器</a>、<a href="http://firefox.com.cn/">火狐浏览器</a>、<a href="http://www.apple.com.cn/safari/">Safari</a>、<a href="http://www.google.com/chromeframe?hl=zh-CN">Google 浏览器框架</a></div>
+</div>
+<![endif]-->
 
 <div id="header">
     <div class="navbar navbar-inverse navbar-fixed-top">
