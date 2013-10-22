@@ -78,7 +78,7 @@ class SearchController extends Controller
 
         $mltQuery = new MoreLikeThis();
         $mltQuery->setLikeText($position->getPosition());
-        $mltQuery->setFields(array('position'));
+        $mltQuery->setFields(array('position', 'description'));
         $mltQuery->setMaxQueryTerms(5);
         $mltQuery->setMinDocFrequency(1.5);
         $mltQuery->setMinTermFrequency(1.5);
