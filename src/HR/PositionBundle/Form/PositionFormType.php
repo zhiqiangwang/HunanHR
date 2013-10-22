@@ -32,7 +32,7 @@ class PositionFormType extends AbstractType
                 'attr'  => array(
                     'rows'        => 25,
                     'cols'        => 60,
-                    'placeholder' => '描述岗位职责或要求，尽量给出薪水范围。'
+                    'placeholder' => '描述岗位职责或要求，尽量说明福利待遇。'
                 )
             ))
             ->add('save', 'submit', array(
