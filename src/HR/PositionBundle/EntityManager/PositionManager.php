@@ -6,8 +6,6 @@ use Doctrine\ORM\NoResultException;
 use HR\PositionBundle\Model\PositionInterface;
 use HR\PositionBundle\ModelManager\PositionManager as BasePositionManager;
 use HR\UserBundle\Model\UserInterface;
-use Pagerfanta\Adapter\DoctrineORMAdapter;
-use Pagerfanta\Pagerfanta;
 
 /**
  * @author Wenming Tang <tang@babyfamily.com>
@@ -29,11 +27,15 @@ class PositionManager extends BasePositionManager
      */
     protected $class;
 
-    public function __construct(EntityManager $em, $class)
+    /** @var \Knp\Component\Pager\Paginator */
+    protected $paginator;
+
+    public function __construct(EntityManager $em, $class, $paginator)
     {
         $this->em         = $em;
         $this->repository = $this->em->getRepository($class);
         $this->class      = $this->em->getClassMetadata($class)->getName();
+        $this->paginator  = $paginator;
     }
 
     public function findPositionsPagerByUser(UserInterface $user, $page = 1)
@@ -47,10 +49,7 @@ class PositionManager extends BasePositionManager
             ->addOrderBy('j.createdAt', 'DESC')
             ->setParameter('user', $user->getId());
 
-        $pager = new Pagerfanta(new DoctrineORMAdapter($qb));
-        $pager->setCurrentPage($page);
-
-        return $pager;
+        return $this->paginator->paginate($qb, $page);
     }
 
     public function findPositionsPagerByLatest($page = 1)
@@ -62,10 +61,7 @@ class PositionManager extends BasePositionManager
             ->andWhere('j.isDeleted = false')
             ->addOrderBy('j.createdAt', 'DESC');
 
-        $pager = new Pagerfanta(new DoctrineORMAdapter($qb));
-        $pager->setCurrentPage($page);
-
-        return $pager;
+        return $this->paginator->paginate($qb, $page);
     }
 
     public function findPositionByIds(array $idSet)

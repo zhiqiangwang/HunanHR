@@ -46,11 +46,7 @@
                 <p><a href="/">查看全部职位</a></p>
             {% endif %}
 
-            {% if pager.haveToPaginate %}
-                <div class="page">
-                    {{ pagerfanta(pager, null, {'routeName': 'position_search', 'routeParams': {'q': app.request.get('q') }}) }}
-                </div>
-            {% endif %}
+            {{ knp_pagination_render(pager, null, {'q': app.request.get('q')}) }}
 
         </div>
     </div>

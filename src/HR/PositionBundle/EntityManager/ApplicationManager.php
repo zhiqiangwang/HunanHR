@@ -7,8 +7,6 @@ use HR\PositionBundle\Model\ApplicationInterface;
 use HR\PositionBundle\Model\PositionInterface;
 use HR\PositionBundle\ModelManager\ApplicationManager as BaseApplicationManager;
 use HR\UserBundle\Model\UserInterface;
-use Pagerfanta\Adapter\DoctrineORMAdapter;
-use Pagerfanta\Pagerfanta;
 
 /**
  * @author Wenming Tang <tang@babyfamily.com>
@@ -30,11 +28,15 @@ class ApplicationManager extends BaseApplicationManager
      */
     protected $class;
 
-    public function __construct(EntityManager $em, $class)
+    /** @var \Knp\Component\Pager\Paginator */
+    protected $paginator;
+
+    public function __construct(EntityManager $em, $class, $paginator)
     {
         $this->em         = $em;
         $this->repository = $this->em->getRepository($class);
         $this->class      = $this->em->getClassMetadata($class)->getName();
+        $this->paginator  = $paginator;
     }
 
     /**
@@ -65,10 +67,7 @@ class ApplicationManager extends BaseApplicationManager
             ->setParameter('sender', $sender->getId())
             ->orderBy('a.createdAt', 'DESC');
 
-        $pager = new Pagerfanta(new DoctrineORMAdapter($qb));
-        $pager->setCurrentPage($page);
-
-        return $pager;
+        return $this->paginator->paginate($qb, $page);
     }
 
     /**
@@ -116,10 +115,7 @@ class ApplicationManager extends BaseApplicationManager
             ->setParameter('receiver', $receiver->getId())
             ->orderBy('a.createdAt', 'DESC');
 
-        $pager = new Pagerfanta(new DoctrineORMAdapter($qb));
-        $pager->setCurrentPage($page);
-
-        return $pager;
+        return $this->paginator->paginate($qb, $page);
     }
 
     /**

@@ -54,11 +54,12 @@ class SearchController extends Controller
             'post_tags' => array('[/tag]'),
         ));
 
-        $paginator = $finder->findPaginated($query);
-        $paginator->setCurrentPage($request->get('page', 1));
+        /** @var \Knp\Component\Pager\Paginator $paginator */
+        $paginator = $this->get('paginator');
+        $pager     = $paginator->paginate($finder->createPaginatorAdapter($query), $request->get('page', 1));
 
         return $this->render('HRPositionBundle:Search:query.html.twig', array(
-            'pager' => $paginator
+            'pager' => $pager
         ));
     }
 

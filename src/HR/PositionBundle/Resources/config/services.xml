@@ -14,11 +14,13 @@
         <service id="position.manager.default" class="%position.manager.default.class%">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument>%position.entity.class%</argument>
+            <argument type="service" id="paginator" />
         </service>
 
         <service id="application.manager" class="%application.manager.class%">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument>%application.entity.class%</argument>
+            <argument type="service" id="paginator" />
         </service>
     </services>
 

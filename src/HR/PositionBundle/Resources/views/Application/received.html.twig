@@ -32,10 +32,6 @@
         {% endfor %}
     </table>
 
-    {% if pager.haveToPaginate %}
-        <div class="page">
-            {{ pagerfanta(pager, null, {'routeName': 'application_received'}) }}
-        </div>
-    {% endif %}
+    {{ knp_pagination_render(pager) }}
 
 {% endblock %}

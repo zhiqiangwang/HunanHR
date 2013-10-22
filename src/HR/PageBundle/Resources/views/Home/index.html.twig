@@ -58,11 +58,7 @@
                 {% endfor %}
             </ul>
 
-            {% if pager.haveToPaginate %}
-                <div class="page">
-                    {{ pagerfanta(pager, null, {'routeName': 'home'}) }}
-                </div>
-            {% endif %}
+            {{ knp_pagination_render(pager) }}
 
         </div>
     </div>

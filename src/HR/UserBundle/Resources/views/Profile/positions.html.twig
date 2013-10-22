@@ -21,10 +21,6 @@
         <p class="text-muted">没有发布任何职位</p>
     {% endif %}
 
-    {% if pager.haveToPaginate %}
-        <div class="page">
-            {{ pagerfanta(pager, null, {'routeName': 'profile_positions', 'routeParams': {'username': user.username }}) }}
-        </div>
-    {% endif %}
+    {{ knp_pagination_render(pager) }}
 
 {% endblock %}

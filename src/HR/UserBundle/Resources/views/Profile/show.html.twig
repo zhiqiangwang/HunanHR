@@ -48,10 +48,8 @@
                 <p class="text-muted">没有发布任何职位</p>
             {% endif %}
 
-            {% if pager.haveToPaginate %}
-                <p class="text-right text-muted">
-                    <a href="{{ path('profile_positions', {'username': user.username}) }}">更多职位 &gt;&gt;</a></p>
-            {% endif %}
+            <p class="text-right text-muted">
+                <a href="{{ path('profile_positions', {'username': user.username}) }}">更多职位 &gt;&gt;</a></p>
         </div>
     </div>
     <!-- /module -->

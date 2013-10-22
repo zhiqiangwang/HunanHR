@@ -19,7 +19,7 @@ class AppKernel extends Kernel
 
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new FOS\ElasticaBundle\FOSElasticaBundle(),
-            new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
 
             new HR\UserBundle\HRUserBundle(),
             new HR\BreadcrumbBundle\HRBreadcrumbBundle(),

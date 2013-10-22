@@ -133,6 +133,9 @@ fos_elastica:
                             delete: true
                             is_indexable_callback: "isIndexable"
 
-# white_october_pagerfanta
-white_october_pagerfanta:
-    default_view: twitter_bootstrap3_translated
+# knp_paginator
+knp_paginator:
+    default_options:
+        distinct: false
+    template:
+        pagination: :Pagination:twitter_bootstrap_v3_pagination.html.twig
