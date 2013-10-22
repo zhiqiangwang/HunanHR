@@ -5,7 +5,7 @@
 
 {% block content_top %}
     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') and app.user.emailConfirmed == false %}
-        <div class="col-md-12">
+        <div class="col-md-12 col-sm-12">
             <div class="alert alert-warning email-confirmed">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
 

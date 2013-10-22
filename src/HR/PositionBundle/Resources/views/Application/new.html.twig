@@ -4,10 +4,10 @@
     {{ form_start(form, {'action': path('application_new', {'positionId': position.id}), 'attr': {'class': 'form-horizontal' }}) }}
 
     <div class="form-group">
-        <div class="col-md-2 control-label">
+        <div class="col-md-2 col-sm-2 control-label">
             <label>收件人</label>
         </div>
-        <div class="col-md-10 form-control-static text-muted">
+        <div class="col-md-10 col-sm-10 form-control-static text-muted">
             {{ position.contactEmail|obfuscate_email }}
         </div>
     </div>

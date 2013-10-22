@@ -22,10 +22,10 @@
 {% block form_row %}
     {% spaceless %}
         <div class="form-group{% if errors|length > 0 %} has-error{% endif %}">
-            <div class="col-md-2 control-label">
+            <div class="col-md-2 col-sm-2 control-label">
                 {{ form_label(form) }}
             </div>
-            <div class="col-md-10">
+            <div class="col-md-10 col-sm-10">
                 {{ form_widget(form) }}
                 {{ form_errors(form) }}
             </div>
@@ -46,7 +46,7 @@
 {% block button_widget %}
     {% spaceless %}
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-offset-2 col-md-10 col-sm-10 col-sm-offset-2">
                 {{ parent() }}
             </div>
         </div>

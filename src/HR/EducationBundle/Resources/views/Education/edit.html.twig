@@ -5,10 +5,10 @@
     {{ form_start(form, {'action': path('education_edit', {'educationId': education.id}), 'attr': {'class': 'form-horizontal' }}) }}
 
     <div class="form-group">
-        <div class="col-md-2 control-label">
+        <div class="col-md-2 col-sm-2 control-label">
             {{ form_label(form.schoolName) }}
         </div>
-        <div class="col-md-10 control-inline">
+        <div class="col-md-10 col-sm-10 control-inline">
             {{ form_widget(form.schoolName) }}
             {{ form_widget(form.degree) }}
 
@@ -20,10 +20,10 @@
     </div>
 
     <div class="form-group">
-        <div class="col-md-2 control-label">
+        <div class="col-md-2 col-sm-2 control-label">
             <span class="required">*</span> <label>起止时间</label>
         </div>
-        <div class="col-md-10 embed">
+        <div class="col-md-10 col-sm-10 embed">
             {{ form_widget(form.startDate) }} 至 {{ form_widget(form.endDate) }}
             <div class="has-error">
                 {{ form_errors(form.startDate) }}
