@@ -135,4 +135,4 @@ fos_elastica:
 
 # white_october_pagerfanta
 white_october_pagerfanta:
-    default_view: twitter_bootstrap3
+    default_view: twitter_bootstrap3_translated
