@@ -97,10 +97,6 @@ class ProfileController extends Controller
 
         $pager = $this->getPositionManager()->findPositionsPagerByUser($user, $request->get('page', 1));
 
-        if (!$user) {
-            throw $this->createNotFoundException();
-        }
-
         return $this->render('HRUserBundle:Profile:positions.html.twig', array(
             'user'  => $user,
             'pager' => $pager,

@@ -88,12 +88,10 @@ class SearchController extends Controller
         $query->setFilter(new BoolNot($idsFilter));
         $query->setFrom(0);
         $query->setSize(5);
-        $pager = $finder->findPaginated($query);
+        $positions = $finder->find($query);
 
-        $view = $this->renderView('HRPositionBundle:Search:similar.html.twig', array(
-            'pager' => $pager
+        return $this->stream('HRPositionBundle:Search:similar.html.twig', array(
+            'positions' => $positions
         ));
-
-        return new Response($view);
     }
 }
