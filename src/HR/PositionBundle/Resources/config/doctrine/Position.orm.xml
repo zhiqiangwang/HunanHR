@@ -11,9 +11,7 @@
         </id>
         <field name="position" type="string" column="position" length="50" />
         <field name="description" type="text" column="description" nullable="true" />
-        <field name="type" type="smallint" column="type" />
         <field name="companyName" type="string" column="company_name" length="50" />
-        <field name="companyDescription" type="text" column="company_description" nullable="true" />
         <field name="contactEmail" type="string" column="contact_email" length="100" />
         <field name="location" type="string" column="location" length="100" nullable="true" />
         <field name="numViews" type="integer" column="num_views" />
@@ -24,7 +22,5 @@
         <field name="deletedAt" type="datetime" column="deleted_at" nullable="true" />
 
         <many-to-one target-entity="HR\UserBundle\Entity\User" field="user" inversed-by="positions" />
-
-        <many-to-one target-entity="HR\LocationBundle\Entity\City" field="city" />
     </entity>
 </doctrine-mapping>

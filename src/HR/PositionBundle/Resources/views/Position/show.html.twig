@@ -19,7 +19,7 @@
 
                     <div class="btn btn-like">
                         <div class="btn-share">
-                            <wb:share-button appkey="1345Qz" addition="simple" type="button" default_text="我在湖南英才网看到这个职位不错，分享一下~ 【{{ position.companyName }}招聘】 {{ position.position }}，工作地点：{{ position.city }}。"></wb:share-button>
+                            <wb:share-button appkey="1345Qz" addition="simple" type="button" default_text="我在湖南英才网看到这个职位不错，分享一下~ 【{{ position.companyName }}招聘】 {{ position.position }}，工作地点：{{ position.location }}。"></wb:share-button>
                         </div>
                     </div>
 
@@ -41,38 +41,14 @@
                     <div class="title">
                         <a href="{{ path('position_show', {'positionId': position.id}) }}">{{ position.position|substring(15) }}</a>
                         <span class="divider">•</span>
-                        <span class="company">{{ position.companyName|substring(15) }}</span>
-                        <span class="divider">•</span> <span class="region">{{ position.city }}</span>
+                        <span class="company">{{ position.companyName }}</span>
+                        <span class="divider">•</span> <span class="region">{{ position.location }}</span>
                     </div>
 
                 </div>
 
                 <div class="item-body">
-                    {% if position.companyDescription is not null %}
-                        {{ position.companyDescription|markup }}
-                        <hr/>
-                    {% endif %}
-
-                    {% if position.description is not null %}
-                        {{ position.description|markup }}
-                    {% endif %}
-
-                    <table class="table table-bordered">
-                        <tr>
-                            <th>工作性质</th>
-                            <td>{{ position.typeName }}</td>
-                        </tr>
-                        <tr>
-                            <th>工作地点</th>
-                            <td>{{ position.city }}</td>
-                        </tr>
-                        {% if position.location is not null %}
-                            <tr>
-                                <th>详细地址</th>
-                                <td>{{ position.location }}</td>
-                            </tr>
-                        {% endif %}
-                    </table>
+                    {{ position.description|markup }}
                 </div>
             </div>
         </div>

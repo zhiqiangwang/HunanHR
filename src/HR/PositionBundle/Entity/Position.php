@@ -11,23 +11,6 @@ use HR\PositionBundle\Model\Position as BasePosition;
  */
 class Position extends BasePosition implements HighlightableModelInterface
 {
-    public function getTypeName()
-    {
-        $degrees = self::getTypes();
-
-        return $degrees[$this->type];
-    }
-
-    public static function getTypes()
-    {
-        return array(
-            1 => '全职',
-            2 => '兼职',
-            3 => '临时',
-            4 => '实习'
-        );
-    }
-
     /**
      * Set ElasticSearch highlight data.
      *
@@ -45,12 +28,6 @@ class Position extends BasePosition implements HighlightableModelInterface
 
         if (isset($highlights['companyName'])) {
             $this->setCompanyName(implode('', $highlights['companyName']));
-        }
-
-        if (isset($highlights['city'])) {
-            $city = new City();
-            $city->setName(implode('', $highlights['city']));
-            $this->setCity($city);
         }
 
         if (isset($highlights['location'])) {

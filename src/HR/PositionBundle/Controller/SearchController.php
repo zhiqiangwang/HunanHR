@@ -43,9 +43,6 @@ class SearchController extends Controller
                 'companyName' => array(
                     'fragment_size' => 100,
                 ),
-                'city'        => array(
-                    'fragment_size' => 100,
-                ),
                 'location'    => array(
                     'fragment_size' => 500,
                 )
