@@ -23,7 +23,6 @@
         "hwi/oauth-bundle": "dev-master",
         "mobiledetect/mobiledetectlib": "dev-master",
         "friendsofsymfony/elastica-bundle": "dev-master",
-        "white-october/pagerfanta-bundle": "1.0.*@dev",
         "knplabs/knp-paginator-bundle": "2.3.*@dev"
     },
     "scripts": {
