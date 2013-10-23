@@ -35,7 +35,7 @@
                     <img src="{{ asset(position.user.avatarSmallUrl) }}" class="avatar"/>
 
                     <div class="meta">
-                        <a href="{{ path('profile_show', {'username': position.user.username}) }}" target="_blank">{{ position.user.screenName }}</a> 在 {{ position.createdAt|date('Y-m-d') }} 发布的职位
+                        <a href="{{ path('profile_show', {'username': position.user.username}) }}">{{ position.user.screenName }}</a> 在 {{ position.createdAt|date('Y-m-d') }} 发布的职位
                     </div>
 
                     <div class="title">

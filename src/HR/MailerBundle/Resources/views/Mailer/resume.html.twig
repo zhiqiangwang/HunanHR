@@ -197,7 +197,7 @@
             </div>
             <div class="body">
                 <div class="user">
-                    <a href="{{ url('profile_show', {'username': application.sender.username }) }}" target="_blank"><img src="{{ asset(application.sender.avatarBigUrl) }}"/></a>
+                    <a href="{{ url('profile_show', {'username': application.sender.username }) }}"><img src="{{ asset(application.sender.avatarBigUrl) }}"/></a>
 
                     <h2>
                         <a href="{{ url('profile_show', {'username': application.sender.username }) }}" target="_blank" style="color: #666; text-decoration: none">{{ application.sender.screenName }}</a>

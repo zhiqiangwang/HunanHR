@@ -17,10 +17,10 @@
         {% for application in pager %}
             <tr>
                 <td class="text-center">
-                    <a href="{{ path('profile_show', {'username': application.sender.username }) }}" target="_blank">{{ application.sender.screenName }}</a>
+                    <a href="{{ path('profile_show', {'username': application.sender.username }) }}">{{ application.sender.screenName }}</a>
                 </td>
                 <td class="text-center">
-                    <a href="{{ path('position_show', {'positionId': application.position.id}) }}" target="_blank">{{ application.position.position }}</a>
+                    <a href="{{ path('position_show', {'positionId': application.position.id}) }}">{{ application.position.position }}</a>
                 </td>
                 <td class="text-center">{{ application.createdAt|date('Y-m-d H:i') }}</td>
                 <td class="text-center"><a href="">下载简历</a></td>

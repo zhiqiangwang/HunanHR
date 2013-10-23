@@ -16,14 +16,14 @@
 
                         <li class="item">
                             <div class="item-header">
-                                <a href="{{ path('profile_show', {'username': position.user.username}) }}" target="_blank"><img src="{{ asset(position.user.avatarSmallUrl) }}" class="avatar" title="{{ position.user.screenName }}"/></a>
+                                <a href="{{ path('profile_show', {'username': position.user.username}) }}"><img src="{{ asset(position.user.avatarSmallUrl) }}" class="avatar" title="{{ position.user.screenName }}"/></a>
 
                                 <div class="meta">
-                                    <a href="{{ path('profile_show', {'username': position.user.username}) }}" target="_blank">{{ position.user.screenName }}</a> 在 {{ position.createdAt|date('Y-m-d') }} 发布的职位
+                                    <a href="{{ path('profile_show', {'username': position.user.username}) }}">{{ position.user.screenName }}</a> 在 {{ position.createdAt|date('Y-m-d') }} 发布的职位
                                 </div>
 
                                 <div class="title">
-                                    <a href="{{ path('position_show', {'positionId': position.id}) }}" target="_blank">{{ position.position|substring(15)|highlight }}</a>
+                                    <a href="{{ path('position_show', {'positionId': position.id}) }}">{{ position.position|substring(15)|highlight }}</a>
                                     <span class="divider">•</span>
                                     <span class="company">{{ position.companyName|substring(15)|highlight }}</span>
                                     <span class="divider">•</span>
@@ -33,8 +33,8 @@
                             </div>
 
                             <div class="item-body">
-                                <a href="{{ path('position_show', {'positionId': position.id}) }}" target="_blank">
-                                    {{ position.description|substring(300)|highlight|markup }}
+                                <a href="{{ path('position_show', {'positionId': position.id}) }}">
+                                    {{ position.description|substring(120)|highlight|markup }}
                                 </a>
                             </div>
                         </li>

@@ -35,7 +35,7 @@
                                 <div class="meta">在 {{ position.createdAt|date('Y-m-d') }} 发布的职位</div>
 
                                 <div class="title">
-                                    <a href="{{ path('position_show', {'positionId': position.id}) }}" target="_blank">{{ position.position }}</a>
+                                    <a href="{{ path('position_show', {'positionId': position.id}) }}">{{ position.position }}</a>
                                     <span class="divider">•</span>
                                     <span class="company">{{ position.companyName|substring(15) }}</span>
                                     <span class="divider">•</span>

@@ -17,7 +17,7 @@
             <tr>
                 <td class="text-center">{{ application.position.companyName }}</td>
                 <td class="text-center">
-                    <a href="{{ path('position_show', {'positionId': application.position.id}) }}" target="_blank">{{ application.position.position }}</a>
+                    <a href="{{ path('position_show', {'positionId': application.position.id}) }}">{{ application.position.position }}</a>
                 </td>
                 <td class="text-center">{{ application.createdAt|date('Y-m-d H:i') }}</td>
             </tr>
