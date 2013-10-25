@@ -18,11 +18,11 @@ class PositionFormType extends AbstractType
             ->add('position', null, array(
                 'label' => '招聘职位'
             ))
-            ->add('location', null, array(
-                'label' => '详细工作地点'
-            ))
             ->add('companyName', null, array(
                 'label' => '公司或机构'
+            ))
+            ->add('location', null, array(
+                'label' => '详细工作地点'
             ))
             ->add('contactEmail', null, array(
                 'label' => '简历接收Email'
