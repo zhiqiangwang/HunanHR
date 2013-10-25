@@ -55,7 +55,7 @@ class PositionController extends Controller
         $position->incrementNumViews(1);
         $this->get('position.manager.default')->updatePosition($position);
 
-        $this->get('breadcrumb')->add($position->getPosition());
+        $this->get('breadcrumb')->add(sprintf('%s 招聘 %s', $position->getCompanyName(), $position->getPosition()));
 
         return $this->render('HRPositionBundle:Position:show.html.twig', array(
             'position' => $position
