@@ -45,9 +45,6 @@ class SkillController extends Controller
         ));
     }
 
-    /**
-     * @Template()
-     */
     public function editAction(Request $request, $skillId)
     {
         if (null == $user = $this->getUser()) {
