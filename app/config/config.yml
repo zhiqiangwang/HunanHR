@@ -124,13 +124,16 @@ fos_elastica:
                     persistence:
                         driver: orm
                         model: HR\PositionBundle\Entity\Position
-                        provider: ~
+                        provider:
+                            batch_size: 50
                         finder: ~
                         listener:
                             insert: true
                             update: false
-                            delete: true
+                            delete: false
                             is_indexable_callback: "isIndexable"
+                        elastica_to_model_transformer:
+                            ignore_missing: true
 
 # knp_paginator
 knp_paginator:

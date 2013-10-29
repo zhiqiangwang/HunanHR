@@ -290,7 +290,7 @@ class Position implements PositionInterface
      */
     public function isIndexable()
     {
-        return !$this->isDeleted();
+        return false == $this->isDeleted;
     }
 
     /**
