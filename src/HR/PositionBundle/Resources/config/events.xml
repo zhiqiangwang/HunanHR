@@ -4,13 +4,13 @@
 
     <services>
         <service id="position.listener.position_counters" class="HR\PositionBundle\EventListener\PositionCountersListener">
-            <argument type="service" id="user.user_manager" />
             <tag name="kernel.event_subscriber" />
+            <argument type="service" id="user.user_manager" />
         </service>
 
         <service id="position.listener.position_indexes" class="HR\PositionBundle\EventListener\PositionIndexesListener">
-            <argument type="service" id="fos_elastica.index.website.position" />
             <tag name="kernel.event_subscriber" />
+            <argument type="service" id="fos_elastica.index.website.position" />
         </service>
     </services>
 
