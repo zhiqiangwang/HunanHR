@@ -41,8 +41,9 @@ class PositionManager extends BasePositionManager
     public function findPositionsPagerByUser(UserInterface $user, $page = 1)
     {
         $qb = $this->repository->createQueryBuilder('p')
-            ->select('p, u')
+            ->select('p, u, c')
             ->join('p.user', 'u')
+            ->join('p.city', 'c')
             ->where('u.id = :user')
             ->andWhere('p.isDeleted = false')
             ->addOrderBy('p.createdAt', 'DESC')
@@ -54,8 +55,9 @@ class PositionManager extends BasePositionManager
     public function findPositionsPagerByLatest($page = 1)
     {
         $qb = $this->repository->createQueryBuilder('p')
-            ->select('p, u')
+            ->select('p, u, c')
             ->join('p.user', 'u')
+            ->join('p.city', 'c')
             ->andWhere('p.isDeleted = false')
             ->addOrderBy('p.createdAt', 'DESC');
 
@@ -66,8 +68,9 @@ class PositionManager extends BasePositionManager
     {
         $qb = $this->repository->createQueryBuilder('j');
         $qb
-            ->select('j, u')
+            ->select('j, u, c')
             ->join('p.user', 'u')
+            ->join('p.city', 'c')
             ->where($qb->expr()->in('p.id', $idSet))
             ->andWhere('p.isDeleted = false')
             ->addOrderBy('p.createdAt', 'DESC');
@@ -79,8 +82,9 @@ class PositionManager extends BasePositionManager
     public function findPositionById($id)
     {
         $q = $this->repository->createQueryBuilder('p')
-            ->select('p, u')
+            ->select('p, u, c')
             ->join('p.user', 'u')
+            ->join('p.city', 'c')
             ->where('p.id = :id')
             ->andWhere('p.isDeleted = false')
             ->setParameter('id', $id)

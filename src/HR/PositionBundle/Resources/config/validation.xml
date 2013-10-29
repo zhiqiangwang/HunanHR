@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
         http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
 
     <class name="HR\PositionBundle\Entity\Position">
@@ -29,6 +30,11 @@
             <constraint name="Length">
                 <option name="max">50</option>
                 <option name="maxMessage">公司或机构名称不能超过 {{ limit }} 个字符</option>
+            </constraint>
+        </property>
+        <property name="city">
+            <constraint name="NotBlank">
+                <option name="message">请选择工作城市</option>
             </constraint>
         </property>
         <property name="location">

@@ -10,15 +10,18 @@
                 <div class="pull-right">
                     <a href="{{ path('application_new', {'positionId': position.id}) }}" class="btn btn-success">发简历</a>
                     {% if can_edit_position(position) %}
-                        <a href="{{ path('position_edit', {'positionId': position.id}) }}" class="btn btn-default">编辑</a>
+                        <a href="{{ path('position_edit', {'positionId': position.id}) }}"
+                           class="btn btn-default">编辑</a>
                     {% endif %}
                     {% if can_delete_position(position) %}
-                        <a href="{{ path('position_delete', {'positionId': position.id}) }}" class="btn btn-default" onclick="return confirm('确认要删除该职位吗?')">删除</a>
+                        <a href="{{ path('position_delete', {'positionId': position.id}) }}" class="btn btn-default"
+                           onclick="return confirm('确认要删除该职位吗?')">删除</a>
                     {% endif %}
 
                     <div class="btn btn-like">
                         <div class="btn-share">
-                            <wb:share-button appkey="1345Qz" addition="simple" type="button" default_text="%23长沙招聘%23 【{{ position.companyName }}】招聘【{{ position.position }}】，工作地点：{{ position.location }}，详情/发简历→"></wb:share-button>
+                            <wb:share-button appkey="1345Qz" addition="simple" type="button"
+                                             default_text="%23长沙招聘%23 【{{ position.companyName }}】招聘【{{ position.position }}】，工作地点：{{ position.location }}，详情/发简历→"></wb:share-button>
                         </div>
                     </div>
 
@@ -34,19 +37,30 @@
                     <img src="{{ asset(position.user.avatarSmallUrl) }}" class="avatar"/>
 
                     <div class="meta">
-                        <a href="{{ path('profile_show', {'username': position.user.username}) }}">{{ position.user.screenName }}</a> 在 {{ position.createdAt|date('Y-m-d') }} 发布的职位
+                        <a href="{{ path('profile_show', {'username': position.user.username}) }}">{{ position.user.screenName }}</a>
+                        在 {{ position.createdAt|date('Y-m-d') }} 发布的职位
                     </div>
 
                     <div class="title">
                         <a href="{{ path('position_show', {'positionId': position.id}) }}">{{ position.position }}</a>
                         <span class="divider">•</span> <span class="company">{{ position.companyName }}</span>
-                        <span class="divider">•</span> <span class="region">{{ position.location }}</span>
                     </div>
 
                 </div>
 
                 <div class="item-body">
                     {{ position.description|markup }}
+
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>工作地点</th>
+                            <td>{{ position.city }}</td>
+                        </tr>
+                        <tr>
+                            <th>详细地址</th>
+                            <td>{{ position.location }}</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>

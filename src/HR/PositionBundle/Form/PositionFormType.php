@@ -16,16 +16,10 @@ class PositionFormType extends AbstractType
     {
         $builder
             ->add('position', null, array(
-                'label' => '招聘职位'
+                'label' => '职位名称'
             ))
             ->add('companyName', null, array(
                 'label' => '公司或机构'
-            ))
-            ->add('location', null, array(
-                'label' => '详细工作地点'
-            ))
-            ->add('contactEmail', null, array(
-                'label' => '简历接收Email'
             ))
             ->add('description', null, array(
                 'label' => '职位详情',
@@ -35,6 +29,20 @@ class PositionFormType extends AbstractType
                     'placeholder' => '描述岗位职责或要求，尽量说明福利待遇。'
                 )
             ))
+            ->add('city', null, array(
+                'label'    => '工作城市',
+                'required' => true,
+                'attr'     => array(
+                    'class' => 'embed-element'
+                )
+            ))
+            ->add('location', null, array(
+                'label' => '详细工作地点'
+            ))
+            ->add('contactEmail', null, array(
+                'label' => '简历接收Email'
+            ))
+
             ->add('save', 'submit', array(
                 'label' => '保存'
             ));

@@ -21,6 +21,7 @@
         <field name="updatedAt" type="datetime" column="updated_at" nullable="true" />
         <field name="deletedAt" type="datetime" column="deleted_at" nullable="true" />
 
+        <many-to-one target-entity="HR\LocationBundle\Entity\City" field="city" />
         <many-to-one target-entity="HR\UserBundle\Entity\User" field="user" inversed-by="positions" />
     </entity>
 </doctrine-mapping>
