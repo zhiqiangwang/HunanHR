@@ -376,6 +376,6 @@ class Position implements PositionInterface
      */
     public function getTouchTimestamp()
     {
-        return $this->updatedAt->getTimestamp();
+        return null !== $this->updatedAt ? $this->updatedAt->getTimestamp() : time();
     }
 }
