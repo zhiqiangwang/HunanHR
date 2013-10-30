@@ -53,8 +53,8 @@
                 </ul>
 
                 {% block navbar_search %}
-                    <form class="navbar-form navbar-left" method="get" action="/search">
-                        <input type="text" name="q" placeholder="职位、企业或工作地点" class="form-search">
+                    <form class="navbar-form navbar-left" method="get" action="{{ path('position_search') }}">
+                        <input type="text" name="q" placeholder="搜索职位、企业或工作地点" class="form-search">
                         <a href="javascript:void(0);" class="btn-search"><span class="glyphicon glyphicon-search"></span></a>
                     </form>
                 {% endblock %}
