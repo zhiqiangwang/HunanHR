@@ -7,7 +7,7 @@
     <div class="module">
         <div class="flex-module">
             <div class="module-header">
-                <h2>找到 {{ pager.count }} 个和 "{{ app.request.get('q') }}" 相关的职位</h2>
+                <h2>找到 {{ pager.totalItemCount() }} 个和 "{{ app.request.get('q') }}" 相关的职位</h2>
             </div>
 
             {% if pager|length > 0 %}
