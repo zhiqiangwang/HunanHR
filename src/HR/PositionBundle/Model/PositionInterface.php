@@ -209,6 +209,11 @@ interface PositionInterface
     public function getDeletedAt();
 
     /**
+     * @return int
+     */
+    public function getTouchTimestamp();
+
+    /**
      * @param UserInterface $user
      *
      * @return $this

@@ -370,4 +370,12 @@ class Position implements PositionInterface
     {
         return $this->deletedAt;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTouchTimestamp()
+    {
+        return $this->updatedAt->getTimestamp();
+    }
 }

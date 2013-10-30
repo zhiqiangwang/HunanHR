@@ -55,6 +55,11 @@ class SearchController extends Controller
             'post_tags' => array('[/tag]'),
         ));
 
+        $query->addSort(array(
+            '_score'         => array('order' => 'desc'),
+            'touchTimestamp' => array('order' => 'desc'),
+        ));
+
         /** @var \Knp\Component\Pager\Paginator $paginator */
         $paginator = $this->get('paginator');
         $pager     = $paginator->paginate($finder->createPaginatorAdapter($query), $request->get('page', 1));

@@ -121,6 +121,7 @@ fos_elastica:
                         companyName: { boost: 10}
                         city: { boost: 10 }
                         location: { boost: 5 }
+                        touchTimestamp: ~
                     persistence:
                         driver: orm
                         model: HR\PositionBundle\Entity\Position

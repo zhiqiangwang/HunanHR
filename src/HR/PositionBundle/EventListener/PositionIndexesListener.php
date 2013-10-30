@@ -30,11 +30,12 @@ class PositionIndexesListener implements EventSubscriberInterface
         $document
             ->setId($position->getId())
             ->setData(array(
-                'position'    => $position->getPosition(),
-                'description' => $position->getDescription(),
-                'companyName' => $position->getCompanyName(),
-                'city'        => $position->getCity()->getName(),
-                'location'    => $position->getLocation()
+                'position'       => $position->getPosition(),
+                'description'    => $position->getDescription(),
+                'companyName'    => $position->getCompanyName(),
+                'city'           => $position->getCity()->getName(),
+                'location'       => $position->getLocation(),
+                'touchTimestamp' => $position->getTouchTimestamp()
             ));
 
         $this->positionType->updateDocument($document);
