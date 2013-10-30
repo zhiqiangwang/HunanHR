@@ -29,6 +29,7 @@ class MarkupExtension extends \Twig_Extension
     public function location($input)
     {
         $input = preg_replace('/湖南省?/u', '', $input);
+        $input = str_replace('[tag][/tag]', '', $input);
 
         return $input;
     }
