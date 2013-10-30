@@ -15,9 +15,9 @@
     {% block stylesheets %}
         <link href="{{ asset('css/hh.css?10300958') }}" rel="stylesheet" media="screen"/>
     {% endblock %}
-    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('img/apple-touch-114.png?10281555') }}" />
-    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('img/apple-touch-114.png?10281555') }}" />
-    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('img/apple-touch-72.png?10281555') }}" />
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('img/apple-touch-114.png?10281555') }}"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('img/apple-touch-114.png?10281555') }}"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('img/apple-touch-72.png?10281555') }}"/>
     <link rel="shortcut icon" href="{{ asset('img/favicon.png?10281606') }}"/>
     <!--[if lt IE 9]>
     <script src="{{ asset('js/html5shiv.js') }}"></script>
@@ -27,7 +27,10 @@
 
 <!--[if lt IE 9]>
 <div class="browser-nonsupport-wrap">
-    <div class="browser-nonsupport">您的浏览器太旧了，无法正常访问本网站！试试其他的：<a href="http://www.google.com/chrome" target="_blank">Google 浏览器</a>、<a href="http://firefox.com.cn/" target="_blank">火狐浏览器</a>、<a href="http://www.apple.com.cn/safari/" target="_blank">Safari</a>、<a href="http://www.google.com/chromeframe?hl=zh-CN" target="_blank">Google 浏览器框架</a></div>
+    <div class="browser-nonsupport">您的浏览器太旧了，无法正常访问本网站！试试其他的：<a href="http://www.google.com/chrome" target="_blank">Google
+        浏览器</a>、<a href="http://firefox.com.cn/" target="_blank">火狐浏览器</a>、<a href="http://www.apple.com.cn/safari/"
+                                                                              target="_blank">Safari</a>、<a
+            href="http://www.google.com/chromeframe?hl=zh-CN" target="_blank">Google 浏览器框架</a></div>
 </div>
 <![endif]-->
 
@@ -48,6 +51,13 @@
                         <li><a href="{{ path('profile_edit') }}">个人资料</a></li>
                     {% endif %}
                 </ul>
+
+                {% block navbar_search %}
+                <form class="navbar-form navbar-left" method="get" action="/search">
+                    <input type="text" name="q" placeholder="职位、企业或工作地点" class="form-search">
+                    <a href="javascript:void(0);" class="btn-search"><span class="glyphicon glyphicon-search"></span></a>
+                </form>
+                {% endblock %}
 
                 <ul class="nav navbar-nav pull-right">
                     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
@@ -96,8 +106,11 @@
                                             <div class="card">
                                                 <div class="avatar-wrapper">
                                                     <div class="upload-face">
-                                                        <a href="{{ path('profile_show', {'username': app.user.username}) }}"><img src="{{ asset(app.user.avatarBigUrl) }}" class="avatar"/></a>
-                                                        <a class="upload-action" href="{{ path('upload_face') }}">修改头像</a>
+                                                        <a href="{{ path('profile_show', {'username': app.user.username}) }}"><img
+                                                                    src="{{ asset(app.user.avatarBigUrl) }}"
+                                                                    class="avatar"/></a>
+                                                        <a class="upload-action"
+                                                           href="{{ path('upload_face') }}">修改头像</a>
                                                     </div>
                                                 </div>
 
@@ -106,14 +119,16 @@
 
 
                                                 {% if app.user.groupNames %}
-                                                    <span class="text-muted">({% for groupName in app.user.groupNames %}{{ groupName }}{% endfor %})</span>
+                                                    <span class="text-muted">({% for groupName in app.user.groupNames %}{{ groupName }}{% endfor %}
+                                                        )</span>
                                                 {% endif %}
                                                 <p class="metadata">{{ app.user.bio|substring(20) }}</p>
                                             </div>
                                         </div>
                                         <div class="action clearfix">
                                             {#<a href="">0 条未读提醒</a>#}
-                                            <a href="{{ path('profile_edit') }}" class="btn btn-default pull-right">资料设置</a>
+                                            <a href="{{ path('profile_edit') }}"
+                                               class="btn btn-default pull-right">资料设置</a>
                                         </div>
                                     </div>
                                 </div>
@@ -129,8 +144,10 @@
                                             <hr/>
                                             <p class="text-muted">使用社交网络帐号注册</p>
                                             <div class="sns-btn-group">
-                                                <a href="{{ path('oauth_weibo') }}" class="btn btn-weibo"><span class="icon icon-weibo"></span> 新浪微博</a>
-                                                <a href="{{ path('oauth_qq') }}" class="btn btn-qq"><span class="icon icon-qq"></span> QQ帐号</a>
+                                                <a href="{{ path('oauth_weibo') }}" class="btn btn-weibo"><span
+                                                            class="icon icon-weibo"></span> 新浪微博</a>
+                                                <a href="{{ path('oauth_qq') }}" class="btn btn-qq"><span
+                                                            class="icon icon-qq"></span> QQ帐号</a>
                                             </div>
                                         {% endblock %}
                                     </div>
@@ -142,7 +159,9 @@
 
                             <div class="module hidden-xs">
                                 <div class="flex-module advert">
-                                    <a href="http://www.amazon.cn/s?rh=n%3A853798051&tag=babyfamily-23&camp=440&creative=3308&linkCode=ur1&adid=01R5ZP5EQ54B10YCYQZZ&ref-refURL=http%3A%2F%2Fwww.babyfamily.com%2F" target="_blank"><img src="http://g-ecx.images-amazon.com/images/G/28/Baby/moli/zcn/wj.png"/></a>
+                                    <a href="http://www.amazon.cn/s?rh=n%3A853798051&tag=babyfamily-23&camp=440&creative=3308&linkCode=ur1&adid=01R5ZP5EQ54B10YCYQZZ&ref-refURL=http%3A%2F%2Fwww.babyfamily.com%2F"
+                                       target="_blank"><img
+                                                src="http://g-ecx.images-amazon.com/images/G/28/Baby/moli/zcn/wj.png"/></a>
                                 </div>
                             </div>
 
@@ -188,7 +207,7 @@
 
 {% block javascripts %}
     <script src="{{ asset('js/jquery.js') }}"></script>
-    <script src="{{ asset('js/hh.js') }}"></script>
+    <script src="{{ asset('js/hh.js?10301333') }}"></script>
 {% endblock %}
 
 {% block footer %}
