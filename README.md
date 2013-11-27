@@ -7,17 +7,21 @@ a symfony2 project - hunanhr.com
 
 安装
 
+```
 git clone https://github.com/wenmingtang/HunanHR.git
 
 cp app/config/parameters.yml.dist app/config/parameters.yml
 
 vim app/config/parameters.yml
+```
 
 设置数据库用户名和库名后
 
+```
 php app/console doctrine:database:create
 php app/console doctrine:schema:create
 php app/console hr:acl:installAces
+```
 
 就可以访问你的安装地址测试了。
 
