@@ -81,8 +81,8 @@ hwi_oauth:
     resource_owners:
         weibo:
             type:                sina_weibo
-            client_id:           650975791
-            client_secret:       33d7bbe742993bbd762974f66db2a018
+            client_id:           [client_id]
+            client_secret:       [client_secret]
             user_response_class: HR\OAuthBundle\OAuth\Response\WeiboUserResponse
             paths:
                 gender:          gender
@@ -94,8 +94,8 @@ hwi_oauth:
 
         qq:
             type:                qq
-            client_id:           100559983
-            client_secret:       ada1e967dbddde2423f25e63d37686a0
+            client_id:           [client_id]
+            client_secret:       [client_secret]
             user_response_class: HR\OAuthBundle\OAuth\Response\QQUserResponse
             paths:
                 gender:          gender
