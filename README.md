@@ -10,6 +10,8 @@ a symfony2 project - hunanhr.com
 ```
 git clone https://github.com/wenmingtang/HunanHR.git
 
+composer install
+
 cp app/config/parameters.yml.dist app/config/parameters.yml
 
 vim app/config/parameters.yml
